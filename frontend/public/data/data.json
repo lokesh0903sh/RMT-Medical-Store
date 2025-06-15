@@ -1,0 +1,6710 @@
+[
+    {
+     "productName": "AARCEEKOF-DX",
+     "unit": "SYP",
+     "mrp": 121,
+     "company": "ULTRACHEM LABORATORIES"
+    },
+    {
+     "productName": "ABHAYARISHTA 450 ML",
+     "unit": "SYP",
+     "mrp": 178,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "ABHAYRAB INJ 1X0.5ML",
+     "unit": "INJ",
+     "mrp": 397.62,
+     "company": "HUMAN BIOLOGICALAS"
+    },
+    {
+     "productName": "ABZORB POWDER 1*120GM",
+     "unit": "POWD",
+     "mrp": 160,
+     "company": "RANBAXY CROSLANDS"
+    },
+    {
+     "productName": "ABZORB POWDER 1*50G",
+     "unit": "POW",
+     "mrp": 90,
+     "company": "RANBAXY CROSLANDS"
+    },
+    {
+     "productName": "ACCU CHECK INSTANT STRP 1*50 S",
+     "unit": "STRP",
+     "mrp": 1145,
+     "company": "ROCHE DIAGNOSTICS AUSTRALIA PVT LTD"
+    },
+    {
+     "productName": "ACCU CHECK SOFTCLICK LANCET 1*200",
+     "unit": "LNCT",
+     "mrp": 600,
+     "company": "ROCHE DIAGNOSTICS AUSTRALIA PVT LTD"
+    },
+    {
+     "productName": "ACENIC-SP 1*10",
+     "unit": "TAB.",
+     "mrp": 132,
+     "company": "GENTEC HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "ACILOC 150MG TAB 1*30",
+     "unit": "TAB",
+     "mrp": 49.1,
+     "company": "CADILA PHARMACEUTICALS"
+    },
+    {
+     "productName": "ACILOC 300 1*20 TAB",
+     "unit": "TAB.",
+     "mrp": 54.8,
+     "company": "CADILA PHARMACEUTICALS"
+    },
+    {
+     "productName": "ACILOC RD TAB 1*10",
+     "unit": "TAB",
+     "mrp": 84.3,
+     "company": "CADILA PHARMACEUTICALS"
+    },
+    {
+     "productName": "ACMED FACE WASH 1*70ML",
+     "unit": "F\/W",
+     "mrp": 220,
+     "company": "ETHICARE REMIDIS"
+    },
+    {
+     "productName": "ACNESTAR GEL 1X15GM",
+     "unit": "CREM",
+     "mrp": 120,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "ACNESTAR SOAP 1X75GM",
+     "unit": "SOAP",
+     "mrp": 105,
+     "company": "LIFESTAR PHARMA PVT. LTD."
+    },
+    {
+     "productName": "ACYCLOSURE TH4 1*10",
+     "unit": "TAB.",
+     "mrp": 253.55,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "ADULT DIPERS 1*10 PANT",
+     "unit": "PANT",
+     "mrp": 550,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "AIR 180MG TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 68,
+     "company": "SYSTOPIC LABOTRIES PVT LTD"
+    },
+    {
+     "productName": "ALCIFLOX D EYE\/EAR DROP 1*10 ML",
+     "unit": "DROP",
+     "mrp": 45,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "ALDIGESIC P NEW 40*15",
+     "unit": "TAB.",
+     "mrp": 110,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "ALDIGESIC SP 10*10",
+     "unit": "TAB.",
+     "mrp": 120,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "ALEX JUNIOR SYP 1X60ML",
+     "unit": "SYRP",
+     "mrp": 104,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "ALEX P PEADATRIC  DROPS 1X15ML",
+     "unit": "DROP",
+     "mrp": 80,
+     "company": "LYKA LABS LTD."
+    },
+    {
+     "productName": "ALEX S\/F + SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 154.5,
+     "company": "GLENMARK PHARMACEUTICALS"
+    },
+    {
+     "productName": "ALLEGRA 120MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 240.68,
+     "company": "AVENTIS PHARMA LTD"
+    },
+    {
+     "productName": "ALLEGRA 180MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 275.11,
+     "company": "AVENTIS PHARMA LTD"
+    },
+    {
+     "productName": "ALL OUT COMBI MACHINE 1*1",
+     "unit": "PCS",
+     "mrp": 100,
+     "company": "BRILLON CONSUMER PRODUCT PVT. LTD."
+    },
+    {
+     "productName": "ALLOUT REFIL 1*1",
+     "unit": "LIQ.",
+     "mrp": 80,
+     "company": "BRILLON CONSUMER PRODUCT PVT. LTD."
+    },
+    {
+     "productName": "ALMEFKEM D TAB 20*10",
+     "unit": "TABS",
+     "mrp": 143,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "ALTHROCIN 500MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 132.3,
+     "company": "ALEMBIC CHEMICAL WORKS LTD."
+    },
+    {
+     "productName": "AMARYL 1MG TAB 1X30",
+     "unit": "TAB",
+     "mrp": 124.32,
+     "company": "sanofi india ltd"
+    },
+    {
+     "productName": "AMBRODIL S SYP 1X100ML",
+     "unit": "SYP",
+     "mrp": 36.15,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "AMICIN 100MG INJ 1*2ML",
+     "unit": "INJ",
+     "mrp": 35.38,
+     "company": "BIOCHEM PHARMACEUTICALS INDUSTRIES LTD"
+    },
+    {
+     "productName": "AMLA HAIR OIL 90 ML",
+     "unit": "OIL",
+     "mrp": 53,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "AMLIP 5 MG 50*10",
+     "unit": "TAB.",
+     "mrp": 32.36,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "AMLOKIND-5MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 24.83,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "AMLOKIND AT 1*10TABS",
+     "unit": "TABS",
+     "mrp": 53.95,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "AMLOPRES AT 25MG TAB 1*15TAB",
+     "unit": "TAB",
+     "mrp": 302.76,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "AMLOPRESS 5 TAB 30 T",
+     "unit": "TAB.",
+     "mrp": 84,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "AMLOPRESS AT 1*15 TAB",
+     "unit": "TAB.",
+     "mrp": 179.78,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "AMLOPRES TL TAB 1X15",
+     "unit": "TAB",
+     "mrp": 134.16,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "AMLOVAS AT TAB 1*15",
+     "unit": "TAB",
+     "mrp": 116.6,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "AMOXYCLAV 625 10*10",
+     "unit": "TAB.",
+     "mrp": 182.78,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "AMPILOX 500 CAP 1*10",
+     "unit": "CAP",
+     "mrp": 166.45,
+     "company": "BIOCHEM PHARMACEUTICALS INDUSTRIES LTD"
+    },
+    {
+     "productName": "AMPILOX KID TAB 1*10",
+     "unit": "TABS",
+     "mrp": 51.23,
+     "company": "BIO CHEM"
+    },
+    {
+     "productName": "AMPILOX LB CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 169,
+     "company": "BIO CHEM"
+    },
+    {
+     "productName": "ANAFORTAN TAB 1*15",
+     "unit": "TABS",
+     "mrp": 91.1,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "ANEROID SPHYGMOMANOMETER 1*1",
+     "unit": "MTR",
+     "mrp": 1350,
+     "company": "BONN (HMA)"
+    },
+    {
+     "productName": "APEX CORN HEAL 1*1",
+     "unit": "BND",
+     "mrp": 45,
+     "company": "APEX LAB"
+    },
+    {
+     "productName": "APTALL TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 22,
+     "company": "WINGS PHARMACEUTICALS PVT.LTD"
+    },
+    {
+     "productName": "ARICEF O 200 1*10",
+     "unit": "TAB.",
+     "mrp": 109.42,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "ARISTOZYME DROP 1X15ML",
+     "unit": "DROP",
+     "mrp": 66.5,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "ARISTOZYME SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 148,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "AROGYAWARDHINI BATI 1*80",
+     "unit": "TAB",
+     "mrp": 180,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "ARSH KALP FOR PILES 1*6",
+     "unit": "CAP",
+     "mrp": 126,
+     "company": "VAIDRISHI LAB"
+    },
+    {
+     "productName": "ASHOKARISHTA 1*450 ML",
+     "unit": "SYP",
+     "mrp": 158,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "ASIGERMINA SUSP. 10*15 ML",
+     "unit": "SUS.",
+     "mrp": 59,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "ASTHALIN-4 TAB 1*45 TAB",
+     "unit": "TABS",
+     "mrp": 10.58,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "ASTHALIN INHALER 1X200MD",
+     "unit": "INH",
+     "mrp": 176.98,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "ASTHALIN RESPULES 1*5 ML",
+     "unit": "REP",
+     "mrp": 7.77,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "ASTHALIN SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 19.04,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "ASTIN CV 10MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 130,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "ATARAX 25MG TAB 1X15",
+     "unit": "TAB",
+     "mrp": 103.25,
+     "company": "DR. REDDY'S"
+    },
+    {
+     "productName": "ATARAX ANTI-ITCH LOTION 1*100ML",
+     "unit": "LOTN",
+     "mrp": 444,
+     "company": "DR. REDDY'S LAB  LTD."
+    },
+    {
+     "productName": "ATARAX DROP 15ML 1X15ML",
+     "unit": "DROP",
+     "mrp": 76.5,
+     "company": "DR. REDDY'S"
+    },
+    {
+     "productName": "ATARAX SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 133.25,
+     "company": "E-MERCK"
+    },
+    {
+     "productName": "A TO Z DROP 1*15ML",
+     "unit": "DROP",
+     "mrp": 70.5,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "A TO Z GOLD CAP 1X15",
+     "unit": "CAP",
+     "mrp": 225,
+     "company": "."
+    },
+    {
+     "productName": "A TO Z NS SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 210,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "A TO Z TAB 1*15",
+     "unit": "TAB",
+     "mrp": 175,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "AUGMENTIN 375MG.TAB 1X6",
+     "unit": "TAB.",
+     "mrp": 0,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "AUGMENTIN 625 DUO 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 204.85,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "AUGMENTIN DUO SYP 30 ML",
+     "unit": "SYP.",
+     "mrp": 67.47,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "AVIL 25MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 12.05,
+     "company": "AVENTIS PHARMA LTD"
+    },
+    {
+     "productName": "AVOMINE TAB 1*10T",
+     "unit": "TAB.",
+     "mrp": 61.57,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "AZEE 100 SYP 1X15ML",
+     "unit": "SYRU",
+     "mrp": 50.46,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "AZEE 200 SYP 1*15ML",
+     "unit": "SYRU",
+     "mrp": 57.12,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "AZEE 250 TABS 1*6",
+     "unit": "TAB.",
+     "mrp": 130.36,
+     "company": "."
+    },
+    {
+     "productName": "AZEE 500 TAB 1X10",
+     "unit": "TAB.",
+     "mrp": 131.99,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "AZICIP 250MG 20*6",
+     "unit": "TAB.",
+     "mrp": 69.82,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "AZICIP TAB 500 MG 20*3",
+     "unit": "TAB.",
+     "mrp": 79.16,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "AZIEYE OINTMENT 1*5 GM",
+     "unit": "OINT",
+     "mrp": 140,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "AZIWOK 250MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 130.3,
+     "company": "DR. REDDY"
+    },
+    {
+     "productName": "AZIWOK 500MG TAB 1X5",
+     "unit": "TAB",
+     "mrp": 131.9,
+     "company": "WOCKHARDT"
+    },
+    {
+     "productName": "AZULIX 1 MF 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 176,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "BAJAJ ALMOND OIL 1*50",
+     "unit": "OIL",
+     "mrp": 33,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "BAJAJ COCONUT OIL 1*175 ML",
+     "unit": "OIL",
+     "mrp": 65,
+     "company": "BAJAJ CONSUMER CARE"
+    },
+    {
+     "productName": "BAJAJ OIL 1*50 ML",
+     "unit": "OIL",
+     "mrp": 33,
+     "company": "BAJAJ CORP LTD"
+    },
+    {
+     "productName": "BALM GREEN 10 GM",
+     "unit": "BAM",
+     "mrp": 30,
+     "company": "SAPTRISHI HERBALS"
+    },
+    {
+     "productName": "BANDAGE ROLL 10CMX3M 1*1",
+     "unit": "BNDG",
+     "mrp": 145,
+     "company": "JARA HEALTHCARE"
+    },
+    {
+     "productName": "BANDAGE ROLL(5CM*3MTR)MAX 1*12",
+     "unit": "BAND",
+     "mrp": 80,
+     "company": "JARA HEALTHCARE"
+    },
+    {
+     "productName": "BANDAGE ROLL 6CMX3 M 1*1",
+     "unit": "PCS",
+     "mrp": 80,
+     "company": "JARA HEALTHCARE"
+    },
+    {
+     "productName": "BANDY PLUS SYP 1*10ML",
+     "unit": "SYP",
+     "mrp": 37.99,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "BANDY PLUS TAB 1*1",
+     "unit": "TAB",
+     "mrp": 27.99,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "BANDY TAB 12 MG 1X1",
+     "unit": "TAB",
+     "mrp": 33,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "BD ULTRA 4 MM PEN NEEDLE 1*5",
+     "unit": "NEDL",
+     "mrp": 20.6,
+     "company": "BECTON DICKINSON INDIA P LTD"
+    },
+    {
+     "productName": "BECOSULES CAP 1*20",
+     "unit": "CAP",
+     "mrp": 60.49,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "BECOSULES Z CAP 1*20 CAP",
+     "unit": "CAP.",
+     "mrp": 55.5,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "BECOZYME C FORTE TAB 1*15",
+     "unit": "TAB",
+     "mrp": 30.1,
+     "company": "NICHOLAS PIRAMAL INDIA LTD."
+    },
+    {
+     "productName": "BENADRYL COUGH SYP 50 ML",
+     "unit": "SYP",
+     "mrp": 79,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "BETADINE 250 ML",
+     "unit": "LIQ.",
+     "mrp": 666.5,
+     "company": "WINMEDICARE"
+    },
+    {
+     "productName": "BETADINE FIRST AID SOLUTION 1*50ML",
+     "unit": "SOLU",
+     "mrp": 97.44,
+     "company": "WIN MEDICARE LIMITED"
+    },
+    {
+     "productName": "BETADINE GRL 50 ML",
+     "unit": "LIQ.",
+     "mrp": 168.85,
+     "company": "WINMEDICARE"
+    },
+    {
+     "productName": "BETADINE OINT 10% 1X20GM",
+     "unit": "OINT",
+     "mrp": 145.14,
+     "company": "WINMEDICARE"
+    },
+    {
+     "productName": "BETADINE OINTMENT 1X125GM",
+     "unit": "OINT",
+     "mrp": 381.5,
+     "company": "WIN MEDICARE LIMITED"
+    },
+    {
+     "productName": "BETADINE OINTMENT 5% 1X25G",
+     "unit": "OINT",
+     "mrp": 97,
+     "company": "WINMEDICARE"
+    },
+    {
+     "productName": "BETNESOL AMP 1X1ML",
+     "unit": "INJ",
+     "mrp": 5.31,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "BETNESOL FORTE TAB 1X20",
+     "unit": "TAB",
+     "mrp": 25.7,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "BETNESOL N E\/E DROP 1X5ML",
+     "unit": "DROP",
+     "mrp": 21.95,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "BETNESOL TAB 1X20",
+     "unit": "TAB",
+     "mrp": 17,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "BETNOVATE C 30 GM",
+     "unit": "CRM",
+     "mrp": 70.85,
+     "company": "AVENTIS PHARMA LTD"
+    },
+    {
+     "productName": "BETNOVATE GM CREAM 1X20GM",
+     "unit": "CREM",
+     "mrp": 45.26,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "BETNOVATE N SK OINTMENT 1X20GM",
+     "unit": "OINT",
+     "mrp": 60.8,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "BHUDIA GHUTTI 30 ML",
+     "unit": "LIQ",
+     "mrp": 32,
+     "company": "BABAM"
+    },
+    {
+     "productName": "BICOF BR 100 ML",
+     "unit": "LIQ.",
+     "mrp": 132.75,
+     "company": "BIOCHEM(GENRIC)"
+    },
+    {
+     "productName": "BIFILAC CAP 1*10",
+     "unit": "CAP",
+     "mrp": 140,
+     "company": "TABLET (INDIA) LTD."
+    },
+    {
+     "productName": "BIOCHEMDRYL SYP 100 ML",
+     "unit": "LIQ.",
+     "mrp": 139,
+     "company": "BIOCHEM(GENRIC)"
+    },
+    {
+     "productName": "BIOCOF BR SYRUP 1X100ML",
+     "unit": "SYP",
+     "mrp": 148,
+     "company": "."
+    },
+    {
+     "productName": "BIOCTIZ TAB(OVEL) 1*15",
+     "unit": "TAB.",
+     "mrp": 72,
+     "company": "ASHLEY PHARMACEUTICAL PVT. LTD."
+    },
+    {
+     "productName": "BODY LOTION H&A REBONN 300ML",
+     "unit": "DEBI",
+     "mrp": 190,
+     "company": "REBONN"
+    },
+    {
+     "productName": "BON K2 TAB 1*10",
+     "unit": "TAB",
+     "mrp": 342.5,
+     "company": "GLENMARK PHARMACEUTICALS"
+    },
+    {
+     "productName": "BONNE FEEDER 125 ML",
+     "unit": "BOT",
+     "mrp": 45,
+     "company": "BONNY PRODUCTS"
+    },
+    {
+     "productName": "BONNE FEEDER 250 ML",
+     "unit": "BOTL",
+     "mrp": 50,
+     "company": "BONNE SALES P LTD"
+    },
+    {
+     "productName": "BONNE NIPPLE 1*15",
+     "unit": "NIPL",
+     "mrp": 225,
+     "company": "BONNE SALES P LTD"
+    },
+    {
+     "productName": "BONNE SHOOTER 30 PCS",
+     "unit": "JAR",
+     "mrp": 600,
+     "company": "BONNE SALES P LTD"
+    },
+    {
+     "productName": "BORIC ACID IP 20GM",
+     "unit": "PWD.",
+     "mrp": 22,
+     "company": "AGRAWAL DRUGS PVT LTD"
+    },
+    {
+     "productName": "BOROLINE 6 GM",
+     "unit": "CRM",
+     "mrp": 10,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "BOROPLUS AYU CRM 20 GM",
+     "unit": "CRM",
+     "mrp": 45,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "BOROPLUS JAR 6 ML",
+     "unit": "CRM.",
+     "mrp": 480,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "BOURNVITA 500 G",
+     "unit": "PWD",
+     "mrp": 249,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "B.P.M HEM-7121J 1*1",
+     "unit": "BP",
+     "mrp": 2470,
+     "company": "OMERON"
+    },
+    {
+     "productName": "BRO ZEDEX SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 172.25,
+     "company": "WOCKHARDT"
+    },
+    {
+     "productName": "BRUFEN 400MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 26.85,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "BRUFEN 600MG TAB 1X15",
+     "unit": "TAB",
+     "mrp": 38.53,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "B TEX OINT. 1*15GM",
+     "unit": "OINT",
+     "mrp": 30,
+     "company": "RVP"
+    },
+    {
+     "productName": "BUDAMATE-200MG T\/C 1*30",
+     "unit": "R\/C",
+     "mrp": 192.15,
+     "company": "LUPIN LTD."
+    },
+    {
+     "productName": "BUDAMATE 400 TRANSCAPS 1*30",
+     "unit": "CAP",
+     "mrp": 268.8,
+     "company": "LUPIN LTD."
+    },
+    {
+     "productName": "BUDECORT 0.5MG RESPULE 1*2ML",
+     "unit": "RES",
+     "mrp": 26.65,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "BUDECORT 1MG RESPULES 1X2ML",
+     "unit": "RESP",
+     "mrp": 29.43,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "BURNFRESH CREAM 1*15 GM",
+     "unit": "CRM",
+     "mrp": 55,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "BURNHEAL 15G",
+     "unit": "CRM.",
+     "mrp": 81.95,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "BUSCOGAST TAB 1*10",
+     "unit": "TAB",
+     "mrp": 40.39,
+     "company": "sanofi india ltd"
+    },
+    {
+     "productName": "CALCAREA PHOSPHORICA 6X 1X20GM",
+     "unit": "TABL",
+     "mrp": 180,
+     "company": "DR. HEILICH INTERNATIONAL"
+    },
+    {
+     "productName": "CALCIROL GRANULES 1X1SACH",
+     "unit": "SACT",
+     "mrp": 38.06,
+     "company": "CADILA PHARMA DIV."
+    },
+    {
+     "productName": "CALPOL 120MG 1*60ML",
+     "unit": "SYRP",
+     "mrp": 40.32,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CALPOL 250MG SYP 1*60ML",
+     "unit": "SYRU",
+     "mrp": 45.02,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CALPOL 500MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 14.95,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CALPOL 650MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 33.6,
+     "company": "GLAXO WELCOME"
+    },
+    {
+     "productName": "CALRICH D2MAX 1*10",
+     "unit": "TAB.",
+     "mrp": 110,
+     "company": "DHANWANTARI DISTRIBUTORS PVT LTD"
+    },
+    {
+     "productName": "CANDID 120 GM",
+     "unit": "PWD",
+     "mrp": 155,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "CANDID 30GM CREAM 1X30GM",
+     "unit": "CREM",
+     "mrp": 100.8,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "CANDID MOUTH PAINT 1*25ML",
+     "unit": "G\/PA",
+     "mrp": 173,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "CANDID POWDER 1*120",
+     "unit": "POWD",
+     "mrp": 149,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "CANDID V GEL 1X30GM",
+     "unit": "GEL",
+     "mrp": 133.5,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "CANDIFORCE-100 CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 144.6,
+     "company": "DISCOVERY MANKIND"
+    },
+    {
+     "productName": "CANDIMENTIN 625 1*10",
+     "unit": "TAB.",
+     "mrp": 204.75,
+     "company": "RIVPRA FORMULATION PVT. LTD."
+    },
+    {
+     "productName": "CARDED COTTON ROLL 1*15 G",
+     "unit": "COT",
+     "mrp": 20,
+     "company": "AKASH SURGICAL INDUSTRIES"
+    },
+    {
+     "productName": "CARDED COTTON ROLL 30GM",
+     "unit": "COTT",
+     "mrp": 35,
+     "company": "AKASH SURGICAL INDUSTRIES"
+    },
+    {
+     "productName": "CARIPILL TAB 1*15",
+     "unit": "TAB",
+     "mrp": 620,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "CASTOR-NF CREAM 1X15GM",
+     "unit": "CREM",
+     "mrp": 99,
+     "company": "LEEFORD HELATH CARE"
+    },
+    {
+     "productName": "CASTOR OIL 1*50ML",
+     "unit": "OIL",
+     "mrp": 75,
+     "company": "AGRAWAL PHARMACEUTICALS"
+    },
+    {
+     "productName": "C&C FACE WASH 100 100 ML",
+     "unit": "LIQ.",
+     "mrp": 170,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "C&C FACEWASH 50ML",
+     "unit": "LIQ.",
+     "mrp": 95,
+     "company": "JNTL HEALTHCARE"
+    },
+    {
+     "productName": "CCME BERRY BLAST 1*50 ML",
+     "unit": "F\/W",
+     "mrp": 100,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "CEEMI-100MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 75.8,
+     "company": "WINSOME MEDICARE PVT. LTD."
+    },
+    {
+     "productName": "CEEMI-200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 149,
+     "company": "WINSOME MEDICARE PVT. LTD."
+    },
+    {
+     "productName": "CEFAKIND CV 250MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 339,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "CEFASYN 250 1*4 TAB",
+     "unit": "TAB.",
+     "mrp": 111.1,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "CEFROXID-500 1*10",
+     "unit": "TAB.",
+     "mrp": 575.5,
+     "company": "ASHLEY PHARMACEUTICAL PVT. LTD."
+    },
+    {
+     "productName": "CEFTUM 250MG TAB 1*4",
+     "unit": "TAB",
+     "mrp": 211.6,
+     "company": "GLAXO ALLENBURYS"
+    },
+    {
+     "productName": "CEFTUM 500MG TAB 1*4",
+     "unit": "TAB",
+     "mrp": 230.41,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CEFVAX-200 10*10",
+     "unit": "CREA",
+     "mrp": 97,
+     "company": "PIL"
+    },
+    {
+     "productName": "CEPODEM 200MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 189,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "CEPODEM DS 50 1*30ML",
+     "unit": "SYRP",
+     "mrp": 96,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "CEPODEM XP 325MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 364,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "CETCIP 10MG TAB 1*10",
+     "unit": "TABS",
+     "mrp": 18.81,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CETCIP SYRUP 30ML 1X30ML",
+     "unit": "SYP",
+     "mrp": 21.84,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CETNIL PLUS",
+     "unit": "TAB.",
+     "mrp": 82,
+     "company": "GENTEC HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "CHANDRAPRABHA BATI 1*40",
+     "unit": "TABS",
+     "mrp": 87,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "CHANDRA PRABHA VATI 1X80",
+     "unit": "TAB",
+     "mrp": 149,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "CHAWANPRASH AVALEHA 1 KG",
+     "unit": "BOX",
+     "mrp": 410,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "CHAWANPRASH AVALEHA 500GM",
+     "unit": "SLD.",
+     "mrp": 235,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "CHERICOF LS SYP 1X100ML",
+     "unit": "SYP",
+     "mrp": 107,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "CHERICOF SYP 1X60ML",
+     "unit": "SYP",
+     "mrp": 118,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "CHERIDRY JUNIOR 50 ML",
+     "unit": "SYP",
+     "mrp": 93,
+     "company": "PIL"
+    },
+    {
+     "productName": "CHESTON COLD SYP. 1*60 ML",
+     "unit": "SYP.",
+     "mrp": 48.4,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CHESTON COLD TAB. 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 46.75,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CHESTON INHALER 1",
+     "unit": "INHL",
+     "mrp": 55,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CHYMORAL FORTE TAB 1X20",
+     "unit": "TAB",
+     "mrp": 453,
+     "company": "ELDER PHARMA"
+    },
+    {
+     "productName": "CIPCAL 500MG TAB 1X15",
+     "unit": "TAB",
+     "mrp": 95.15,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CIPCAL D3 CAP. 1*4 CAP",
+     "unit": "CAP.",
+     "mrp": 137.84,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPCAL D3 CAPS. 1*4",
+     "unit": "CAPS",
+     "mrp": 137.84,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPCAL D3 SACHET 10*1 SA",
+     "unit": "SCHT",
+     "mrp": 39.93,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPLADIN 20GM 20 GM",
+     "unit": "OINT",
+     "mrp": 48.95,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPLADINE 10 G 10G",
+     "unit": "OINT",
+     "mrp": 29.04,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPLADINE 20 GM",
+     "unit": "OINT",
+     "mrp": 59.24,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPLADIN POWDER 10G 10 MG",
+     "unit": "PWD.",
+     "mrp": 74.41,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPLOX 250MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 24.52,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CIPLOX 500MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 47.6,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CIPLOX D E\/DROP 1*10ML",
+     "unit": "E\/DR",
+     "mrp": 26.55,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CIPLOX EYE DROP 1X10ML",
+     "unit": "DROP",
+     "mrp": 17.13,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CIPLOX TZ TAB 1*10",
+     "unit": "TAB",
+     "mrp": 188.7,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "CIPMOX 250MG CAP 1*15",
+     "unit": "CAP",
+     "mrp": 36.62,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CIPMOX 500 CAP. 20*15 T",
+     "unit": "TAB.",
+     "mrp": 110.2,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CITCIP SYRUP 30 ML",
+     "unit": "SYP",
+     "mrp": 21.84,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "CLAVAM 375 TAB 1X10",
+     "unit": "TAB",
+     "mrp": 218.5,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "CLAVAM 625MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 204.85,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "CLAVAM DRY SYRUP 1*30ML",
+     "unit": "SYRU",
+     "mrp": 68.88,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "CLAVILIP 20MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 400.75,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "CLINGEN VAG. SUPP. 7 T",
+     "unit": "TAB.",
+     "mrp": 175,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "CLINIC P ANTI DD 1*175ML",
+     "unit": "SHMP",
+     "mrp": 118,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "CLINIC PLUS SHAMPOO 1*6 ML",
+     "unit": "SHMP",
+     "mrp": 16,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "CLINIC PLUS STRG&LONG SHAMPOO 1*175ML",
+     "unit": "SHAM",
+     "mrp": 118,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "CLINIC P STRONG AND THICK 1*1",
+     "unit": "PCS",
+     "mrp": 115,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "CLINSOL OINTMENT 1*15 G",
+     "unit": "OINT",
+     "mrp": 90,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "CLOBETA GM CREAM 1*10GM",
+     "unit": "CREM",
+     "mrp": 67,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "CLOFRESH V CREAM 1*30 GM",
+     "unit": "CRM",
+     "mrp": 80,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "CLOMICIP DUSTING PWD 1*1",
+     "unit": "PWD",
+     "mrp": 140,
+     "company": "GENTEC HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "CLOP G CREAM 1*25GM",
+     "unit": "CREM",
+     "mrp": 43.03,
+     "company": "ZYDUS HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "CLOSE UP PASTE 1*42GM",
+     "unit": "COLG",
+     "mrp": 20,
+     "company": "HINDUSTAN LIVER"
+    },
+    {
+     "productName": "CLOVE OIL 1*12",
+     "unit": "OIL",
+     "mrp": 36,
+     "company": "SAPTRISHI HERBALS"
+    },
+    {
+     "productName": "CO2 SYP 1*30ML",
+     "unit": "SYP",
+     "mrp": 90,
+     "company": "MEDLEY LABORATORIES"
+    },
+    {
+     "productName": "COBRA CONDOM 1*3*48",
+     "unit": "COND",
+     "mrp": 1250,
+     "company": "ANONDITA"
+    },
+    {
+     "productName": "COBRA PREMIUM CONDOM 1*10 PCS",
+     "unit": "TAB.",
+     "mrp": 100,
+     "company": "ANONDITA"
+    },
+    {
+     "productName": "COFSILS ORANGE LOZENGES 1*10",
+     "unit": "TABS",
+     "mrp": 35,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "COLD N FLU 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 54,
+     "company": "ELDER LABRATORIES LTD."
+    },
+    {
+     "productName": "COLICAID DROP 1*15ML",
+     "unit": "DROP",
+     "mrp": 64.5,
+     "company": "MEYER"
+    },
+    {
+     "productName": "COMBIFLAM TAB 1*20",
+     "unit": "TABS",
+     "mrp": 50.65,
+     "company": "AVENTIS PHARMA LTD"
+    },
+    {
+     "productName": "CONFIDO TAB 1*60",
+     "unit": "TAB",
+     "mrp": 190,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "COREX DX 100ML 1X100ML",
+     "unit": "SYP",
+     "mrp": 145,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "COREX DX SYP 1*50ML",
+     "unit": "SYP",
+     "mrp": 93,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "COTRIMOXAZOLE DS TAB 10'S",
+     "unit": "TABL",
+     "mrp": 25.75,
+     "company": "BENGAL CHEMICAL & PHARMA LTD."
+    },
+    {
+     "productName": "COTTON 100 G",
+     "unit": "PWD",
+     "mrp": 120,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "COTTON GROSS 30GM",
+     "unit": "COTT",
+     "mrp": 384,
+     "company": "BHARAT SURGICAL"
+    },
+    {
+     "productName": "COTTON GROSS 400 GM",
+     "unit": "COTT",
+     "mrp": 350,
+     "company": "BHARAT SURGICAL"
+    },
+    {
+     "productName": "COTTON GROSS 70 GM",
+     "unit": "COTT",
+     "mrp": 336,
+     "company": "BHARAT SURGICAL"
+    },
+    {
+     "productName": "COTTON ROLL 1*200 G",
+     "unit": "CTON",
+     "mrp": 159,
+     "company": "N\/A"
+    },
+    {
+     "productName": "CRACK SOFT CREAM 20*25G",
+     "unit": "TAB.",
+     "mrp": 105,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "CREMAFFIN PLUS SYP 1*225ML",
+     "unit": "SYP",
+     "mrp": 297.8,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "CREMALAX TAB 1*18 TAB",
+     "unit": "TABS",
+     "mrp": 221.46,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "CREPE BANDAGE BOX 10*4M 1*1",
+     "unit": "BAND",
+     "mrp": 260,
+     "company": "PROMODEX HEALTHCARE SOLUTIONS"
+    },
+    {
+     "productName": "CREPE POUCH-JARA 15*3.5CM 1*1",
+     "unit": "PTTI",
+     "mrp": 280,
+     "company": "JARA HEALTHCARE"
+    },
+    {
+     "productName": "CRESAR AM TAB 1*15",
+     "unit": "TAB.",
+     "mrp": 134.16,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "CROCIN 500MG TAB 1X15",
+     "unit": "TAB",
+     "mrp": 29.9,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "CROCIN 650 MG 1*15",
+     "unit": "TAB.",
+     "mrp": 33.6,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "CROCIN ADVANCE  TAB 1X20",
+     "unit": "TAB.",
+     "mrp": 20.16,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "CROCIN DROP 100 MG\/ML 1X15ML",
+     "unit": "DROP",
+     "mrp": 33.07,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CROCIN PAIN RELIEF 1X15",
+     "unit": "TAB",
+     "mrp": 72.3,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CROCIN SYRUP 1*100ML",
+     "unit": "SYP",
+     "mrp": 67.2,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "CYPON SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 136,
+     "company": "GENO PHARMA LTD."
+    },
+    {
+     "productName": "CYPROTAX 1*10",
+     "unit": "TAB.",
+     "mrp": 18,
+     "company": "THERAMAX LABORATORIES"
+    },
+    {
+     "productName": "CYRA-D CAP 1*10",
+     "unit": "TAB",
+     "mrp": 51,
+     "company": "SYSTOPIC LABOTRIES PVT LTD"
+    },
+    {
+     "productName": "CYSTONE TAB 1X60",
+     "unit": "TAB",
+     "mrp": 200,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "D3 MUST DROPS 1*15ML",
+     "unit": "DROP",
+     "mrp": 43.84,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "DABUR GLUCOPLUS-C ORANGE 1X500GM",
+     "unit": "POWD",
+     "mrp": 160,
+     "company": "DABUR-CC"
+    },
+    {
+     "productName": "DABUR GLUCOSE ORANGE 100 GM",
+     "unit": "PWD",
+     "mrp": 53,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DABUR GLUCOSE ORANGE 250 G",
+     "unit": "PWD",
+     "mrp": 83,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DABUR GLUCOSE  REGULAR 100 GM",
+     "unit": "PWD",
+     "mrp": 35,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DABUR GLUCOSE REGULAR 250 GM",
+     "unit": "PWD",
+     "mrp": 74,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DABUR ODOMOS VIT E 100 GM",
+     "unit": "CRM",
+     "mrp": 110,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DABUR ODOMOS VIT E 25 GM",
+     "unit": "CRM",
+     "mrp": 28,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DABUR ODOMOS VIT E 50 GM",
+     "unit": "CRM",
+     "mrp": 58,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DANO TT 0.5 ML 1*10",
+     "unit": "VIAL",
+     "mrp": 13.08,
+     "company": "DANO VACCINE & BIOLOGICAL PVT. LTD."
+    },
+    {
+     "productName": "DANT KANTI NATU OFFER 1*100 GM",
+     "unit": "PSTE",
+     "mrp": 60,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "DANT KANTI NATURAL 40 GM",
+     "unit": "PSTE",
+     "mrp": 20,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "DASHAMULARISHTA 1*450 ML",
+     "unit": "SYP",
+     "mrp": 200,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "DASHAMULARISHTA DABUR 450 ML",
+     "unit": "LIQ",
+     "mrp": 200,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "DEFCORT 6 MG TAB 1*10",
+     "unit": "TABI",
+     "mrp": 150,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "DEO DOLL-130 125 ML",
+     "unit": "LIQ.",
+     "mrp": 160,
+     "company": "TTK HEALTHCAER LIMITED"
+    },
+    {
+     "productName": "DERIPHYLINE R150 30 T",
+     "unit": "TAB.",
+     "mrp": 36.9,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "DERIPHYLIN TAB. 1*30",
+     "unit": "SPRY",
+     "mrp": 20.55,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "DERIPHYLLIN RET 300 1*30",
+     "unit": "TAB.",
+     "mrp": 56.8,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "DERMA KT CREAM 15 GM",
+     "unit": "CRM",
+     "mrp": 88,
+     "company": "MARXX PHARMA"
+    },
+    {
+     "productName": "DERMICOOL REG. 1*18 GM",
+     "unit": "PWD",
+     "mrp": 10,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "DERMI COOL REG POWDER 1*150GM",
+     "unit": "POWD",
+     "mrp": 145,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DERMIFORD CREAM 15 GM",
+     "unit": "OINT",
+     "mrp": 100,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "DERMIFORD OINT 1*15GM",
+     "unit": "OINT",
+     "mrp": 100,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "DERMIKEM OC CREAM 1*15GM",
+     "unit": "CREM",
+     "mrp": 92,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "DEROBIN OINT 1*30GM",
+     "unit": "OINT",
+     "mrp": 132.8,
+     "company": "USV.LIMITED"
+    },
+    {
+     "productName": "DETT ANTILIQ 60ML36.59 150 60 ML",
+     "unit": "LIQ",
+     "mrp": 40.24,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DETT ANTI REG LIQ125ML 73.20 125 ML",
+     "unit": "LIQ.",
+     "mrp": 80.52,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DETTOL LIQUID 1 LTR",
+     "unit": "LIQ.",
+     "mrp": 401,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DETTOL LIQUID 250 ML",
+     "unit": "LIQ.",
+     "mrp": 140.54,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DEXAORANGE  SYP 1*200 ML",
+     "unit": "SYP",
+     "mrp": 174.74,
+     "company": "FRANCO INDIAN"
+    },
+    {
+     "productName": "DEXCIN EYE DROP 1*5ML",
+     "unit": "DROP",
+     "mrp": 19.8,
+     "company": "SYNTHO PHARMACEUTICALS PVT.LTD"
+    },
+    {
+     "productName": "DEXONA INJ 1*20 ML",
+     "unit": "INJ",
+     "mrp": 32.82,
+     "company": "CADILA PHARMACEUTICALS"
+    },
+    {
+     "productName": "DEXONA TAB 1*30",
+     "unit": "TABS",
+     "mrp": 7.39,
+     "company": "ZYDUS HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "DEXORANGE PAED.SYP 1*60ML",
+     "unit": "SYP",
+     "mrp": 88.5,
+     "company": "FRANCO INDIAN"
+    },
+    {
+     "productName": "DEXORANGE SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 192,
+     "company": "FRANCO INDIAN"
+    },
+    {
+     "productName": "D-FRESH STRONG GEL 1*30 GM",
+     "unit": "GEL",
+     "mrp": 90,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "DICIVIL-MR 10*2*1",
+     "unit": "TAB.",
+     "mrp": 95,
+     "company": "BLUEGLIDE GENERIC"
+    },
+    {
+     "productName": "DICLOWIN PLUS TAB 60*20",
+     "unit": "TABL",
+     "mrp": 24.5,
+     "company": "WINGS PHARMACEUTICALS PVT.LTD"
+    },
+    {
+     "productName": "DIGENE MINT SYP 1X200ML",
+     "unit": "SYP",
+     "mrp": 175.28,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "DIGENE TAB MINT 15 TAB",
+     "unit": "TAB.",
+     "mrp": 21.95,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "DIGESIC PLUS 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 32,
+     "company": "ASHLEY PHARMACEUTICAL PVT. LTD."
+    },
+    {
+     "productName": "DISPOVAN 2 ML",
+     "unit": "SRNG",
+     "mrp": 5.4,
+     "company": "HINDUSTAN MEDICAL DEVISE"
+    },
+    {
+     "productName": "DISPOVAN 3 ML",
+     "unit": "SYRI",
+     "mrp": 880,
+     "company": "HINDUSTAN MEDICAL DEVISE"
+    },
+    {
+     "productName": "DISPOVAN 5 ML",
+     "unit": "SRNG",
+     "mrp": 9.3,
+     "company": "HINDUSTAN MEDICAL DEVISE"
+    },
+    {
+     "productName": "DISPRIN REGULAR 325 MG 1*10",
+     "unit": "TAB.",
+     "mrp": 11.2,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DISPRIN REGULAR 325MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 7.5,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DOCTOR CREPE 6\" 1*1",
+     "unit": "ROLL",
+     "mrp": 150,
+     "company": "MEDOX C"
+    },
+    {
+     "productName": "DOCTOR CREPE POUCH 3\" 1*1",
+     "unit": "PTTI",
+     "mrp": 100,
+     "company": "MEDOX C"
+    },
+    {
+     "productName": "DOCTOR CREPE POUCH 4\" 1*1",
+     "unit": "PTTI",
+     "mrp": 100,
+     "company": "MEDOX C"
+    },
+    {
+     "productName": "DOLO 250 SYP 1X60ML",
+     "unit": "SUSP",
+     "mrp": 45.02,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "DOLO 500MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 14.95,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "DOLO 650MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 33.76,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "DOLOFRESH-MR 1*10",
+     "unit": "TAB.",
+     "mrp": 85,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "DOLOGESIC-SP TAB 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 98.7,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "DOLONEX DT 20MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 260.67,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "DOLOSTAT-SP TAB 1X10TAB",
+     "unit": "TAB",
+     "mrp": 54,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "DOLPHIN PAPER TAPE 1\/2*5 3 TAPE",
+     "unit": "TAPE",
+     "mrp": 7,
+     "company": "FUTURA SURGICAL PVT. LTD."
+    },
+    {
+     "productName": "DOLPHIN PAPER TAPE 1*5 3 TAPE",
+     "unit": "TAPE",
+     "mrp": 37.75,
+     "company": "FUTURA SURGICAL PVT. LTD."
+    },
+    {
+     "productName": "DOLPHIN PAPER TAPE 2*5 2 TAPE",
+     "unit": "TAPE",
+     "mrp": 75.5,
+     "company": "FUTURA SURGICAL PVT. LTD."
+    },
+    {
+     "productName": "DOLPHIN PAPER TAPE 3 1 TAPE",
+     "unit": "TAPE",
+     "mrp": 113.25,
+     "company": "FUTURA SURGICAL PVT. LTD."
+    },
+    {
+     "productName": "DOMSTAL BABY DROP 1X5ML",
+     "unit": "DROP",
+     "mrp": 87.75,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "DOMSTAL SYRUP 1*30ML",
+     "unit": "SYP",
+     "mrp": 41.66,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "DOMSTAL TAB 1*10",
+     "unit": "TAB",
+     "mrp": 25.86,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "DOVE SHAMPOO +CONDITIONER 1*6ML",
+     "unit": "PCS",
+     "mrp": 80,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "DOVE SHAMPOO DC 6 ML",
+     "unit": "SHMP",
+     "mrp": 32,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "DOXINATE PLUS TAB 1*10",
+     "unit": "TAB",
+     "mrp": 307.55,
+     "company": "SIGMA (SVIZERA)"
+    },
+    {
+     "productName": "DOXINATE PLUS TAB 1*30",
+     "unit": "TAB",
+     "mrp": 307.55,
+     "company": "SVIZERA HEALTHCARE"
+    },
+    {
+     "productName": "DOXINATE XT TABS 15 T",
+     "unit": "TAB.",
+     "mrp": 300,
+     "company": "MANEESH PHARMACEUTICALS LTD"
+    },
+    {
+     "productName": "DOXYCEPT CAP 100 1*10",
+     "unit": "CAP",
+     "mrp": 115,
+     "company": "CONCEPT BIOSCIENCES (P)LTD"
+    },
+    {
+     "productName": "DOXYMOUNT M TAB 1*10",
+     "unit": "TABS",
+     "mrp": 169,
+     "company": "ORGANON INDIA PRIVATE LIMITED"
+    },
+    {
+     "productName": "D RISE GRANULES 1*1GM",
+     "unit": "POWD",
+     "mrp": 38.06,
+     "company": "USV.LIMITED"
+    },
+    {
+     "productName": "DR. ORTHO OIL 1X120ML",
+     "unit": "OILS",
+     "mrp": 295,
+     "company": "SBS BIOTECH"
+    },
+    {
+     "productName": "DR ORTHO OIL 1X60ML",
+     "unit": "OIL",
+     "mrp": 158,
+     "company": "DIVISA HERBAL CARE"
+    },
+    {
+     "productName": "D.ROSE WATER 120 ML",
+     "unit": "LIQ",
+     "mrp": 56,
+     "company": "DEV AYURVEDA"
+    },
+    {
+     "productName": "D.ROSE WATER 60 ML",
+     "unit": "LIQ.",
+     "mrp": 36,
+     "company": "DEV AYURVEDA"
+    },
+    {
+     "productName": "DROTIN M TAB 1*10",
+     "unit": "TAB",
+     "mrp": 212.95,
+     "company": "WALTER BUSHNELL"
+    },
+    {
+     "productName": "DROXYL 250MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 47.6,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "DROXYL 500MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 50.06,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "DTT LHW ORG 200ML+175X299 200ML+175ML",
+     "unit": "TAB.",
+     "mrp": 99,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DTT PLASTER JAR 1*172",
+     "unit": "BND",
+     "mrp": 250,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "DULCOFLEX 5 MG TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 12.99,
+     "company": "sanofi india ltd"
+    },
+    {
+     "productName": "DULCOFLEX AD SUPP 1X5",
+     "unit": "PCS",
+     "mrp": 203.55,
+     "company": "SANOFI CONSUMER HEALTH CARE"
+    },
+    {
+     "productName": "DULCOFLEX CHILD SUPP 1*5",
+     "unit": "CAP",
+     "mrp": 55.83,
+     "company": "SANOFI CONSUMER HEALTH CARE"
+    },
+    {
+     "productName": "DULCOFLEX TAB 10 TAB",
+     "unit": "TAB.",
+     "mrp": 12.99,
+     "company": "SANOFI CONSUMER HEALTH CARE"
+    },
+    {
+     "productName": "DUOLIN 3ML RESPULES 1X3ML",
+     "unit": "RESP",
+     "mrp": 22.68,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "DUOLIN ROTACAP 1*30",
+     "unit": "CAP",
+     "mrp": 216.84,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "DUVADILAN 10MG TAB 1X50",
+     "unit": "TAB",
+     "mrp": 222.03,
+     "company": "DUPHAR INTERFRAN LTD."
+    },
+    {
+     "productName": "DYNAPAR AQ INJ 1*1ML",
+     "unit": "INJ",
+     "mrp": 39.6,
+     "company": "TROIKAA LABO."
+    },
+    {
+     "productName": "DYNAPAR TAB 1*10",
+     "unit": "TABL",
+     "mrp": 115,
+     "company": "TROIKAA LABO."
+    },
+    {
+     "productName": "DYTOR-100MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 102.72,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "EARWEL DROPS 5ML 1*5ML",
+     "unit": "DROP",
+     "mrp": 70,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "EARWELL EAR DROP 10 ML",
+     "unit": "DROP",
+     "mrp": 75,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "EASY BREATH SOFTGEL 1*10 CAP",
+     "unit": "CAP",
+     "mrp": 67.5,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "EBAST M TAB 1*15",
+     "unit": "TAB",
+     "mrp": 325,
+     "company": "MICRO LABS LIMITED"
+    },
+    {
+     "productName": "ECONORM SACHET 1X765GM",
+     "unit": "SACH",
+     "mrp": 62.7,
+     "company": "DR. REDDY'S LAB  LTD."
+    },
+    {
+     "productName": "ECOSPRIN 75MG TAB 1*14",
+     "unit": "TAB",
+     "mrp": 5.49,
+     "company": "USV.LIMITED"
+    },
+    {
+     "productName": "ECOSPRIN AV 75\/20MG CAP 1X10 CAP",
+     "unit": "CAP",
+     "mrp": 60.65,
+     "company": "USV.LIMITED"
+    },
+    {
+     "productName": "ECOSPRIN GOLD 20MG CAP 1*15",
+     "unit": "CAP",
+     "mrp": 177.1,
+     "company": "USV.LIMITED"
+    },
+    {
+     "productName": "ELBUGESIC PLUS SYRUP 1*60 ML",
+     "unit": "SYP",
+     "mrp": 78,
+     "company": "ELDER LIFESCIENCE (GEN)"
+    },
+    {
+     "productName": "ELDIGESIC-P 1*60ML",
+     "unit": "SYP",
+     "mrp": 82,
+     "company": "ELDER LABRATORIES LTD."
+    },
+    {
+     "productName": "ELECTRAL POWDER 1*21.8GM",
+     "unit": "POWD",
+     "mrp": 22.66,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "ELOSONE-HT SKIN CREAM 1*15G",
+     "unit": "CREM",
+     "mrp": 145,
+     "company": "LEEFORD HELATH CARE"
+    },
+    {
+     "productName": "EMCOPLEX 1*20 CAP",
+     "unit": "CAP",
+     "mrp": 93,
+     "company": "EMAAR LABS"
+    },
+    {
+     "productName": "EMESET 4MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 57.56,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "EMESET SYP 1*30ML",
+     "unit": "SYP",
+     "mrp": 42.33,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "EMOFORM 50 GM",
+     "unit": "PSTE",
+     "mrp": 75,
+     "company": "J.L MORSION"
+    },
+    {
+     "productName": "ENCELIN M 50\/500 1*10",
+     "unit": "TAB.",
+     "mrp": 91.5,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "ENERZAL ORANGE POWDER 1*75GM",
+     "unit": "POWD",
+     "mrp": 49,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "ENERZAL PET 500 ML",
+     "unit": "LIQ",
+     "mrp": 55,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "ENERZAL POWDER ORANGE 1X50GM",
+     "unit": "EXTR",
+     "mrp": 33,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "ENERZAL ZERO 400 ML",
+     "unit": "LIQ.",
+     "mrp": 55,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "ENO MONEY SAVER 5G 6*5 SACHET",
+     "unit": "SACH",
+     "mrp": 60,
+     "company": "GSK CONSUMER"
+    },
+    {
+     "productName": "ENTEROGERMINA SUSP. 1 VAIL",
+     "unit": "VIAL",
+     "mrp": 72.37,
+     "company": "AVENTIS PHARMA LTD"
+    },
+    {
+     "productName": "ENTROQUINOL TAB 45*20 T",
+     "unit": "TAB",
+     "mrp": 20,
+     "company": "MEDICO HERB"
+    },
+    {
+     "productName": "ENVAS 2.5MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 36.62,
+     "company": "CADILA PHARMACEUTICALS"
+    },
+    {
+     "productName": "ESGIPYRIN TAB 1*15",
+     "unit": "TAB",
+     "mrp": 128.83,
+     "company": "ABBOTT INDIA LTD"
+    },
+    {
+     "productName": "ETOSHINE 90MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 270,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "ETOSHINE MR TAB 1*10",
+     "unit": "TAB",
+     "mrp": 299,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "EUMOSONE CREAM 1X15GM",
+     "unit": "CREA",
+     "mrp": 100.9,
+     "company": "GLAXO ALLENBURYS"
+    },
+    {
+     "productName": "EUSOL SOLUTION 1*400 ML",
+     "unit": "LIQ",
+     "mrp": 108,
+     "company": "AGRAWAL PHARMACEUTICALS"
+    },
+    {
+     "productName": "EVERYUTH WALNUT SCRUB 1*50GM",
+     "unit": "SCRB",
+     "mrp": 90,
+     "company": "ZYDUS WELLNESS"
+    },
+    {
+     "productName": "EVION 400MG CAP 1*10",
+     "unit": "CAP",
+     "mrp": 86.87,
+     "company": "MERCK"
+    },
+    {
+     "productName": "EVION 600MG CAP 1*10",
+     "unit": "CAP",
+     "mrp": 62.48,
+     "company": "MERCK"
+    },
+    {
+     "productName": "EXAMINATION GLOVES K M",
+     "unit": "PCS",
+     "mrp": 900,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "EXOTIC EAR DROP 10*3*3",
+     "unit": "DROP",
+     "mrp": 84,
+     "company": "OCHOA LABORATORIES"
+    },
+    {
+     "productName": "EYE MANTRA 10ML",
+     "unit": "LIQ.",
+     "mrp": 95,
+     "company": "DIVISA HERBAL CARE"
+    },
+    {
+     "productName": "EYE TINTURE",
+     "unit": "CAP",
+     "mrp": 25,
+     "company": "EAMON DRUGS PVT. LTD."
+    },
+    {
+     "productName": "FACE MASK 2 PLY 1*50",
+     "unit": "MSK",
+     "mrp": 500,
+     "company": "MEDOX C"
+    },
+    {
+     "productName": "FACE MASK BLACK 1*100",
+     "unit": "MASK",
+     "mrp": 5,
+     "company": "GENERAL"
+    },
+    {
+     "productName": "FACE MASK WITH PIN 1*1",
+     "unit": "MASK",
+     "mrp": 10,
+     "company": "ADWIN PHARMA"
+    },
+    {
+     "productName": "FAIR & HANDSOME CREAM 1*15GM",
+     "unit": "CREM",
+     "mrp": 40,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "FAIR & LOVELY 25 G",
+     "unit": "CRM",
+     "mrp": 65,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "FAIR & LOVELY BB CREAM 1*9GM",
+     "unit": "CREA",
+     "mrp": 49,
+     "company": "HINDUSTAN LIVER"
+    },
+    {
+     "productName": "FAIR & LOVELY FACE WASH 1*50GM",
+     "unit": "F\/W",
+     "mrp": 79,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "FENAK PLUS TAB 1*10",
+     "unit": "TAB",
+     "mrp": 32.8,
+     "company": "RANBAXY GENRIC"
+    },
+    {
+     "productName": "FESTIVE D EYE DROP 1*10ML",
+     "unit": "DROP",
+     "mrp": 52.5,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "FESTIVE EYE DROP 1*10ML",
+     "unit": "DROP",
+     "mrp": 43.5,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "FLAMOX CV 625 MG 1*10",
+     "unit": "TAB.",
+     "mrp": 204.85,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "FLEX HI BANDAID REGULAR 1*100",
+     "unit": "BAND",
+     "mrp": 200,
+     "company": "FLEX"
+    },
+    {
+     "productName": "FLEXON-MR 1*10",
+     "unit": "TAB.",
+     "mrp": 28.7,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "FLEXON TAB 1X15",
+     "unit": "TAB",
+     "mrp": 31.4,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "FLUTIBACT OINT 1*10GM",
+     "unit": "OINT",
+     "mrp": 236.2,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "FL WINTER 1*25",
+     "unit": "CRM",
+     "mrp": 80,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "FOGG DEO 1*120 ML",
+     "unit": "DEO",
+     "mrp": 225,
+     "company": "N\/A"
+    },
+    {
+     "productName": "FOGG DEO BLUE 1*120",
+     "unit": "DEO.",
+     "mrp": 225,
+     "company": "VINI COSMETIC PVT LTD"
+    },
+    {
+     "productName": "FOGG DEO NAPOLEON 1*120 ML",
+     "unit": "DEO",
+     "mrp": 225,
+     "company": "FOGG"
+    },
+    {
+     "productName": "FOLINZ TAB 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 48,
+     "company": "APEX LAB"
+    },
+    {
+     "productName": "FOLVITE TAB 1*45",
+     "unit": "TAB",
+     "mrp": 76.1,
+     "company": "PFIZER WYETH"
+    },
+    {
+     "productName": "FOOTGUARD OINT 25 G",
+     "unit": "OINT",
+     "mrp": 99,
+     "company": "TORQUE"
+    },
+    {
+     "productName": "FOURDERM 1*5GM",
+     "unit": "CREM",
+     "mrp": 56.65,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "FOURDERM 20*10GM",
+     "unit": "CREM",
+     "mrp": 107,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "FOURDERM 20GM 20*1",
+     "unit": "CREM",
+     "mrp": 152.5,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "FOURDERM CREAM 1*20G",
+     "unit": "CERM",
+     "mrp": 167.75,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "FUCIBET CREAM 1*15GM",
+     "unit": "CREM",
+     "mrp": 87,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "FUCIDIN CREAM 1X15GM",
+     "unit": "CREM",
+     "mrp": 165.14,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "FUCIDIN H CREAM 1*15GM",
+     "unit": "CREM",
+     "mrp": 245,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "FUSITREAT CREAM 1*10GM",
+     "unit": "CRM",
+     "mrp": 98.22,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "GABANEURON 100 TAB 1*10",
+     "unit": "TAB",
+     "mrp": 166,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "GARNIER BLACK NATURAL",
+     "unit": "COLR",
+     "mrp": 45,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER BL+BROWN 1*1",
+     "unit": "PWD",
+     "mrp": 45,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER CL BLACK 1*1",
+     "unit": "PWD",
+     "mrp": 45,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER CL BURGUNDY 1*1",
+     "unit": "PWD",
+     "mrp": 42,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER CL NATURAL BRAWN 1*20 G",
+     "unit": "PWD",
+     "mrp": 45,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER CL NATURAL BRN 1*1",
+     "unit": "PWD",
+     "mrp": 45,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER DEEP BLACK 1*10",
+     "unit": "PWDT",
+     "mrp": 42,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER OIL CLEAR 1*50",
+     "unit": "F\/W",
+     "mrp": 119,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER SHED 1 N.BLACK 1*1",
+     "unit": "BOX",
+     "mrp": 95,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER SHED 3.16 BURGUNDY 1 BOX",
+     "unit": "BOX",
+     "mrp": 95,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER SHED 3 DARKEST BROWN 1 BOX",
+     "unit": "BOX",
+     "mrp": 95,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER SHED 4 BROWN 1 BOX",
+     "unit": "BOX",
+     "mrp": 95,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER TURBO BRIGHT 1*50G",
+     "unit": "F\/W",
+     "mrp": 135,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GARNIER TURBOBRIGHT 1*50 G",
+     "unit": "F\/W",
+     "mrp": 125,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GASEX TAB 100TAB",
+     "unit": "BOX",
+     "mrp": 175,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "GAS O FAST ACTIVE AJWAIN SACH 1*5GM",
+     "unit": "SACH",
+     "mrp": 10,
+     "company": "NEUTRICEA"
+    },
+    {
+     "productName": "GELUSIL MPS SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 153,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "GESTIN TAB 1*10",
+     "unit": "TABS",
+     "mrp": 270.64,
+     "company": "MARTIN & HARRIS LABORATORIES"
+    },
+    {
+     "productName": "GGARNIER ACNE FIGHT 1*50",
+     "unit": "F\/W",
+     "mrp": 110,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GIFT VOLINI 40 GM",
+     "unit": "SPRY",
+     "mrp": 40,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "GLIMESTAR M 2MG TAB 1*30",
+     "unit": "TABS",
+     "mrp": 115,
+     "company": "DISCOVERY MANKIND"
+    },
+    {
+     "productName": "GLIZID-M  TAB 1*15",
+     "unit": "TAB",
+     "mrp": 199.87,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "GLODEN CREME BLEACH 80 1*1",
+     "unit": "BLCH",
+     "mrp": 80,
+     "company": "ESME CONSUMER PVT LTD."
+    },
+    {
+     "productName": "GLUCOBAY 50MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 168,
+     "company": "BAYER LTD."
+    },
+    {
+     "productName": "GLUCON D NIMBU PANI 1*100GM",
+     "unit": "POWD",
+     "mrp": 53,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D NIMBU PANI 1*200GM",
+     "unit": "POWD",
+     "mrp": 83,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D NIMBU PANI 1*500GM",
+     "unit": "POWD",
+     "mrp": 209,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D ORANGE 100 GM",
+     "unit": "PWD",
+     "mrp": 53,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D ORANGE 200 GM",
+     "unit": "PWD",
+     "mrp": 83,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D PLAIN 100 GM",
+     "unit": "PWD",
+     "mrp": 38,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D PLAIN 500 G",
+     "unit": "PWD",
+     "mrp": 135,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLUCON D TANGY ORANGE 1*200GM",
+     "unit": "POWD",
+     "mrp": 83,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "GLURA M XR 100\/500 1*15",
+     "unit": "TAB.",
+     "mrp": 240,
+     "company": "ERIS LIFE SCIENCES PVT.LTD."
+    },
+    {
+     "productName": "GLYBIOTIC EAR DROPS 1*5ML",
+     "unit": "DROP",
+     "mrp": 88,
+     "company": "TORQUE"
+    },
+    {
+     "productName": "GLYCERINE 50 G",
+     "unit": "LIQ",
+     "mrp": 64,
+     "company": "DEV AYURVEDA"
+    },
+    {
+     "productName": "GLYCERINE GLOBAL 1*100 ML",
+     "unit": "LIQ",
+     "mrp": 102,
+     "company": "GLOBAL CARE"
+    },
+    {
+     "productName": "GLYDUO 10\/100 10 T",
+     "unit": "TAB.",
+     "mrp": 205.5,
+     "company": "INTAS"
+    },
+    {
+     "productName": "GM SR1 FORTE TAB 1*10",
+     "unit": "TAB",
+     "mrp": 53,
+     "company": "PSYCHTROPICS  INDIA LIMITED"
+    },
+    {
+     "productName": "GM-SR 1MG TAB 1X10",
+     "unit": "TAB.",
+     "mrp": 53,
+     "company": "PSYCHTROPICS  INDIA LIMITED"
+    },
+    {
+     "productName": "GM-SR2 TAB 1X10",
+     "unit": "TAB.",
+     "mrp": 66.55,
+     "company": "PSYCHTROPICS  INDIA LIMITED"
+    },
+    {
+     "productName": "GODREJ CREAM BLACK 1*1",
+     "unit": "PWD",
+     "mrp": 37,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GODREJ CREAM BL+BRN 1*1",
+     "unit": "PWD",
+     "mrp": 37,
+     "company": "GARNIER"
+    },
+    {
+     "productName": "GODREJ CREAM BURGANDY 20GM + 20ML",
+     "unit": "PWD",
+     "mrp": 37,
+     "company": "GODREJ"
+    },
+    {
+     "productName": "GODREJ CREAM D.BRN 1*1",
+     "unit": "PWD",
+     "mrp": 37,
+     "company": "GODREJ"
+    },
+    {
+     "productName": "GOOD HEALTH CAP 1X10",
+     "unit": "CAP",
+     "mrp": 240,
+     "company": "DR BISWAS"
+    },
+    {
+     "productName": "GOOD N FLASH COMBI 45 ML",
+     "unit": "LIQ.",
+     "mrp": 100,
+     "company": "GODREJ CONSUMER PRODUCT LTD."
+    },
+    {
+     "productName": "GOOD NIGHT COIL 1*12",
+     "unit": "COIL",
+     "mrp": 40,
+     "company": "GODREJ CONSUMER PRODUCT LTD."
+    },
+    {
+     "productName": "GOOD NIGHT FLASH RIFIL 1*45 ML",
+     "unit": "LIQ.",
+     "mrp": 70,
+     "company": "GODREJ CONSUMER PRODUCT LTD."
+    },
+    {
+     "productName": "GREMOX TAB 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 42.5,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "GREVIR EYE OINT 1*5 GM",
+     "unit": "OINT",
+     "mrp": 110,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "GRIPE WATER 1*200 ML",
+     "unit": "WTR",
+     "mrp": 80,
+     "company": "WOODWARD'S"
+    },
+    {
+     "productName": "GRIPE WATER WW 130 ML",
+     "unit": "WTR",
+     "mrp": 55,
+     "company": "WOODWARD'S"
+    },
+    {
+     "productName": "GUDCEF 200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 180.29,
+     "company": "LIFESTAR PHARMA PVT. LTD."
+    },
+    {
+     "productName": "GUDCEF CV 200MG 1*10",
+     "unit": "TAB",
+     "mrp": 335,
+     "company": "LIFESTAR PHARMA PVT. LTD."
+    },
+    {
+     "productName": "GUDCEF DROPS 1*10ML",
+     "unit": "DROP",
+     "mrp": 85,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "GUDCEF PLUS TAB 1*10",
+     "unit": "TAB",
+     "mrp": 225,
+     "company": "LIFESTAR PHARMA PVT. LTD."
+    },
+    {
+     "productName": "GULABARI 30 ML",
+     "unit": "LIQ",
+     "mrp": 16,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "GUL-E-GULAB 12% 15 ML",
+     "unit": "DROP",
+     "mrp": 25,
+     "company": "GOODMANSA"
+    },
+    {
+     "productName": "HADENSA CREAM 1*20GM",
+     "unit": "OINT",
+     "mrp": 105,
+     "company": "DOLLAR company"
+    },
+    {
+     "productName": "HAJMOLA JAR 1*170",
+     "unit": "TAB.",
+     "mrp": 170,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HAJMOLA PUDINA BOTTLE 1*120",
+     "unit": "TABS",
+     "mrp": 65,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HAJMOLA REGULAR JAR 1*160",
+     "unit": "TAB.",
+     "mrp": 160,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HAND RUB SANITIZER 1*60ML",
+     "unit": "PCS",
+     "mrp": 30,
+     "company": "CEE CON HEALTHCARE"
+    },
+    {
+     "productName": "HANSPLAST W.P 1*1000 PCS",
+     "unit": "BAND",
+     "mrp": 3000,
+     "company": "HANSPLAST"
+    },
+    {
+     "productName": "HCQS 200MG TAB 1X15",
+     "unit": "TAB",
+     "mrp": 106.85,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "HEAD & SHOULDER 6 ML",
+     "unit": "SHAM",
+     "mrp": 32,
+     "company": "P & G"
+    },
+    {
+     "productName": "HEALTH OK SACHET 1*5GM",
+     "unit": "SACH",
+     "mrp": 36,
+     "company": "DISCOVERY MANKIND"
+    },
+    {
+     "productName": "HEALTH OK TAB 1X30 TAB",
+     "unit": "TAB",
+     "mrp": 300,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "HEEL N FOOT 30G",
+     "unit": "TAB.",
+     "mrp": 125,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "HEELSHINE 10*30",
+     "unit": "CRM",
+     "mrp": 81,
+     "company": "WINGS PHARMACEUTICALS PVT.LTD"
+    },
+    {
+     "productName": "HEMPUSHPA SYP 1*170ML",
+     "unit": "SYP",
+     "mrp": 278,
+     "company": "RAJVAIDYA SHITAL PRASAD & SONS"
+    },
+    {
+     "productName": "HERPEX 5% CREAM 1*5GM",
+     "unit": "CREM",
+     "mrp": 98.95,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "HETRAZAN 100MG TAB 1*30",
+     "unit": "TAB",
+     "mrp": 52.2,
+     "company": "WYETH LEDERLE LIMITED."
+    },
+    {
+     "productName": "HIMALAYA BABY CREAM 1*50 ML",
+     "unit": "CRM",
+     "mrp": 95,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "HIMALAYA BABY OIL 1*100 ML",
+     "unit": "OIL",
+     "mrp": 140,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "HIMALAYA BABY SOAP 1*75 G",
+     "unit": "SOAP",
+     "mrp": 65,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "HIMALAYA NEEM FACE WASH 1X50ML",
+     "unit": "F\/W",
+     "mrp": 80,
+     "company": "HIMALYA CHEMICAL LABORTIES"
+    },
+    {
+     "productName": "HIMALAYA NEEM F\/W 1*50 ML",
+     "unit": "F\/W.",
+     "mrp": 85,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "HIMALYA F\/W NEEM 15 ML",
+     "unit": "F\/W",
+     "mrp": 180,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "HINGWASHTAK CHURAN 1X60GM",
+     "unit": "CHUR",
+     "mrp": 125,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HIT BLACK 200 ML",
+     "unit": "LIQ",
+     "mrp": 98,
+     "company": "GODREJ CONSUMER PRODUCT LTD."
+    },
+    {
+     "productName": "HI-TECH SYRINGE 2 ML",
+     "unit": "SRNG",
+     "mrp": 10,
+     "company": "HI-TECH"
+    },
+    {
+     "productName": "HI-TECH SYRINGE 3 ML",
+     "unit": "SRNG",
+     "mrp": 12,
+     "company": "HI-TECH"
+    },
+    {
+     "productName": "HI-TEK SYRING 1X10ML",
+     "unit": "ING",
+     "mrp": 950,
+     "company": "HI-TECH"
+    },
+    {
+     "productName": "H\/L CREPE(PREM.) 10*4",
+     "unit": "PATI",
+     "mrp": 100,
+     "company": "BHARAT SURGICAL"
+    },
+    {
+     "productName": "H\/L CREPE (PREM) 7.5*4",
+     "unit": "PATI",
+     "mrp": 75,
+     "company": "BHARAT SURGICAL"
+    },
+    {
+     "productName": "H\/L ROLLED GAUZE. 5*3 MTR",
+     "unit": "GAUZ",
+     "mrp": 140,
+     "company": "JARA HEALTHCARE"
+    },
+    {
+     "productName": "H\/L ROLLED GAUZE S.F 5*3",
+     "unit": "BAND",
+     "mrp": 100,
+     "company": "MEDOX C"
+    },
+    {
+     "productName": "HONEY(D) 100 GM",
+     "unit": "LIQ.",
+     "mrp": 68,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HONEY(D) 250 GM",
+     "unit": "LIQ.",
+     "mrp": 120,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HONITUS SYP 100 ML",
+     "unit": "BTL",
+     "mrp": 125,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "HOT BOTTLE D 1 BOTTLE",
+     "unit": "BOTL",
+     "mrp": 340,
+     "company": "ENBEE"
+    },
+    {
+     "productName": "HOT WATER BEG ELECTRIC 1 BEG",
+     "unit": "BOTL",
+     "mrp": 269,
+     "company": "DR DIAZ"
+    },
+    {
+     "productName": "HUMAN MIXTARD VIAL 1*10ML",
+     "unit": "VIAL",
+     "mrp": 178.29,
+     "company": "KOYE PHARMACEUTICALS"
+    },
+    {
+     "productName": "HUNGREE 200 ML",
+     "unit": "SYP",
+     "mrp": 150,
+     "company": "ANTEX PHARMA PVT LTD"
+    },
+    {
+     "productName": "HYDROGEN PEROXIDE 1X100ML",
+     "unit": "LIQU",
+     "mrp": 32,
+     "company": "SAPTRISHI HERBALS"
+    },
+    {
+     "productName": "IBUGESIC PLUS SUSP. 1X100ML",
+     "unit": "SYRP",
+     "mrp": 54.9,
+     "company": "NEUTRICEA"
+    },
+    {
+     "productName": "IBUGESIC PLUS TAB 1X20",
+     "unit": "TAB.",
+     "mrp": 36.59,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "I-CAN 1*1",
+     "unit": "TEST",
+     "mrp": 55,
+     "company": "NICHOLAS PIRAMAL INDIA LTD."
+    },
+    {
+     "productName": "I-KNOW OVULATION STRIP 1*5",
+     "unit": "STRP",
+     "mrp": 60,
+     "company": "PIRAMAL HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "I-KNOW PREGNANCY KIT 1*1",
+     "unit": "KIT",
+     "mrp": 60,
+     "company": "PIRAMAL HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "IMODIUM CAP 1X4",
+     "unit": "CAP",
+     "mrp": 16.9,
+     "company": "JANSSEN PHARMA"
+    },
+    {
+     "productName": "INDULEKHA BRINGHA OIL 100 ML",
+     "unit": "OIL",
+     "mrp": 432,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "INDULEKHA OIL 1*50ML",
+     "unit": "OIL",
+     "mrp": 234,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "INHALER SAPTRISH 10G",
+     "unit": "INHL",
+     "mrp": 45,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "INSULIN-(100) IU 1*10",
+     "unit": "SYRN",
+     "mrp": 80,
+     "company": "HINDUSTAN"
+    },
+    {
+     "productName": "INSULIN SYRING 40IU 1",
+     "unit": "PCS",
+     "mrp": 104,
+     "company": "HINDUSTAN SYRINGES & MED. DEV."
+    },
+    {
+     "productName": "INTAGESIC MR TAB 100*10",
+     "unit": "TABS",
+     "mrp": 94,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "IODEX 16GM",
+     "unit": "BAM",
+     "mrp": 92,
+     "company": "GSK CONSUMER"
+    },
+    {
+     "productName": "IODEX BALM 1*8GM",
+     "unit": "BALM",
+     "mrp": 46,
+     "company": "GSK CONSUMER"
+    },
+    {
+     "productName": "IODEX BALM 1X40GM",
+     "unit": "BALM",
+     "mrp": 170,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "IOTIM 0.5% EYE DROP 1*5ML",
+     "unit": "DROP",
+     "mrp": 75.04,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "I-PILL TAB 1*1",
+     "unit": "TAB",
+     "mrp": 75.35,
+     "company": "NICHOLAS PIRAMAL INDIA LTD."
+    },
+    {
+     "productName": "ISOTINE PLUS EYE DROP 1*10ML",
+     "unit": "DROP",
+     "mrp": 93,
+     "company": "JAGAT PHARMA"
+    },
+    {
+     "productName": "ISTAMET G IR 50\/500\/2 MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 149,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "ITONE EYE DROP 10 ML",
+     "unit": "LIQ.",
+     "mrp": 66,
+     "company": "DEY'S"
+    },
+    {
+     "productName": "IV-FIXER 1*1",
+     "unit": "FIX",
+     "mrp": 75,
+     "company": "VRK LIFESCIENCE PVT LTD"
+    },
+    {
+     "productName": "IV INFUSION SET 1*1",
+     "unit": "I.V",
+     "mrp": 125,
+     "company": "CARDIOMAC INDIA PVT LTD"
+    },
+    {
+     "productName": "JANAM GHUTTI 60ML",
+     "unit": "LIQ.",
+     "mrp": 44,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "JB CREAM 30 GM",
+     "unit": "CRM",
+     "mrp": 65,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JB OIL MOONSOON-B 50 ML",
+     "unit": "LIQ.",
+     "mrp": 70,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JB POWDER NATURAL 100G 100 GM",
+     "unit": "PWD",
+     "mrp": 115,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JB POWDER NATURAL 50GM",
+     "unit": "PWD",
+     "mrp": 65,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JB SHAMPOO 50 ML",
+     "unit": "SHPO",
+     "mrp": 70,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JB SOAP 50 GM",
+     "unit": "SOAP",
+     "mrp": 47,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JB SOAP 75 G",
+     "unit": "SOAP",
+     "mrp": 68,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JF. MIX FRUIT MASS CRM JAR 15ML*2",
+     "unit": "CRM",
+     "mrp": 10,
+     "company": "NEW SHAMA LABORATORIES(P)LTD."
+    },
+    {
+     "productName": "JIOMOX-625 LB 1*10",
+     "unit": "TAB.",
+     "mrp": 259.9,
+     "company": "JIOLIFE"
+    },
+    {
+     "productName": "JOHNSONS BUDS SWABS 30 N",
+     "unit": "BUDS",
+     "mrp": 35,
+     "company": "JOHNSON & JOHNSON"
+    },
+    {
+     "productName": "JOLLY TULSI-51 DROP 1X30ML",
+     "unit": "DROP",
+     "mrp": 195,
+     "company": "JOLLY HEALT CARE"
+    },
+    {
+     "productName": "KANXIM 200 DT 10*10",
+     "unit": "TAB.",
+     "mrp": 97.66,
+     "company": "KAANSLA PHARMACEUTICAL"
+    },
+    {
+     "productName": "KAS MADHU 100 ML",
+     "unit": "SYP.",
+     "mrp": 115,
+     "company": "TULISON PHARMA"
+    },
+    {
+     "productName": "KAYAM CHURAN 1*50GM",
+     "unit": "POWE",
+     "mrp": 58,
+     "company": "SHELON PHRAMACEUTICALS"
+    },
+    {
+     "productName": "KAYLITE CREAM 1X15GM",
+     "unit": "CREM",
+     "mrp": 186,
+     "company": "KHANDELWAL LAB. LTD."
+    },
+    {
+     "productName": "KCITRAL 1*1",
+     "unit": "SYP",
+     "mrp": 121,
+     "company": "MASCOT HEALTH SERIES PVT LTD"
+    },
+    {
+     "productName": "KENACORT 4MG TAB 1*10",
+     "unit": "TABS",
+     "mrp": 160.55,
+     "company": "ABBOTT INDIA LTD"
+    },
+    {
+     "productName": "KESH KING ONION OIL 1*50ML",
+     "unit": "OIL",
+     "mrp": 150,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "KESH KING ONION SHAMPOO 1*80ML",
+     "unit": "OIL",
+     "mrp": 119,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "KETOCENT SOAP 15 GM",
+     "unit": "TAB.",
+     "mrp": 120,
+     "company": "LORDCENT AND TORCENT"
+    },
+    {
+     "productName": "KETOFLY SOAP 1X75GM",
+     "unit": "SOAP",
+     "mrp": 110,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "KETOMAC SHAMPOO 1*110ML",
+     "unit": "PCES",
+     "mrp": 216,
+     "company": "TORQUE"
+    },
+    {
+     "productName": "KETOSCORE 1*15 G",
+     "unit": "CRM",
+     "mrp": 100,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "KETROL DT 1*10",
+     "unit": "TAB.",
+     "mrp": 177.25,
+     "company": "DR. REDDY'S LAB  LTD."
+    },
+    {
+     "productName": "KITRONIL-DT 1*15",
+     "unit": "TAB.",
+     "mrp": 152,
+     "company": "SB LIFE SCIENCES PVT. LTD."
+    },
+    {
+     "productName": "KNEE CAP L 1 BOX.",
+     "unit": "BOX",
+     "mrp": 300,
+     "company": "BDS ENTERPRISES"
+    },
+    {
+     "productName": "KNEE CAP M 1 BOX",
+     "unit": "BOX",
+     "mrp": 300,
+     "company": "BDS ENTERPRISES"
+    },
+    {
+     "productName": "KNEE CAP S 1 BOX",
+     "unit": "BOX",
+     "mrp": 300,
+     "company": "BDS ENTERPRISES"
+    },
+    {
+     "productName": "KOMAL EYE DROP 10 ML",
+     "unit": "DROP",
+     "mrp": 50,
+     "company": "KOMAL PAHARMACEUTICALS"
+    },
+    {
+     "productName": "KS DEO SPARK 1*18 ML",
+     "unit": "DEO",
+     "mrp": 70,
+     "company": "GODREJ CONSUMER PRODUCT LTD."
+    },
+    {
+     "productName": "KS POCKET DEO 1*18 ML",
+     "unit": "DEO",
+     "mrp": 70,
+     "company": "N\/A"
+    },
+    {
+     "productName": "KT5DERM 15GM 1X15GM",
+     "unit": "CREM",
+     "mrp": 115,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "KUFF-Q TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 40.5,
+     "company": "INTAS GENERIC"
+    },
+    {
+     "productName": "LABDIC RELIEF 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 43.9,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "LABOCOF TAB 1X10",
+     "unit": "TAB",
+     "mrp": 31.2,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "LACRIVUE EYE DROP 1*10ML",
+     "unit": "DROP",
+     "mrp": 135,
+     "company": "ALERCON"
+    },
+    {
+     "productName": "LACTOFAB DS 1*20",
+     "unit": "TAB.",
+     "mrp": 80,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "LAL DANT MANJAN D 50 GM",
+     "unit": "PWD.",
+     "mrp": 35,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "LARIAGO DS TAB 1*5",
+     "unit": "TAB",
+     "mrp": 15.55,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "LARIAGO SYP 1*120 ML",
+     "unit": "SYP",
+     "mrp": 42.84,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "LARIAGO TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 13.97,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "LA SHIELD SPF 50 50 GM",
+     "unit": "LOTI",
+     "mrp": 299,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "LAVANBHASKAR CHURNA (DABUR) 1X60GM",
+     "unit": "PWDR",
+     "mrp": 75,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "LAXOPEG KID SACHET 1X8.5G",
+     "unit": "SACH",
+     "mrp": 32.5,
+     "company": "FOURRTS"
+    },
+    {
+     "productName": "LCZ 5 MG 1*10 TAB",
+     "unit": "TAB",
+     "mrp": 34.5,
+     "company": "RAPROSS PHARMACEUTICAL"
+    },
+    {
+     "productName": "LEEBIOTIC CAP 10*10",
+     "unit": "CAP.",
+     "mrp": 120,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "LEVOFLOX 250MG TAB 1X10",
+     "unit": "TABL",
+     "mrp": 53.98,
+     "company": "CIPLA PROTEC"
+    },
+    {
+     "productName": "LEVOFLOX 500MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 100.68,
+     "company": "CIPLA PROTEC"
+    },
+    {
+     "productName": "LEVOLIN 0.31MG RESP. 1*2.5ML",
+     "unit": "RESP",
+     "mrp": 5.94,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "LEVOLIN 0.63MG RESP. 1*2.5ML",
+     "unit": "INL",
+     "mrp": 7.16,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "LEVOLIN SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 32.23,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "LEVOSIZ 5MG TABS 1*15",
+     "unit": "TAB.",
+     "mrp": 30,
+     "company": "SYSTOPIC LABOTRIES PVT LTD"
+    },
+    {
+     "productName": "LIMCEE CHEW TAB. 1*15",
+     "unit": "TAB",
+     "mrp": 24.86,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "LINEZOL-600 1*10",
+     "unit": "TAB.",
+     "mrp": 410,
+     "company": "ELDER LABRATORIES LTD."
+    },
+    {
+     "productName": "LION PLASTER(KALA PLASTER) 1*10",
+     "unit": "PSTR",
+     "mrp": 220,
+     "company": "HANSPLAST"
+    },
+    {
+     "productName": "LIPCARE VASU JAR 1*24",
+     "unit": "TUBE",
+     "mrp": 840,
+     "company": "VASU HEALTHCARE PVT. LTD."
+    },
+    {
+     "productName": "LIPICURE GOLD 20 CAP 1*15",
+     "unit": "TAB.",
+     "mrp": 130.5,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "LIV 52 DS SYP 1*200ML",
+     "unit": "SYP.",
+     "mrp": 310,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "LIV 52 DS TAB 1*60",
+     "unit": "BOX",
+     "mrp": 230,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "LIV 52 SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 120,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "LIV 52 SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 195,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "LIV 52 TAB. 100 TAB",
+     "unit": "BOX",
+     "mrp": 195,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "LIVOGEN TAB 1*15",
+     "unit": "TAB",
+     "mrp": 92.07,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "LIZOLID 600MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 399,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "LOCULA 10% EYE DROP 1X10ML",
+     "unit": "DROP",
+     "mrp": 35,
+     "company": "EAST INDIA PHARMACEUTICALS LTD"
+    },
+    {
+     "productName": "LOHASAVA BAIDYANATH 1*450",
+     "unit": "SYP",
+     "mrp": 178,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "LOOZ SYP 1*210 ML",
+     "unit": "SYP",
+     "mrp": 309.96,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "LOPRAMIDE TAB 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 20,
+     "company": "THERAMAX LABORATORIES"
+    },
+    {
+     "productName": "LUKOL SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 180,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "LUKOL TAB 1X60",
+     "unit": "TAB",
+     "mrp": 210,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "LULITEC CREAM 20 GM",
+     "unit": "CRM",
+     "mrp": 242,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "LULITEC CRM 10 GM 10 GM",
+     "unit": "CREM",
+     "mrp": 126.5,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "LUMET 80 1*6",
+     "unit": "TABS",
+     "mrp": 171.36,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "LYCOPEN CAPSULE 1*10 CAP",
+     "unit": "CAP",
+     "mrp": 350,
+     "company": "CONCEPT BIOSCIENCES (P)LTD"
+    },
+    {
+     "productName": "LYCOWEN SYP 1*200 ML",
+     "unit": "SYP",
+     "mrp": 140,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "MACBERY DROP 1*15ML",
+     "unit": "DROP",
+     "mrp": 68.2,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "MACGESIA OIL 1*50ML",
+     "unit": "BOTL",
+     "mrp": 191.5,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "MADHUNIL 1*200 GM",
+     "unit": "PWD",
+     "mrp": 349,
+     "company": "DHANWANTARI DISTRIBUTORS PVT LTD"
+    },
+    {
+     "productName": "MAGENTA INJ 1*20ML",
+     "unit": "INJ",
+     "mrp": 32.23,
+     "company": "WOCKHARDT LIMITED"
+    },
+    {
+     "productName": "MAHACEF-200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 103.93,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "MAHACEF CV 100MG TAB 1*6",
+     "unit": "TAB",
+     "mrp": 98.93,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MAHACEF CV 200MG TAB 1*6",
+     "unit": "TAB",
+     "mrp": 174.16,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MAHACEF PLUS 200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 175.89,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MAHASUDARSHAN CHURAN 1*60 G",
+     "unit": "CHRN",
+     "mrp": 145,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "MAMY POKO-10 1*1",
+     "unit": "PNT",
+     "mrp": 10,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MAMY POKO PANT 12 1*1",
+     "unit": "DIPR",
+     "mrp": 12,
+     "company": "N\/A"
+    },
+    {
+     "productName": "MAMY POKO PANT 14 1*1",
+     "unit": "DIPR",
+     "mrp": 14,
+     "company": "N\/A"
+    },
+    {
+     "productName": "MAMY POKO PANT 9 1*1",
+     "unit": "DIPR",
+     "mrp": 9,
+     "company": "N\/A"
+    },
+    {
+     "productName": "MAMY POKO S99 1*10",
+     "unit": "PANT",
+     "mrp": 99,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MAMY YELLOW S1 1*10",
+     "unit": "PANT",
+     "mrp": 10,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MAMY YELLOW XS1 1*1",
+     "unit": "PANT",
+     "mrp": 9,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MANFORCE 100MG TAB 1*4",
+     "unit": "TAB",
+     "mrp": 255,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MANFORCE 50MG TAB 1X9",
+     "unit": "TAB",
+     "mrp": 297,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "MANFORCE CHOCLATE 1*10",
+     "unit": "PROT",
+     "mrp": 90,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MANFORCE CONDOM CHOCOLATE 1X3",
+     "unit": "CON",
+     "mrp": 30,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MANFORCE STRAWBERRY CONDAM 1X10",
+     "unit": "PCS",
+     "mrp": 90,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MANFORCE SUNNY EDITION 1*3",
+     "unit": "CNDM",
+     "mrp": 30,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MANFORCE XOTIC CHOCLATE 1*10",
+     "unit": "COND",
+     "mrp": 30,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MANFORCE XOTIC STRBERY 1*3 PCS",
+     "unit": "COND",
+     "mrp": 30,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MATKA 100 G",
+     "unit": "LIQ",
+     "mrp": 53,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "MAXTRA ORAL DROPS 1*15ML",
+     "unit": "DROP",
+     "mrp": 100.6,
+     "company": "ZUVENTUS EMCURE"
+    },
+    {
+     "productName": "MAXTRA SYP 1X60ML",
+     "unit": "SYP",
+     "mrp": 116,
+     "company": "EMCURE PHARMACEUTICALS"
+    },
+    {
+     "productName": "MECOBAL OD TAB 1*10",
+     "unit": "TAB",
+     "mrp": 144,
+     "company": "RAPROSS PHARMACEUTICAL"
+    },
+    {
+     "productName": "MECOFOL-PLUS CAP 1X10",
+     "unit": "CAP",
+     "mrp": 227,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "MEDILICE LOTION 25*30",
+     "unit": "OINT",
+     "mrp": 44,
+     "company": "WINGS PHARMACEUTICALS PVT.LTD"
+    },
+    {
+     "productName": "MEFTAGESIC P SYP 1*60ML",
+     "unit": "SYP",
+     "mrp": 52,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL FORTE TAB 1*10",
+     "unit": "TABS",
+     "mrp": 44,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL-P SYP 60 ML",
+     "unit": "SUSP",
+     "mrp": 37,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL-P TAB 1X10",
+     "unit": "TAB",
+     "mrp": 32,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL SPAS DROP 1*15 ML",
+     "unit": "DROP",
+     "mrp": 48,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL SPAS DS TAB 1*10",
+     "unit": "TABS",
+     "mrp": 60,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL SPAS SYP 1X60ML",
+     "unit": "SYP",
+     "mrp": 92,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEFTAL SPAS TAB 1*10",
+     "unit": "TAB",
+     "mrp": 52,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "MEGABROM EYE DROPS 1*5ML",
+     "unit": "DROP",
+     "mrp": 199,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "MEGAPEN 500MG CAP 1X10",
+     "unit": "CAP",
+     "mrp": 70.45,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "MELAMET CREAM 15 GM",
+     "unit": "OINT",
+     "mrp": 85.2,
+     "company": "UNIVERSAL TWIN LABS"
+    },
+    {
+     "productName": "MERBROMIN SOLU. 1*20ML",
+     "unit": "POWD",
+     "mrp": 52,
+     "company": "ARORA & company"
+    },
+    {
+     "productName": "MESACOL OD TAB 1*10",
+     "unit": "TAB",
+     "mrp": 551,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "METROGYL 200 MG 15 T",
+     "unit": "TAB.",
+     "mrp": 18.33,
+     "company": "J.B CHEMICALS& PHARMACEUTICALS LTD"
+    },
+    {
+     "productName": "METROGYL 400 MG 15 T",
+     "unit": "TAB.",
+     "mrp": 34.04,
+     "company": "J.B CHEMICALS& PHARMACEUTICALS LTD"
+    },
+    {
+     "productName": "METROGYL SYP 1*60ML",
+     "unit": "SYP",
+     "mrp": 34.66,
+     "company": "J.B. CHEMICALS PVT.LTD."
+    },
+    {
+     "productName": "MFO EYE OINT 1*5 GM",
+     "unit": "OINT",
+     "mrp": 100,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "MISTY EYE DROP 1*10ML",
+     "unit": "E\/DR",
+     "mrp": 120,
+     "company": "NRI"
+    },
+    {
+     "productName": "MISTY FRESH EYE DROP 1X10ML",
+     "unit": "E\/D",
+     "mrp": 350,
+     "company": "NRI VISION CARE"
+    },
+    {
+     "productName": "MONOCEF 1GM INJ 1*1GM",
+     "unit": "INJ",
+     "mrp": 69.87,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "MONOCEF 2GM INJ 1*2GM",
+     "unit": "INJE",
+     "mrp": 154.68,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "MONOCEF O 100MG TAB 1*10",
+     "unit": "TABL",
+     "mrp": 162,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "MONOCEF O 200 MG 1*10",
+     "unit": "TAB.",
+     "mrp": 215,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "MONOCEF O 50 DS SYP 1X30ML",
+     "unit": "SYRU",
+     "mrp": 109,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "MONTAIR LC KID SYP 1X60ML",
+     "unit": "SYRP",
+     "mrp": 139.88,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "MONTAIR LC TAB 1X15",
+     "unit": "TAB.",
+     "mrp": 370.08,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "MONTAS L TAB 30*10",
+     "unit": "TABS",
+     "mrp": 178,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "MONTECOPE-A 1*10",
+     "unit": "TAB.",
+     "mrp": 159,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MONTICOPE TAB 1*10",
+     "unit": "TAB",
+     "mrp": 99.9,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "MOODS DEO (WYLD) 150 ML",
+     "unit": "LIQ.",
+     "mrp": 220,
+     "company": "MOODS"
+    },
+    {
+     "productName": "MOOV ADVANCE 1X30GM",
+     "unit": "GEL",
+     "mrp": 159,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "MOOV CREAM 20 GM",
+     "unit": "CRM",
+     "mrp": 110,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "MOOV CRM REG 10GM TUBE",
+     "unit": "OINT",
+     "mrp": 60,
+     "company": "ALLKIND HEALTHCARE"
+    },
+    {
+     "productName": "MOOV SPRAY 1*35GM",
+     "unit": "SPRY",
+     "mrp": 169,
+     "company": "SMITH & NEPHEW MEDICAL LTD."
+    },
+    {
+     "productName": "MOOV SPRAY 20 GM",
+     "unit": "SPRY",
+     "mrp": 85,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "MORTEIN COIL BLK 1PCS",
+     "unit": "COIL",
+     "mrp": 37,
+     "company": "HINDUSTAN FOOD LTD"
+    },
+    {
+     "productName": "MORTEIN POW COIL GREEN 1X1",
+     "unit": "COIL",
+     "mrp": 30,
+     "company": "HINDUSTAN FOOD LTD"
+    },
+    {
+     "productName": "MOVEXX PLUS TAB 1*10",
+     "unit": "TABS",
+     "mrp": 67,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "MOVEXX-SP TAB 10*10 T",
+     "unit": "TAB.",
+     "mrp": 105.6,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "MOX 250MG CAP 1*15",
+     "unit": "CAPS",
+     "mrp": 40.99,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "MOX 500 1*15",
+     "unit": "CAPS",
+     "mrp": 123.48,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "MOX 500MG CAP 1*15",
+     "unit": "CAPS",
+     "mrp": 123.48,
+     "company": "REXCEL PHARMACEUTICALS"
+    },
+    {
+     "productName": "MOX CV 625 TAB 1X10",
+     "unit": "TABS",
+     "mrp": 204.84,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "MOXI-D EYE DROP 10 ML",
+     "unit": "LIQ.",
+     "mrp": 182.5,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "MOXI EYE DROP 30*10",
+     "unit": "TAB.",
+     "mrp": 133,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "MOXIKIND-CV 375MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 169.9,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "MOXIPIL CL 200 SYP 30 ML",
+     "unit": "LIQ",
+     "mrp": 60,
+     "company": "PIL"
+    },
+    {
+     "productName": "MOX SUSP. 125MG 1*30ML",
+     "unit": "SUSP",
+     "mrp": 33.07,
+     "company": "NEUTRICEA"
+    },
+    {
+     "productName": "MP-NB 8 PNTS",
+     "unit": "PNTS",
+     "mrp": 99,
+     "company": "UNICHEM LABORATORIES LTD."
+    },
+    {
+     "productName": "MPST PANTS (L1)14",
+     "unit": "MAMY",
+     "mrp": 14,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MPST PANTS (L14)",
+     "unit": "MAMY",
+     "mrp": 199,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MPST PANTS (MI)MRP12240 1*10",
+     "unit": "TAB.",
+     "mrp": 12,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "MPST PANTS(SI)MRP10240 10",
+     "unit": "PANT",
+     "mrp": 10,
+     "company": "INTAS"
+    },
+    {
+     "productName": "MR INJECT-10ML 1*50",
+     "unit": "INJ",
+     "mrp": 0,
+     "company": "BIO MED"
+    },
+    {
+     "productName": "MUCYST 600 MG 1*10",
+     "unit": "TAB.",
+     "mrp": 282,
+     "company": "NEON LABORATORIES LTD."
+    },
+    {
+     "productName": "MUGGLI GHUTTI 1*100 ML",
+     "unit": "SYP",
+     "mrp": 59,
+     "company": "SHRI RAM AYURVED BHAWAN"
+    },
+    {
+     "productName": "MUGLI GHUTTI 555 1*60ML",
+     "unit": "SYP",
+     "mrp": 41,
+     "company": "SHRI RAM AYURVED BHAWAN"
+    },
+    {
+     "productName": "MUPIVACT OINTMENT 5 GM",
+     "unit": "OIN",
+     "mrp": 145,
+     "company": "ELDER LIFESCIENCE (GEN)"
+    },
+    {
+     "productName": "MUTE-DX 1*100 ML",
+     "unit": "SYP",
+     "mrp": 118,
+     "company": "NILSAN PHARMACEUTICAL PVT. LTD."
+    },
+    {
+     "productName": "MY FAIR CREAM 1*20GM",
+     "unit": "CREM",
+     "mrp": 199,
+     "company": "ZEE LAB."
+    },
+    {
+     "productName": "MYZOLIX LB 1*10",
+     "unit": "TAB.",
+     "mrp": 140,
+     "company": "HUMAN BIOLIFE INDIA PVT. LTD."
+    },
+    {
+     "productName": "NAID-P TAB 1*10",
+     "unit": "TABS",
+     "mrp": 47,
+     "company": "WINSOME LABORATORIES."
+    },
+    {
+     "productName": "NAIL CUTTER SMALL",
+     "unit": "CUTT",
+     "mrp": 50,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "NAPRA D 250MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 77.5,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "NASAL CANULA 1",
+     "unit": "SURG",
+     "mrp": 249,
+     "company": "SURGICALS ITEMS"
+    },
+    {
+     "productName": "NASIVION ADULT NASAL DROP 1*10ML",
+     "unit": "DROP",
+     "mrp": 109.01,
+     "company": "MERCK"
+    },
+    {
+     "productName": "NASIVION CLASSIC ADULT 1X10ML",
+     "unit": "DROP",
+     "mrp": 99.1,
+     "company": "P & G"
+    },
+    {
+     "productName": "NASIVION DROP (MINI) BABY 10 ML",
+     "unit": "SPRY",
+     "mrp": 83.1,
+     "company": "MERCK"
+    },
+    {
+     "productName": "NATURAL WET WIPES 1*72",
+     "unit": "WIPE",
+     "mrp": 99,
+     "company": "BABYHUG"
+    },
+    {
+     "productName": "NATURE'S ALOVERA GEL 1*49 GM",
+     "unit": "PCS",
+     "mrp": 55,
+     "company": "ESME CONSUMER PVT LTD."
+    },
+    {
+     "productName": "NAVRATAN OIL 1*100ML",
+     "unit": "OIL",
+     "mrp": 85,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "NAVRATNA ACTIVE DEO 1*100GM",
+     "unit": "POWD",
+     "mrp": 105,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "NAXDOM 500MG CAP 1*10",
+     "unit": "TAB",
+     "mrp": 171,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "NEBI 5MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 114.95,
+     "company": "GENETIC PHARMA"
+    },
+    {
+     "productName": "NEEM KA TAIL 1*50 MKL",
+     "unit": "OIL",
+     "mrp": 95,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "NEERI KFT SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 595,
+     "company": "AIMIL PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "NEERI SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 164,
+     "company": "AIMIL PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "NEERI TAB 1*30",
+     "unit": "TAB",
+     "mrp": 206,
+     "company": "AIMIL PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "NEOBECMET CG CREAM 1*10GM",
+     "unit": "CREM",
+     "mrp": 83,
+     "company": "IND SWIFT LTD"
+    },
+    {
+     "productName": "NEO CASTOR NF CREAM 1*15GM",
+     "unit": "CREM",
+     "mrp": 99,
+     "company": "LEEFORD HELATH CARE"
+    },
+    {
+     "productName": "NEOSPORIN H EAR DROP 1*5ML",
+     "unit": "DROP",
+     "mrp": 84,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "NEOSPORIN-H EYE OINT 1X5GM",
+     "unit": "OINT",
+     "mrp": 75.55,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "NEOSPORIN POWDER 1*10G",
+     "unit": "POWD",
+     "mrp": 103.95,
+     "company": "GLAXO WELCOME"
+    },
+    {
+     "productName": "NEUROBION FORTE INJ 1X2ML",
+     "unit": "INJ",
+     "mrp": 19.8,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "NEUROBION FORTE TAB 1*30",
+     "unit": "TABS",
+     "mrp": 41.91,
+     "company": "MERCK"
+    },
+    {
+     "productName": "N-FLOX B 400 TAB 25*10",
+     "unit": "TABS",
+     "mrp": 0,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "NFLOX-TZ TAB 1*10",
+     "unit": "TAB",
+     "mrp": 120.75,
+     "company": "LABORATOIRES"
+    },
+    {
+     "productName": "NICIP 15*10",
+     "unit": "TAB.",
+     "mrp": 43.45,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "NICIP COLD AND FLU TABLET 30*10T",
+     "unit": "TAB.",
+     "mrp": 58,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "NICIP MD TABLET 50*10 T",
+     "unit": "TAB.",
+     "mrp": 60.5,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "NICIP MR TAB. 20*10 T",
+     "unit": "TAB.",
+     "mrp": 97,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "NICIP PLUS TAB 1X10",
+     "unit": "TAB",
+     "mrp": 65.1,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "NICOTEX 2MG MINT PLUS TAB 1*9",
+     "unit": "TABS",
+     "mrp": 121,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "NIMUCET AF SYP 1*60ML",
+     "unit": "SUSP",
+     "mrp": 63,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "NIMUCET GOLD TAB 30*10",
+     "unit": "TABS",
+     "mrp": 58,
+     "company": "INTAS GENERIC"
+    },
+    {
+     "productName": "NIMUCET-MF SYP 1*60ML",
+     "unit": "SYP",
+     "mrp": 51.85,
+     "company": "INTAS GENERIC"
+    },
+    {
+     "productName": "NIMULID TAB 1X15",
+     "unit": "TAB",
+     "mrp": 93.28,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "NOCOLD SYP. 60 ML",
+     "unit": "SYP.",
+     "mrp": 68.5,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "NORFLOX 400MG  TAB 1*10",
+     "unit": "TAB",
+     "mrp": 85.86,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "NORFLOX TZ 10T",
+     "unit": "TAB.",
+     "mrp": 118.22,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "NORFLOX TZ TAB 1*10",
+     "unit": "TABS",
+     "mrp": 118.22,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "NORMAXIN TAB 1*10",
+     "unit": "TAB",
+     "mrp": 58,
+     "company": "SYSTOPIC LABOTRIES PVT LTD"
+    },
+    {
+     "productName": "NO SCARS CREAM 1*20GM",
+     "unit": "CREA",
+     "mrp": 260,
+     "company": "TORQUE"
+    },
+    {
+     "productName": "NOVAMOX 250MG CAP 1X15",
+     "unit": "CAP",
+     "mrp": 40.99,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "NOVAMOX 500 CAP 1*15",
+     "unit": "CAP",
+     "mrp": 123.64,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "NS 100 ML",
+     "unit": "LIQ",
+     "mrp": 22.03,
+     "company": "COTEC HEALTH CARE"
+    },
+    {
+     "productName": "NURAMENT OIL 1*50ML",
+     "unit": "OIL",
+     "mrp": 76,
+     "company": "RAHAT HERBAL INDUSTRIES"
+    },
+    {
+     "productName": "NUROKIND LC TAB 1X15",
+     "unit": "TAB",
+     "mrp": 239.85,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "NUROKIND PLUS RF CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 119.9,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "NYCIL COOL CLASSIC POWDER 1*150GM",
+     "unit": "POWD",
+     "mrp": 149,
+     "company": "HEINZ INDIA P. LTD."
+    },
+    {
+     "productName": "O2 TAB 1X10",
+     "unit": "TAB",
+     "mrp": 189,
+     "company": "MEDLEY LABORATORIES"
+    },
+    {
+     "productName": "OCID 20 CAP. 1*20",
+     "unit": "CAPS",
+     "mrp": 64.28,
+     "company": "CADILA PHARMA DIV."
+    },
+    {
+     "productName": "OCUPOL DX EYE DROP 1*5ML",
+     "unit": "DROP",
+     "mrp": 143.69,
+     "company": "CENTAUR PHARMACEUTICALS"
+    },
+    {
+     "productName": "OCUPOL DX EYE OINT 1X5GM",
+     "unit": "OINT",
+     "mrp": 132.08,
+     "company": "CENTAUR PHARMACEUTICALS"
+    },
+    {
+     "productName": "OCUPOL EYE\/EAR DROP 1X5ML",
+     "unit": "E\/D",
+     "mrp": 86.05,
+     "company": "CENTAUR PHARMACEUTICALS"
+    },
+    {
+     "productName": "ODOXIL 250MG DT TAB 1*10",
+     "unit": "TAB",
+     "mrp": 55.05,
+     "company": "LUPIN LTD."
+    },
+    {
+     "productName": "ODOXIL 500MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 50.05,
+     "company": "LUPIN LTD."
+    },
+    {
+     "productName": "OFFICE 50 DRY SYRP 1*30ML",
+     "unit": "SYRP",
+     "mrp": 55.5,
+     "company": "HETERO HEALTHCARE LTD"
+    },
+    {
+     "productName": "OFLOCHEM 200 MG 1*10 T",
+     "unit": "TAB.",
+     "mrp": 82.5,
+     "company": "BIOCHEM(GENRIC)"
+    },
+    {
+     "productName": "OFLOTAS OZ TAB 20*10T",
+     "unit": "TAB",
+     "mrp": 141,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "OFLOX 200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 97.42,
+     "company": "CIPLA PROTEC"
+    },
+    {
+     "productName": "OFLOX OZ SYP 30 ML",
+     "unit": "SYP.",
+     "mrp": 79.75,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "OFLOX OZ TAB 1*10",
+     "unit": "TAB",
+     "mrp": 181.95,
+     "company": "CIPLA PROTEC"
+    },
+    {
+     "productName": "OLOVUE EYE DROP 1X5ML",
+     "unit": "DROP",
+     "mrp": 165,
+     "company": "ALERCON"
+    },
+    {
+     "productName": "OLOVUE KT EYE DROPS 1*5ML",
+     "unit": "PCS",
+     "mrp": 165,
+     "company": "ALERCON"
+    },
+    {
+     "productName": "OLOWORM SYP 25*10 ML",
+     "unit": "LIQ.",
+     "mrp": 19.73,
+     "company": "BIOCHEM(GENRIC)"
+    },
+    {
+     "productName": "OLWORM SYP. 10 ML",
+     "unit": "LIQ.",
+     "mrp": 19.73,
+     "company": "BIOCHEM(GENRIC)"
+    },
+    {
+     "productName": "OMECIP 20MG CAP 1*15",
+     "unit": "CAP",
+     "mrp": 48,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "OMEE CAP 20 MG 20*20",
+     "unit": "STR",
+     "mrp": 61,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "OMEE D CAP 20*20",
+     "unit": "CAP.",
+     "mrp": 200,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "OMNACORTIL 10MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 13.43,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "OMNACORTIL 20MG TAB 1*10",
+     "unit": "TABS",
+     "mrp": 26.86,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "OMNACORTIL 30MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 67,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "OMNACORTIL 5MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 7.61,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "OMNACORTIL DROPS 1*10ML",
+     "unit": "DROP",
+     "mrp": 44.25,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "OMNIGEL 10 GM",
+     "unit": "OINT",
+     "mrp": 65,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "OMNIGEL 30GM 30 GM",
+     "unit": "OINT",
+     "mrp": 133.1,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "OMNIGEL 75 GM",
+     "unit": "GEL",
+     "mrp": 231,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "OMNIGEL SPRAY 1*20GM",
+     "unit": "SPRY",
+     "mrp": 100.43,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "OMNIGEL SPRAY 1*35GM",
+     "unit": "BOTT",
+     "mrp": 119.35,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "ONCET CF TAB 1",
+     "unit": "TABL",
+     "mrp": 70,
+     "company": "MEDLEY LABORATORIES"
+    },
+    {
+     "productName": "ONDEM 4MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 57.51,
+     "company": "ALKEM (BERGEN)"
+    },
+    {
+     "productName": "ONET-MD 20*10",
+     "unit": "TAB.",
+     "mrp": 58.5,
+     "company": "ELDER PHARMA"
+    },
+    {
+     "productName": "ONION OIL 1*100 ML",
+     "unit": "OIL",
+     "mrp": 180,
+     "company": "CURA AYURVEDIC & UNANI LTD"
+    },
+    {
+     "productName": "OPTHACARE EYE DROP 10ML",
+     "unit": "DROP",
+     "mrp": 75,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "OPTIBEX TEAR DROP 1*10 ML",
+     "unit": "DROP",
+     "mrp": 137.65,
+     "company": "ALKEM HEALTH CARE"
+    },
+    {
+     "productName": "OPTIMA CREPE (GARAM PATTI)15CM 1 PKT",
+     "unit": "PATI",
+     "mrp": 240,
+     "company": "BANGA INDUSTRIES"
+    },
+    {
+     "productName": "ORA SORE GEL 12 GM",
+     "unit": "GEL",
+     "mrp": 78,
+     "company": "WINGS BIOTECH"
+    },
+    {
+     "productName": "ORASORE TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 60,
+     "company": "WINGS BIOTECH"
+    },
+    {
+     "productName": "OROFER XT TAB 1*10",
+     "unit": "TAB",
+     "mrp": 312.35,
+     "company": "AN PHARMACEUTICALS"
+    },
+    {
+     "productName": "ORS LIQUID ORANGE DRINK 1*200ML",
+     "unit": "LIQ",
+     "mrp": 29.4,
+     "company": "CIPLA HEALTH LTD."
+    },
+    {
+     "productName": "ORSL LEMON DRINK 1*200ML",
+     "unit": "LIQ",
+     "mrp": 42,
+     "company": "JNTL CONSUMER HEALTH PVT. LTD."
+    },
+    {
+     "productName": "ORS POWDER 1*21GM",
+     "unit": "POWD",
+     "mrp": 24.46,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "ORS PROLYTE APPLE DRINK 1*200ML",
+     "unit": "LIQ",
+     "mrp": 32.57,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "OTRIVIN FAST RELIEF 0.05% 1*10ML",
+     "unit": "DROP",
+     "mrp": 117.13,
+     "company": "GSK1"
+    },
+    {
+     "productName": "OTRIVIN P NASAL DROP 10 ML",
+     "unit": "SPRY",
+     "mrp": 46.92,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "OVAL THERMOMETER 1 BOX",
+     "unit": "DIVC",
+     "mrp": 255,
+     "company": "ENBEE"
+    },
+    {
+     "productName": "OXALGIN DP TAB 1*10",
+     "unit": "TAB",
+     "mrp": 134.64,
+     "company": "ZYDUS CADILA"
+    },
+    {
+     "productName": "P-6 CAPSULE 1X30",
+     "unit": "CAP",
+     "mrp": 148,
+     "company": "TRUE HEALTHCAER"
+    },
+    {
+     "productName": "P-6 CREAM 25 GM",
+     "unit": "CRM.",
+     "mrp": 82,
+     "company": "TORQUE"
+    },
+    {
+     "productName": "PAAN CANDY 500 GM",
+     "unit": "CNDY",
+     "mrp": 125,
+     "company": "REBEL INTERNATIONAL"
+    },
+    {
+     "productName": "PAMPERS 1*7 PANT",
+     "unit": "PANT",
+     "mrp": 99,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "PAN-40 1*15",
+     "unit": "TAB.",
+     "mrp": 170,
+     "company": "ALKEM HEALTH CARE"
+    },
+    {
+     "productName": "PAN D 15 T",
+     "unit": "TAB.",
+     "mrp": 231,
+     "company": "ABBOTT INDIA LTD"
+    },
+    {
+     "productName": "PANDERM++ 1*15 GM",
+     "unit": "CRM",
+     "mrp": 117.6,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "PANDERM CREAM ++ 1X15GM",
+     "unit": "CREM",
+     "mrp": 112,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "PANTEEN 6 ML",
+     "unit": "SHAM",
+     "mrp": 16,
+     "company": "P & G"
+    },
+    {
+     "productName": "PANTOP 40MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 165,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "PANTOP-DSR CAP 1X15",
+     "unit": "CAP",
+     "mrp": 210,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "PANTOP IV INJ 1*1",
+     "unit": "I V",
+     "mrp": 56.5,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "PANTOSEC 40 MG 20*10 T",
+     "unit": "TAB.",
+     "mrp": 143.56,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "PANTOSEC DSR 20*10 T",
+     "unit": "TAB.",
+     "mrp": 137.94,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "PANTOSEC DSR CAP 1*10",
+     "unit": "CAP",
+     "mrp": 151.73,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "PARACETAMOL 500 1*25",
+     "unit": "TAB.",
+     "mrp": 10.6,
+     "company": "WINGS BIOTECH"
+    },
+    {
+     "productName": "PARACIP 500MG TAB 1*10",
+     "unit": "TABS",
+     "mrp": 11.09,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "PARAXIN 250MG CAP 1X10",
+     "unit": "CAPS",
+     "mrp": 124.76,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "PARAXIN 500MG CAP 1X10",
+     "unit": "CAP",
+     "mrp": 236.8,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "PARK AVENUE 18 ML",
+     "unit": "LIQ",
+     "mrp": 70,
+     "company": "RAYMOND CONSUMER CARE PVT LTD"
+    },
+    {
+     "productName": "PARK AVENUE BLUE 100G\/150ML",
+     "unit": "SPRY",
+     "mrp": 225,
+     "company": "RAYMOND CONSUMER CARE PVT LTD"
+    },
+    {
+     "productName": "PARK AVENUE WHITE 116G\/150ML",
+     "unit": "SPRY",
+     "mrp": 240,
+     "company": "RAYMOND CONSUMER CARE PVT LTD"
+    },
+    {
+     "productName": "PATANJALI COCO OIL 1*200 ML",
+     "unit": "OIL",
+     "mrp": 70,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "PATANJALI HONEY 1*100 GM",
+     "unit": "HONY",
+     "mrp": 55,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "PATANJALI HONEY 1X250G",
+     "unit": "PCS",
+     "mrp": 110,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "PATANJALI TOOTHBRUSH JUNIOR 12 PCS",
+     "unit": "BRSH",
+     "mrp": 15,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "PAURUSH JIWAN CAP 1X10",
+     "unit": "CAP",
+     "mrp": 37,
+     "company": "DEV PHARMACY P LTD"
+    },
+    {
+     "productName": "PEARS FRESH RENEWAL F\/WASH 1*60GM",
+     "unit": "F\/W",
+     "mrp": 160,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PEARS PURE & GENTLE FACE WASH 1*60GM",
+     "unit": "WASH",
+     "mrp": 160,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PEARS SOAP YELLOW 50 GM",
+     "unit": "SOAP",
+     "mrp": 22,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PEDITHIK DS 1*60 ML",
+     "unit": "LIQ",
+     "mrp": 80,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "PENTIDS 400MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 24.14,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "PENTIDS 800MG TAB 1X10",
+     "unit": "TAB.",
+     "mrp": 39.02,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "PERINORM TAB 1*10",
+     "unit": "TAB",
+     "mrp": 15.12,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "PET SAFA AYU GRN . 60 GM",
+     "unit": "GRN",
+     "mrp": 60,
+     "company": "DOLLAR company"
+    },
+    {
+     "productName": "PET SAFA LAXATIVE GRANULES 1*120GM",
+     "unit": "POWD",
+     "mrp": 115,
+     "company": "DIVISA HERBAL CARE"
+    },
+    {
+     "productName": "PHEXIN 250MG CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 117.85,
+     "company": "GLAXO ALLENBURYS"
+    },
+    {
+     "productName": "PHEXIN 500MG CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 261.5,
+     "company": "GLAXO LTD."
+    },
+    {
+     "productName": "PILEX FORTE OINT 1X30GM",
+     "unit": "OINT",
+     "mrp": 105,
+     "company": "HIMALAYA DRUG CO."
+    },
+    {
+     "productName": "PIL GPM SR 2 1*10",
+     "unit": "TAB.",
+     "mrp": 73,
+     "company": "PIL"
+    },
+    {
+     "productName": "PILOROUTE EP 1*7 TAB",
+     "unit": "TAB.",
+     "mrp": 351.5,
+     "company": "PIL"
+    },
+    {
+     "productName": "PILOROUTE EP CREAM 1*30 GM",
+     "unit": "CRM",
+     "mrp": 239.8,
+     "company": "FUTURE MANKIND"
+    },
+    {
+     "productName": "PILTOP DSR CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 87,
+     "company": "PSYCHTROPICS  INDIA LIMITED"
+    },
+    {
+     "productName": "PLAYLONG 100 RED 4*4 TAB.",
+     "unit": "TAB.",
+     "mrp": 116,
+     "company": "INDEED"
+    },
+    {
+     "productName": "PODIN HARA CAP. 10*40",
+     "unit": "CAP.",
+     "mrp": 30,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "PODIN HARA LIQUID 1*10 ML",
+     "unit": "LIQ",
+     "mrp": 25,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "POND BRIGHT BEAUTY 1*7 G",
+     "unit": "CRM",
+     "mrp": 10,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PONDS COLD CREAM 1*6GM",
+     "unit": "CREA",
+     "mrp": 5,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PONDS DREAMFLOWER POWDER 1*100GM",
+     "unit": "POWD",
+     "mrp": 110,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PONDS HYDRA MIRACLE 1*30 ML",
+     "unit": "CRM",
+     "mrp": 64,
+     "company": "N\/A"
+    },
+    {
+     "productName": "PONDS LOTION 105 1*90 ML",
+     "unit": "LOTN",
+     "mrp": 105,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PONDS LOTION 1*20 ML",
+     "unit": "LOTN",
+     "mrp": 10,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PONDS MAGIC POWDER 1*100GM",
+     "unit": "POWD",
+     "mrp": 135,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "PONDS WB CR 1*15G",
+     "unit": "CRM",
+     "mrp": 55,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "POTASSIUM PERMAGNET 10 GM",
+     "unit": "PWD.",
+     "mrp": 34,
+     "company": "AGRAWAL DRUGS PVT LTD"
+    },
+    {
+     "productName": "POVIFRESH POWDER 1*10 GM",
+     "unit": "PWD",
+     "mrp": 45,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "POWERFLAM TAB 10",
+     "unit": "TABL",
+     "mrp": 99,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "POWERGYL NF SYP 1*30ML",
+     "unit": "SYP",
+     "mrp": 79.75,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "POWER VEGRA 100 MG 1*4",
+     "unit": "TAB.",
+     "mrp": 142,
+     "company": "IND SWIFT LTD"
+    },
+    {
+     "productName": "PPPI TABS 10 T",
+     "unit": "TAB.",
+     "mrp": 61,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "PREGA NEW KIT 1 CARD",
+     "unit": "CARD",
+     "mrp": 60,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "PREGNACREAM 1*100 G",
+     "unit": "CRM",
+     "mrp": 450,
+     "company": "MEYER"
+    },
+    {
+     "productName": "PREGNIDOXIN TAB 1*30",
+     "unit": "TAB",
+     "mrp": 207.75,
+     "company": "DR. REDDY'S"
+    },
+    {
+     "productName": "PRIMOLUT N TAB 1*10",
+     "unit": "TAB",
+     "mrp": 60.36,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "PROTINEX VANILLA 1X250GM",
+     "unit": "PCS",
+     "mrp": 445,
+     "company": "NUTRICA INTERNATIONAL PVT LTD"
+    },
+    {
+     "productName": "PULMOCLEAR TAB 1*15",
+     "unit": "TAB",
+     "mrp": 283,
+     "company": "FOURRTS"
+    },
+    {
+     "productName": "PUNARWADI MANDUR 1*40 T",
+     "unit": "TAB.",
+     "mrp": 111,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "QUADRIDERM CREAM 1*10GM",
+     "unit": "CREM",
+     "mrp": 81,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "QUARD CREAM 1*15",
+     "unit": "CRM3",
+     "mrp": 107,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "QUIDERM CREAM 1*5G",
+     "unit": "CRM",
+     "mrp": 30,
+     "company": "MAPRO LIFE SCIENCE"
+    },
+    {
+     "productName": "RABLET 20MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 208.8,
+     "company": "LUPIN LTD."
+    },
+    {
+     "productName": "RABVIL-DSR 20*10",
+     "unit": "TAB.",
+     "mrp": 115,
+     "company": "BLUEGLIDE GENERIC"
+    },
+    {
+     "productName": "RANIASH 150 TAB 20*30",
+     "unit": "TAB.",
+     "mrp": 40.65,
+     "company": "ASHLEY PHARMACEUTICAL PVT. LTD."
+    },
+    {
+     "productName": "RANTAC 150MG TAB 1X30",
+     "unit": "TAB",
+     "mrp": 49.1,
+     "company": "J.B CHEMICALS& PHARMACEUTICALS LTD"
+    },
+    {
+     "productName": "RANTAC DOM TAB 1*10",
+     "unit": "TAB",
+     "mrp": 73.79,
+     "company": "ACME LIFETECH LLP"
+    },
+    {
+     "productName": "RAT KILLER 25 G",
+     "unit": "CAKE",
+     "mrp": 20,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "RAZO D CAP 1X15",
+     "unit": "CAP",
+     "mrp": 361,
+     "company": "DR.KURT WOLFF"
+    },
+    {
+     "productName": "RAZOR GILLATE 1*1",
+     "unit": "RZOR",
+     "mrp": 25,
+     "company": "GILLETTE"
+    },
+    {
+     "productName": "R.B.TONE CAP 1*15",
+     "unit": "CAP",
+     "mrp": 92.9,
+     "company": "MEDLEY LABORATORIES"
+    },
+    {
+     "productName": "R.B.TONE SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 199,
+     "company": "MEDLEY LABORATORIES"
+    },
+    {
+     "productName": "REFRESH TEARS E\/DROP 1*10ML",
+     "unit": "DROP",
+     "mrp": 137.64,
+     "company": "ALLERGAN"
+    },
+    {
+     "productName": "REJUNEX CAP 1*10",
+     "unit": "CAP",
+     "mrp": 117.5,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "RESTECLIN 250MG CAP 1X10",
+     "unit": "CAPS",
+     "mrp": 21.92,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "RESTECLIN 500MG CAP 1X10",
+     "unit": "CAPS",
+     "mrp": 38.92,
+     "company": "SARABHAI CHEMICAL WORKS"
+    },
+    {
+     "productName": "REVITAL H CAP 10 CAP",
+     "unit": "CAP",
+     "mrp": 120,
+     "company": "SUN PHARMACEUTICALS IND LTD"
+    },
+    {
+     "productName": "REVITAL H TAB 1X30",
+     "unit": "CAP",
+     "mrp": 330,
+     "company": "RANBAXY REXCELL"
+    },
+    {
+     "productName": "REVITAL H WOMAN CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 120,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "REVITAL WOMENS CAP 1X10",
+     "unit": "CAP",
+     "mrp": 140,
+     "company": "RANBAXY CROSLANDS"
+    },
+    {
+     "productName": "REXCOF DX SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 128.2,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "RIFAGUT 400MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 399,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "RING CUTTER OINT 15 GM",
+     "unit": "OINT",
+     "mrp": 28.7,
+     "company": "JAGSONPAL PHARMACEUTICALS"
+    },
+    {
+     "productName": "ROLLED CLOTH BANDAGE 10*2.5 1*12",
+     "unit": "PATI",
+     "mrp": 85,
+     "company": "DERMIS CARE SURGICAL INDUSTRY"
+    },
+    {
+     "productName": "ROLLED CLOTH BANDAGE 15*2.5MTR 1*12",
+     "unit": "PATI",
+     "mrp": 250,
+     "company": "DERMIS CARE SURGICAL INDUSTRY"
+    },
+    {
+     "productName": "ROLLED CLOTH BANDAGE 5*3.35 MTR",
+     "unit": "BNDG",
+     "mrp": 190,
+     "company": "BANGA INDUSTRIES"
+    },
+    {
+     "productName": "ROSE WATER 30 ML",
+     "unit": "LIQ.",
+     "mrp": 20,
+     "company": "AGRAWAL DRUGS PVT LTD"
+    },
+    {
+     "productName": "ROSULIP 20MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 311.11,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "ROSULIP ASP 75 MG 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 145.73,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "ROSUVAS F 10 TAB 1*15",
+     "unit": "TABS",
+     "mrp": 408,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "ROXID 150MG TAB 1*10TAB",
+     "unit": "TAB",
+     "mrp": 193.05,
+     "company": "ALEMBIC PHARMACEUTICAL"
+    },
+    {
+     "productName": "ROXID SYP 1*30ML",
+     "unit": "SYP",
+     "mrp": 162.85,
+     "company": "ALEMBIC CHEMICAL WORKS LTD."
+    },
+    {
+     "productName": "SACHI SAHELI SYP 1*200ML",
+     "unit": "SYP",
+     "mrp": 215,
+     "company": "DIVISA HERBAL CARE"
+    },
+    {
+     "productName": "SAFEXIM 200 TAB. 20*10",
+     "unit": "TAB.",
+     "mrp": 97.66,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "SAFEXIME 200MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 119.31,
+     "company": "ABBOTT INDIA LTD"
+    },
+    {
+     "productName": "SAFI SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 68,
+     "company": "HAMDARD  LABORTRIES"
+    },
+    {
+     "productName": "SAFI SYP 1*500ML",
+     "unit": "SYP",
+     "mrp": 230,
+     "company": "HAMDARD  LABORTRIES"
+    },
+    {
+     "productName": "SAHELI 1*8",
+     "unit": "TAB.",
+     "mrp": 250,
+     "company": "HLL LIFECARE LTD"
+    },
+    {
+     "productName": "SALBETOL 2MG TAB 1*10",
+     "unit": "TABS",
+     "mrp": 1.9,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "SALBETOL 4MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 2.35,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "SARIDON ADVANCE 1*10",
+     "unit": "TAB.",
+     "mrp": 49,
+     "company": "PIRAMAL HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "SARIDON+ TAB 1*10",
+     "unit": "TAB",
+     "mrp": 50,
+     "company": "PIRAMAL HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "SARPGANDHAGHAN BATI 80 TABS",
+     "unit": "TAB.",
+     "mrp": 259,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "SASLIC DS FACE WASH 1 unit",
+     "unit": "F\/W",
+     "mrp": 495,
+     "company": "CIPLA"
+    },
+    {
+     "productName": "SAT ISABGOL 1*100GM",
+     "unit": "POWD",
+     "mrp": 190,
+     "company": "TELEPHONE"
+    },
+    {
+     "productName": "SAT ISABGOL 1*50GM",
+     "unit": "POWD",
+     "mrp": 90,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "SAT ISABGOL 1*5 GM",
+     "unit": "PWD",
+     "mrp": 12,
+     "company": "TELEPHONE"
+    },
+    {
+     "productName": "SAT ISABGOL SACHET 1*10GM",
+     "unit": "POWD",
+     "mrp": 17.2,
+     "company": "B.G TELEPHONE BRAND"
+    },
+    {
+     "productName": "SAUNDARYA F\/W 60 G",
+     "unit": "F\/W",
+     "mrp": 70,
+     "company": "PATANJALI  AYURVED LTD."
+    },
+    {
+     "productName": "SAVLON 200ML 1*200",
+     "unit": "LIQ",
+     "mrp": 92,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "SAVLON LIQ. 100 ML",
+     "unit": "LIQ",
+     "mrp": 57,
+     "company": "ITC LIMITED"
+    },
+    {
+     "productName": "SAVLON LIQ 50 ML",
+     "unit": "LIQ",
+     "mrp": 29,
+     "company": "ITC LIMITED"
+    },
+    {
+     "productName": "SCABIFRESH ALOE. 1*75 GM",
+     "unit": "PWD",
+     "mrp": 60,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "SCABIPIL TUBE 1*50 ML",
+     "unit": "TUBE",
+     "mrp": 55,
+     "company": "PIL"
+    },
+    {
+     "productName": "SENSODYNE FRESH GEL 1*40 GM",
+     "unit": "GEL",
+     "mrp": 90,
+     "company": "GSK CONSUMER"
+    },
+    {
+     "productName": "SENSO SENSITIVE BRUSH 1*3",
+     "unit": "BRSH",
+     "mrp": 130,
+     "company": "GSK CONSUMER"
+    },
+    {
+     "productName": "SF SECURE COTTONY REGULAR 1*6",
+     "unit": "PAD",
+     "mrp": 35,
+     "company": "JNTL CONSUMER HEALTH PVT. LTD."
+    },
+    {
+     "productName": "SF SECURE COTTONY XL 18",
+     "unit": "PAD",
+     "mrp": 124,
+     "company": "JNTL CONSUMER HEALTH PVT. LTD."
+    },
+    {
+     "productName": "SHELCAL 500MG TAB 1X15",
+     "unit": "TAB",
+     "mrp": 144.3,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "SHELCAL M TAB 1*15",
+     "unit": "TABS",
+     "mrp": 142.7,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "SHILAJIT GOLD 1*10",
+     "unit": "TAB.",
+     "mrp": 300,
+     "company": "DABUR GENRIC"
+    },
+    {
+     "productName": "SHULVARJINI BATI 1*40",
+     "unit": "TAB.",
+     "mrp": 123,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "SILODAL 8 TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 319,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "SILVEREX IONIC 20 GM",
+     "unit": "OINT",
+     "mrp": 156,
+     "company": "SUN PHARMACEUTICALS IND LTD"
+    },
+    {
+     "productName": "SIMILC PLUS 1 400 GM",
+     "unit": "PWD",
+     "mrp": 995,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "SINAREST SYP 1*75ML",
+     "unit": "SYP",
+     "mrp": 146.99,
+     "company": "CENTAUR PHARMACEUTICALS"
+    },
+    {
+     "productName": "SINAREST TAB 1X10",
+     "unit": "TAB",
+     "mrp": 109.88,
+     "company": "CENTAUR PHARMACEUTICALS"
+    },
+    {
+     "productName": "SITARA M 100\/500 1*10",
+     "unit": "TAB.",
+     "mrp": 174.75,
+     "company": "EXEMED PHARMACEUTICAL"
+    },
+    {
+     "productName": "SITCOM FORTE TAB 1*7",
+     "unit": "TABS",
+     "mrp": 961.46,
+     "company": "PANACEA BIOTEC LTD."
+    },
+    {
+     "productName": "SITCOM TAB 1X7",
+     "unit": "TAB",
+     "mrp": 351.5,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "SKIN BRITE CREAM 1X15 GM",
+     "unit": "CREA",
+     "mrp": 163,
+     "company": "GALPHA LAB. LTD"
+    },
+    {
+     "productName": "SKIN BRITE CREAM 1X20G",
+     "unit": "CREM",
+     "mrp": 225,
+     "company": "NEUTRICEA"
+    },
+    {
+     "productName": "SKINLITE CREAM 1*15GM",
+     "unit": "crem",
+     "mrp": 185,
+     "company": "ZYDUS HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "SKINLITE CREAM 15 G",
+     "unit": "CRM",
+     "mrp": 185.9,
+     "company": "ZYDUS HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "SKINSHINE CREAM 1*15GM",
+     "unit": "CREM",
+     "mrp": 149.9,
+     "company": "CADILA PHARMACEUTICALS"
+    },
+    {
+     "productName": "SMARTVITA E PLUS 1*10",
+     "unit": "PWD",
+     "mrp": 80,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "SOFY 1*18",
+     "unit": "PADS",
+     "mrp": 120,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "SOFY 1*8 PADS",
+     "unit": "PAD",
+     "mrp": 36,
+     "company": "UNICHARM"
+    },
+    {
+     "productName": "SOLAN'S BALM 1*10 GM",
+     "unit": "BALM",
+     "mrp": 55,
+     "company": "PIRAMAL ENTERPRISES LTD"
+    },
+    {
+     "productName": "SOLAN'S BALM 1*20 G",
+     "unit": "BALM",
+     "mrp": 99,
+     "company": "PIRAMAL HEALTHCARE LIMITED"
+    },
+    {
+     "productName": "SOMPRAZ-20MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 112.5,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "SONADERM NM CREAM 1*15GM",
+     "unit": "CRM",
+     "mrp": 70,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "SORBITRATE 10MG TAB 1*50",
+     "unit": "TABS",
+     "mrp": 44.8,
+     "company": "NICHOLAS PIRAMAL INDIA LTD."
+    },
+    {
+     "productName": "SOTHREX BR SYP 1*100 ML",
+     "unit": "SYP",
+     "mrp": 84,
+     "company": "PSYCHTROPICS  INDIA LIMITED"
+    },
+    {
+     "productName": "SOTHREX TULSI SYP 1*100ML",
+     "unit": "SUSP",
+     "mrp": 109,
+     "company": "PSYCHTROPICS  INDIA LIMITED"
+    },
+    {
+     "productName": "S-PPI-L 1*10",
+     "unit": "TAB",
+     "mrp": 130,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "STATPURE 5 1*10",
+     "unit": "TAB.",
+     "mrp": 79,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "STEMETIL MD TAB 1X15",
+     "unit": "TAB.",
+     "mrp": 172.7,
+     "company": "NICHOLAS PIRAMAL INDIA LTD."
+    },
+    {
+     "productName": "STETHOSCOPE-ST-01",
+     "unit": "STET",
+     "mrp": 599,
+     "company": "ACCUSURE"
+    },
+    {
+     "productName": "STIM INT ANG 3 BRUSH 1X1",
+     "unit": "BRUS",
+     "mrp": 180,
+     "company": "STIM"
+    },
+    {
+     "productName": "STREAX HC SHAMPOO N. BRN 1*1",
+     "unit": "CLR",
+     "mrp": 20,
+     "company": "HYGIENIC RESEARCH INSITITUTE"
+    },
+    {
+     "productName": "STREAX SHAMPOO 1*1",
+     "unit": "SHMP",
+     "mrp": 20,
+     "company": "HYGIENIC RESEARCH INSITITUTE"
+    },
+    {
+     "productName": "STREAX SHAMPOO BURGUANDY 1*1",
+     "unit": "CLR",
+     "mrp": 20,
+     "company": "WOODWARD'S"
+    },
+    {
+     "productName": "STREAX SHAMPOO DARK BRN 1*1",
+     "unit": "CLR",
+     "mrp": 20,
+     "company": "HYGIENIC RESEARCH INSITITUTE"
+    },
+    {
+     "productName": "STREPSILS ORANGE JAR 1*100",
+     "unit": "STRP",
+     "mrp": 28,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "STREX POUCH N. BLACK 1*1",
+     "unit": "SHMP",
+     "mrp": 20,
+     "company": "N\/A"
+    },
+    {
+     "productName": "SUALIN JAR 4*100",
+     "unit": "TAB",
+     "mrp": 500,
+     "company": "HAMDARD  LABORTRIES"
+    },
+    {
+     "productName": "SUALIN TABS 1X60",
+     "unit": "TAB.",
+     "mrp": 75,
+     "company": "HAMDARD  LABORTRIES"
+    },
+    {
+     "productName": "SUGAR FREE 1*500 PEL.",
+     "unit": "PEL.",
+     "mrp": 300,
+     "company": "ZYDUS WELLNESS"
+    },
+    {
+     "productName": "SUHAGRA-100MG TAB 1*4",
+     "unit": "TAB",
+     "mrp": 211.2,
+     "company": "CIPLA      GENRIC"
+    },
+    {
+     "productName": "SU MAG CREAM 1*75GM",
+     "unit": "CREM",
+     "mrp": 207,
+     "company": "HIND CHEMICALS LTD"
+    },
+    {
+     "productName": "SUMO TAB 1*15",
+     "unit": "TABS",
+     "mrp": 163,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "SUPER VASMOL 33 50ML 1*50ML",
+     "unit": "PCS",
+     "mrp": 35,
+     "company": "."
+    },
+    {
+     "productName": "SUPRADYN DAILY 1*10",
+     "unit": "TAB.",
+     "mrp": 60.35,
+     "company": "BAYER LTD."
+    },
+    {
+     "productName": "SURGICAL TAPE(1\/2 I *5MTR)",
+     "unit": "TAPE",
+     "mrp": 370,
+     "company": "APEX MEDIVISION INDUSTRY"
+    },
+    {
+     "productName": "SURGICAL TAPE(1 *5MTR) 1*12",
+     "unit": "TAPE",
+     "mrp": 370,
+     "company": "APEX MEDIVISION INDUSTRY"
+    },
+    {
+     "productName": "SURGICAL TAPE-(2*5MTR) 1*6",
+     "unit": "TAPE",
+     "mrp": 370,
+     "company": "APEX MEDIVISION INDUSTRY"
+    },
+    {
+     "productName": "SURGICAL TAPE-(3 *5MTR) 1*4 1*4",
+     "unit": "TAPE",
+     "mrp": 370,
+     "company": "APEX MEDIVISION INDUSTRY"
+    },
+    {
+     "productName": "SUSTEN 200MG CAP 1*10",
+     "unit": "CAP",
+     "mrp": 371,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "SYNTRAN 200MG CAP 1*10",
+     "unit": "CAP",
+     "mrp": 247.74,
+     "company": "GLENMARK PHARMACEUTICALS"
+    },
+    {
+     "productName": "TANCET SYRUP 1*60 ML",
+     "unit": "LOQ",
+     "mrp": 44.35,
+     "company": "BIOCHEM(GENRIC)"
+    },
+    {
+     "productName": "TAXIM 250MG INJ 1*250MG",
+     "unit": "INJE",
+     "mrp": 19.84,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "TAXIM 500MG INJ 1X1VAIL",
+     "unit": "INJE",
+     "mrp": 27.29,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "TAXIM-O-100 DT TAB 1*10",
+     "unit": "TABS",
+     "mrp": 90,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "TAXIM O 200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 109.49,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "TAXIM O DROP 1X10ML",
+     "unit": "DROP",
+     "mrp": 73.5,
+     "company": "ALKEM LABORATORIES"
+    },
+    {
+     "productName": "TC CARE TOOTHPASTE 1*150 G",
+     "unit": "PSTE",
+     "mrp": 109,
+     "company": "DHANWANTARI DISTRIBUTORS PVT LTD"
+    },
+    {
+     "productName": "TELMA 40MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 113.57,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "TELMA AM TAB 1*15",
+     "unit": "TABS",
+     "mrp": 307.5,
+     "company": "GLENMARK PHARMACEUTICALS"
+    },
+    {
+     "productName": "TELMA-H TAB 1*15",
+     "unit": "TABS",
+     "mrp": 335.5,
+     "company": "GLENMARK"
+    },
+    {
+     "productName": "TELVAS 3D TAB 1*10",
+     "unit": "TABS",
+     "mrp": 114,
+     "company": "ARISTO PHARMA"
+    },
+    {
+     "productName": "TENOVATE CREAM 1*30G",
+     "unit": "CREA",
+     "mrp": 156.1,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "TENOVATE GN CREAM 1*10GM",
+     "unit": "CREM",
+     "mrp": 100.5,
+     "company": "GLAXO ALLENBURYS"
+    },
+    {
+     "productName": "TENOVATE M CREAM 1*15GM",
+     "unit": "CREA",
+     "mrp": 120.8,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "TERBEST CREAM 1X15GM",
+     "unit": "CREM",
+     "mrp": 109.5,
+     "company": "SYSTOPIC LABOTRIES PVT LTD"
+    },
+    {
+     "productName": "TERBEST CREAM 30 GM",
+     "unit": "CRM",
+     "mrp": 109.5,
+     "company": "SYSTOPIC LABOTRIES PVT LTD"
+    },
+    {
+     "productName": "TERBINAFORCE 500MG TAB 1*7",
+     "unit": "TABS",
+     "mrp": 199,
+     "company": "LIFESTAR PHARMA PVT LTD"
+    },
+    {
+     "productName": "TERBINAFORCE TAB 250 1X7",
+     "unit": "TAB",
+     "mrp": 121.16,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "TETMOSOL SOAP 1*100GM",
+     "unit": "SOAP",
+     "mrp": 99,
+     "company": "NICHOLAS PIRAMAL INDIA LTD."
+    },
+    {
+     "productName": "TETRALAB 250MG CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 38.5,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "TEXAKIND MF TAB 1*10",
+     "unit": "TAB",
+     "mrp": 290,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "TEXAKIND TAB 1*10",
+     "unit": "TAB",
+     "mrp": 156.29,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "THERMOMETER (ODDIN) 1*1",
+     "unit": "MTR",
+     "mrp": 210,
+     "company": "DR. ODIN"
+    },
+    {
+     "productName": "THIO QUEST GEL 1*15G",
+     "unit": "GEL",
+     "mrp": 121,
+     "company": "."
+    },
+    {
+     "productName": "THIOQUEST GEL 30 GM",
+     "unit": "GEL",
+     "mrp": 221,
+     "company": "ALCHEM"
+    },
+    {
+     "productName": "THROMBOPHOB OINT 1*20GM",
+     "unit": "OINT",
+     "mrp": 145.8,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "THYRONORM 150MCG TAB 1*120",
+     "unit": "TAB",
+     "mrp": 228.48,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "THYRONORM 25MG TAB 1X120",
+     "unit": "TAB.",
+     "mrp": 194.38,
+     "company": "ABBOTT INDIA LTD"
+    },
+    {
+     "productName": "THYRONORM 37.50 TAB 1*120",
+     "unit": "TABS",
+     "mrp": 196.22,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "THYROX 50MG TAB 1*100",
+     "unit": "TAB",
+     "mrp": 138.43,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "TIGER BALM 1*10G",
+     "unit": "BALM",
+     "mrp": 49,
+     "company": "MAKSON PHARMACEUTICALS INDIA PVT LTD"
+    },
+    {
+     "productName": "TIGER KING BLUE 1X1",
+     "unit": "CREM",
+     "mrp": 410,
+     "company": "NAMAN INDIA"
+    },
+    {
+     "productName": "TITANIC K2 CAP 1*6",
+     "unit": "CAPS",
+     "mrp": 600,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "TOBRA-D 1*10 ML",
+     "unit": "E\/D",
+     "mrp": 52,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "TOBRA D EYE\/EAR DROPS 1*10ML",
+     "unit": "DROP",
+     "mrp": 52.5,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "TOBRAVEL-F E\/D 1*5 ML",
+     "unit": "DROP",
+     "mrp": 140,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "TOREX JUNIOR SYP 1*60ML",
+     "unit": "SYP",
+     "mrp": 59,
+     "company": "TORQUE PHARMACEUTRICALS"
+    },
+    {
+     "productName": "TRAPIC 500 1*10",
+     "unit": "TAB",
+     "mrp": 194.67,
+     "company": "."
+    },
+    {
+     "productName": "TRIFALA CHURAN 120 GM",
+     "unit": "CHRN",
+     "mrp": 68,
+     "company": "DABUR INDIA LTD"
+    },
+    {
+     "productName": "TRIFALA RAS 1 LIT",
+     "unit": "SYP",
+     "mrp": 390,
+     "company": "CURA AYURVEDIC & UNANI LTD"
+    },
+    {
+     "productName": "TRIFALA RAS 500 ML",
+     "unit": "SYP",
+     "mrp": 240,
+     "company": "CURA AYURVEDIC & UNANI LTD"
+    },
+    {
+     "productName": "TRIMZOLE DS 1*10",
+     "unit": "TAB.",
+     "mrp": 28.2,
+     "company": "LABORATE"
+    },
+    {
+     "productName": "TRYPTOMER 10MG TAB 1*30",
+     "unit": "TAB",
+     "mrp": 80.1,
+     "company": "DR. REDDY"
+    },
+    {
+     "productName": "TUSQ D LOZENGES TAB 1*6",
+     "unit": "TABS",
+     "mrp": 54,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "TUSQ DX SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 105,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "TUSQ DX TAB 1*10",
+     "unit": "TABS",
+     "mrp": 58,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "TUSQ-LS SYRUP(S.F) 1X100ML",
+     "unit": "SYP",
+     "mrp": 99,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "TUSQ X+ SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 105,
+     "company": "BLUE CROSS"
+    },
+    {
+     "productName": "UDILIV 150MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 435.57,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "UDILIV 300MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 839.96,
+     "company": "DUPHAR INTERFRAN LTD."
+    },
+    {
+     "productName": "UJALA EYE DROPS 5 ML",
+     "unit": "DROP",
+     "mrp": 50,
+     "company": "HIMALAYA"
+    },
+    {
+     "productName": "ULTRABRITE CREAM 1*15G",
+     "unit": "CREA",
+     "mrp": 135,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "ULTRACET TAB 1X15",
+     "unit": "TAB.",
+     "mrp": 286.8,
+     "company": "JANSSEN PHARMA"
+    },
+    {
+     "productName": "UNIENZYME PRO TAB 1*10",
+     "unit": "TAB",
+     "mrp": 174.5,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "UNIENZYME TAB 1*15",
+     "unit": "TABS",
+     "mrp": 85.3,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "URISPAS TAB 1X15",
+     "unit": "TAB",
+     "mrp": 502.12,
+     "company": "MARTIN & HARRIS LABORATORIES"
+    },
+    {
+     "productName": "USTAD 6 PCS",
+     "unit": "COND",
+     "mrp": 300,
+     "company": "MHL HEALTH CARE"
+    },
+    {
+     "productName": "UV CERA SUNSCREEN 60 GM",
+     "unit": "LOTI",
+     "mrp": 318,
+     "company": "SURYAVEDA COSMECEUTICALS PVT. LTD"
+    },
+    {
+     "productName": "UVMED SUNSCREEN 50 GM",
+     "unit": "LOTI",
+     "mrp": 395,
+     "company": "ETHICARE REMIDIS"
+    },
+    {
+     "productName": "VASARISHTA 450 ML",
+     "unit": "SYP",
+     "mrp": 178,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "VASELENE 21 GM",
+     "unit": "CRM",
+     "mrp": 50,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "VASELINE 24*12 G",
+     "unit": "CRM",
+     "mrp": 240,
+     "company": "COSMETICS ITEMS"
+    },
+    {
+     "productName": "VASLINE DEEP REST 1*90 ML",
+     "unit": "LOTN",
+     "mrp": 90,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "VASLINE JELLY 1*12 G",
+     "unit": "JELY",
+     "mrp": 10,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "VASLINE JELLY 1*20G",
+     "unit": "JELY",
+     "mrp": 54,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "VASLINE JELLY 90 1*40 G",
+     "unit": "JELY",
+     "mrp": 90,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "VASOGRAIN TAB 1X14",
+     "unit": "TAB",
+     "mrp": 135.2,
+     "company": "CADILA PHARMA DIV."
+    },
+    {
+     "productName": "VEET NOR 30GM 1 TUBE",
+     "unit": "CRM",
+     "mrp": 89,
+     "company": "RECKITT BENCKISER"
+    },
+    {
+     "productName": "VERTIN 16MG TAB 1*15",
+     "unit": "TABS",
+     "mrp": 357.84,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "VERTIN 8MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 176.61,
+     "company": "ABBOTT HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "VERTINFORD 8 MG",
+     "unit": "TAB.",
+     "mrp": 44,
+     "company": "LEEFORD HEALTHCARE LTD."
+    },
+    {
+     "productName": "VICKS 1*25GM",
+     "unit": "BOT",
+     "mrp": 109,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS 12 OFF 1*12*5GM",
+     "unit": "DEBI",
+     "mrp": 288,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS 1*50GM",
+     "unit": "BOT",
+     "mrp": 199,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS 24 OFF 1*12*10",
+     "unit": "OINT",
+     "mrp": 45,
+     "company": "PROCTER & GAMBLE HYGIENE AND HEALTH CARE"
+    },
+    {
+     "productName": "VICKS ACTION ADVANCE 500 TAB 1*10",
+     "unit": "TABS",
+     "mrp": 58,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS BABY RUB 10 G",
+     "unit": "CRM",
+     "mrp": 55,
+     "company": "GILLETTE"
+    },
+    {
+     "productName": "VICKS BABYRUB 1*10ML",
+     "unit": "OINT",
+     "mrp": 50,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS BABY RUB 1*25ML",
+     "unit": "VICK",
+     "mrp": 125,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS INHALLER 1X1PCS",
+     "unit": "INH",
+     "mrp": 69,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS JAR 1*205 DROP",
+     "unit": "CNDY",
+     "mrp": 210,
+     "company": "P & G"
+    },
+    {
+     "productName": "VICKS JAR BIG 1*950",
+     "unit": "CNDY",
+     "mrp": 1700,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "VICKS RUB 1*5 ML",
+     "unit": "RUB",
+     "mrp": 25,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "VIGORE 100MG TAB 1*4",
+     "unit": "TABS",
+     "mrp": 116,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "VIGORE 50MG TAB 1*4",
+     "unit": "TABS",
+     "mrp": 77.7,
+     "company": "GERMAN REMEDIES"
+    },
+    {
+     "productName": "VIOPATCH 75CM 1*10 1*1",
+     "unit": "POUH",
+     "mrp": 500,
+     "company": "UNEXO LIFE SCIENCE"
+    },
+    {
+     "productName": "VISTATRO EYE DROP 1*5 ML",
+     "unit": "DROP",
+     "mrp": 210,
+     "company": "GREVIS PHARMACEUTICALS PVT. LTD."
+    },
+    {
+     "productName": "VIZYLAC CAP. 1*15",
+     "unit": "TAB.",
+     "mrp": 83.7,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "VOLINI GEL 1*15GM",
+     "unit": "OINT",
+     "mrp": 76,
+     "company": "RANBAXY CROSLANDS"
+    },
+    {
+     "productName": "VOLINI GEL 1X100GM",
+     "unit": "CREM",
+     "mrp": 373,
+     "company": "RANBAXY CROSLANDS"
+    },
+    {
+     "productName": "VOLINI GEL 50 GM",
+     "unit": "GEL",
+     "mrp": 205,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "VOLINI SPRAY 15 GM",
+     "unit": "SPRY",
+     "mrp": 76,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "VOLINI SPRAY 1*60GM",
+     "unit": "SPRY",
+     "mrp": 220,
+     "company": "RANBAXY CROSLANDS"
+    },
+    {
+     "productName": "VOLINI SPRAY 40 GM",
+     "unit": "SPRY",
+     "mrp": 163,
+     "company": "SUN PHARMA"
+    },
+    {
+     "productName": "VOLIX M 0.2 TAB 1*10",
+     "unit": "TAB",
+     "mrp": 135,
+     "company": "RANBAXY LABORATORIES LIMITED"
+    },
+    {
+     "productName": "VOMIKIND MD 4MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 50.45,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "VOMIKIND SYP 1*30ML",
+     "unit": "SYP",
+     "mrp": 41.96,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "VOMISTOP TAB 1X10",
+     "unit": "TABS",
+     "mrp": 27.04,
+     "company": "CIPLA LTD."
+    },
+    {
+     "productName": "VOMIT MD 1*10",
+     "unit": "TAB.",
+     "mrp": 59.95,
+     "company": "GENTEC HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "VOVERAN SR 100MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 216.25,
+     "company": "NOVARTIS INDIA LIMITED"
+    },
+    {
+     "productName": "V-WASH 1*100 ML",
+     "unit": "CRM",
+     "mrp": 180,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "V-WASH PLUS 20 ML",
+     "unit": "LIQ",
+     "mrp": 47,
+     "company": "HINDUSTAN UNILEVER LTD"
+    },
+    {
+     "productName": "WHISPER ULTRA NIGHT XL + 7 1*1",
+     "unit": "PAD",
+     "mrp": 90,
+     "company": "P & G"
+    },
+    {
+     "productName": "WILD STONE DEO 1*200",
+     "unit": "DEO",
+     "mrp": 225,
+     "company": "N\/A"
+    },
+    {
+     "productName": "WINCOLD Z TAB 1X10",
+     "unit": "TABS",
+     "mrp": 39.85,
+     "company": "WINGS PHARMACEUTICALS PVT.LTD"
+    },
+    {
+     "productName": "WISPER 1*6",
+     "unit": "PAD",
+     "mrp": 42,
+     "company": "PROCTER & GAMBLE HEALTH LTD."
+    },
+    {
+     "productName": "WISPER 40 XL 1*6 PADS",
+     "unit": "PADS",
+     "mrp": 40,
+     "company": "P & G"
+    },
+    {
+     "productName": "WISPER CHOICE 1*6 PADS",
+     "unit": "PADS",
+     "mrp": 35,
+     "company": "P & G"
+    },
+    {
+     "productName": "WORMFRESH A TAB 1*6",
+     "unit": "PWD",
+     "mrp": 120,
+     "company": "SMART LABORATORIES"
+    },
+    {
+     "productName": "WYSOLONE 10MG  TAB 1*15",
+     "unit": "TAB",
+     "mrp": 19.95,
+     "company": "PFIZER LTD."
+    },
+    {
+     "productName": "WYSOLONE 5MG TAB 1*15",
+     "unit": "TAB",
+     "mrp": 11.35,
+     "company": "PFIZER WYETH"
+    },
+    {
+     "productName": "XSPAS D TAB 1*10",
+     "unit": "TABS",
+     "mrp": 79,
+     "company": "PRESCRIPTION MEDICINES P LTD"
+    },
+    {
+     "productName": "XXX BOOM BOOM 1*4",
+     "unit": "TAB.",
+     "mrp": 232,
+     "company": "GENTEC HEALTHCARE PVT LTD"
+    },
+    {
+     "productName": "YOGRAJ GUGGULU TAB 1*120",
+     "unit": "TABS",
+     "mrp": 155,
+     "company": "BAIDYANATH"
+    },
+    {
+     "productName": "YOGUT CAP 1*10",
+     "unit": "CAP",
+     "mrp": 203,
+     "company": "INTAS PHARMACEUTICALS LTD."
+    },
+    {
+     "productName": "ZALIM LOTION 1*15ML",
+     "unit": "LOTN",
+     "mrp": 35,
+     "company": "ORIENTAL CHEMICAL WORKS"
+    },
+    {
+     "productName": "ZANDU NITYAM TAB 1*10 TAB",
+     "unit": "TAB.",
+     "mrp": 40,
+     "company": "ZANDU PHARMACEUTICAL"
+    },
+    {
+     "productName": "ZANDU NITYAM TAB 1*30",
+     "unit": "TAB",
+     "mrp": 110,
+     "company": "."
+    },
+    {
+     "productName": "ZANDU PANCHARISHTA SYP 1X450ML",
+     "unit": "SYRP",
+     "mrp": 150,
+     "company": "ZANDU PHARMACEUTICAL"
+    },
+    {
+     "productName": "Z.BALM GREEN 8 MG",
+     "unit": "BAM",
+     "mrp": 45,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "Z.BALM ULTRA 8GM",
+     "unit": "BAM",
+     "mrp": 50,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "Z.BALM ULTRA BIG 25 ML",
+     "unit": "BAM",
+     "mrp": 125,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "Z.BAM BIG 25 ML",
+     "unit": "BAM",
+     "mrp": 115,
+     "company": "EMAMI LIMITED"
+    },
+    {
+     "productName": "Z.CHAWANPRASH JEG 450 GM",
+     "unit": "JEG",
+     "mrp": 190,
+     "company": "ZANDU PHARMACEUTICAL"
+    },
+    {
+     "productName": "Z.COUGH AYU. SYP. 100 ML",
+     "unit": "SYP.",
+     "mrp": 110,
+     "company": "ZANDU PHARMACEUTICAL"
+    },
+    {
+     "productName": "ZEDEX PLUS SYP 1X100ML",
+     "unit": "SYP",
+     "mrp": 148.75,
+     "company": "WOCKHARDT"
+    },
+    {
+     "productName": "ZEDEX-P SYP 1X60ML",
+     "unit": "SYP",
+     "mrp": 120.25,
+     "company": "DR. REDDY'S"
+    },
+    {
+     "productName": "ZEDEX-SF SYP 1*100ML",
+     "unit": "SYP",
+     "mrp": 174.25,
+     "company": "DR. REDDY'S"
+    },
+    {
+     "productName": "ZEDOTT BABY 10MG SACHET 1*1G",
+     "unit": "SACH",
+     "mrp": 19.25,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "ZEDOTT CAP 1*10",
+     "unit": "CAPS",
+     "mrp": 244,
+     "company": "TORRENT PHARMA LTD"
+    },
+    {
+     "productName": "ZENFLOX-200MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 159.9,
+     "company": "MAINKIND PHARMA PVT.LTD."
+    },
+    {
+     "productName": "ZENFLOX UTI 1*10",
+     "unit": "TAB.",
+     "mrp": 208.89,
+     "company": "MANKIND PHARMA LTD"
+    },
+    {
+     "productName": "ZENOVIT CAP 20*10",
+     "unit": "CAP",
+     "mrp": 150,
+     "company": "ZEE LAB."
+    },
+    {
+     "productName": "ZENTEL TAB 1*1",
+     "unit": "TAB",
+     "mrp": 9.1,
+     "company": "GLAXOSMITHKLINE"
+    },
+    {
+     "productName": "ZERODOL P TAB 1*10",
+     "unit": "TAB",
+     "mrp": 73,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "ZERODOL-SP TAB 1*10",
+     "unit": "TAB",
+     "mrp": 139,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "ZERODOL TH 4MG TAB 1*10",
+     "unit": "TAB",
+     "mrp": 252.7,
+     "company": "IPCA LABORATORIES"
+    },
+    {
+     "productName": "ZIFI 100 DRY SYP 1*30ML",
+     "unit": "SYP",
+     "mrp": 80.3,
+     "company": "FDC LTD"
+    },
+    {
+     "productName": "ZIFI 100 MG TAB. 1*10 TAB.",
+     "unit": "TAB.",
+     "mrp": 95,
+     "company": "FDC LTD"
+    },
+    {
+     "productName": "ZIFI 200 TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 109.42,
+     "company": "FDC LTD"
+    },
+    {
+     "productName": "ZIFI 50 DRY SYP 1*50ML",
+     "unit": "SYP",
+     "mrp": 48.3,
+     "company": "."
+    },
+    {
+     "productName": "ZIFI 50 MG SYP. 1*30",
+     "unit": "SYP.",
+     "mrp": 54.43,
+     "company": "FDC LTD"
+    },
+    {
+     "productName": "ZIFI 50 TAB 1*10",
+     "unit": "TAB.",
+     "mrp": 59.25,
+     "company": "FDC LTD"
+    },
+    {
+     "productName": "ZIFI CV 200MG TAB 1X10",
+     "unit": "TAB",
+     "mrp": 321.2,
+     "company": "F.D.C. LTD."
+    },
+    {
+     "productName": "ZIFI O TAB 1X10",
+     "unit": "TAB.",
+     "mrp": 202,
+     "company": "FDC LTD"
+    },
+    {
+     "productName": "ZINCOVIT TAB 1*15",
+     "unit": "TABS",
+     "mrp": 110,
+     "company": "MACLEODS PHARMACEUTICALS"
+    },
+    {
+     "productName": "ZOCON 150MG TAB 1*4",
+     "unit": "TAB",
+     "mrp": 81.04,
+     "company": "F.D.C. LTD."
+    }
+   ]

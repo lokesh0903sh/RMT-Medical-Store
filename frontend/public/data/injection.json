@@ -1,0 +1,80 @@
+[
+  {
+    "productName": "ABHAYRAB INJ 1X0.5ML",
+    "unit": "INJ.",
+    "mrp": 397.62,
+    "company": "HUMAN BIOLOGICALAS"
+  },
+  {
+    "productName": "AMICIN 100MG INJ 1*2ML",
+    "unit": "INJ.",
+    "mrp": 35.38,
+    "company": "BIOCHEM PHARMACEUTICALS INDUSTRIES LTD"
+  },
+  {
+    "productName": "BETNESOL AMP 1X1ML",
+    "unit": "INJ.",
+    "mrp": 5.31,
+    "company": "GLAXO LTD."
+  },
+  {
+    "productName": "DEXONA INJ 1*20 ML",
+    "unit": "INJ.",
+    "mrp": 32.82,
+    "company": "CADILA PHARMACEUTICALS"
+  },
+  {
+    "productName": "DYNAPAR AQ INJ 1*1ML",
+    "unit": "INJ.",
+    "mrp": 39.6,
+    "company": "TROIKAA LABO."
+  },
+  {
+    "productName": "HI-TEK SYRING 1X10ML",
+    "unit": "INJ.",
+    "mrp": 950,
+    "company": "HI-TECH"
+  },
+  {
+    "productName": "MAGENTA INJ 1*20ML",
+    "unit": "INJ.",
+    "mrp": 32.23,
+    "company": "WOCKHARDT LIMITED"
+  },
+  {
+    "productName": "MONOCEF 1GM INJ 1*1GM",
+    "unit": "INJ.",
+    "mrp": 69.87,
+    "company": "ARISTO PHARMA"
+  },
+  {
+    "productName": "MONOCEF 2GM INJ 1*2GM",
+    "unit": "INJ.",
+    "mrp": 154.68,
+    "company": "ARISTO PHARMA"
+  },
+  {
+    "productName": "MR INJECT-10ML 1*50",
+    "unit": "INJ.",
+    "mrp": 0,
+    "company": "BIO MED"
+  },
+  {
+    "productName": "NEUROBION FORTE INJ 1X2ML",
+    "unit": "INJ.",
+    "mrp": 19.8,
+    "company": "PROCTER & GAMBLE HEALTH LTD."
+  },
+  {
+    "productName": "TAXIM 250MG INJ 1*250MG",
+    "unit": "INJ.",
+    "mrp": 19.84,
+    "company": "ALKEM LABORATORIES"
+  },
+  {
+    "productName": "TAXIM 500MG INJ 1X1VAIL",
+    "unit": "INJ.",
+    "mrp": 27.29,
+    "company": "ALKEM LABORATORIES"
+  }
+]
