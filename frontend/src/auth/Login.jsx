@@ -16,7 +16,6 @@ const Login = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -30,10 +29,21 @@ const Login = () => {
       if (!res.ok) {
         toast.error(data.message || "Login failed");
       } else {
+        // Save token and user data in localStorage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
         toast.success("Login successful!");
-        setTimeout(() => navigate("/"), 1500);
+        
+        // Redirect based on user role
+        if (data.user && data.user.role === 'admin') {
+          setTimeout(() => navigate("/admin"), 1500);
+        } else {
+          setTimeout(() => navigate("/"), 1500);
+        }
       }
     } catch (err) {
+      console.error('Login error:', err);
       toast.error("Server error");
     }
     setLoading(false);

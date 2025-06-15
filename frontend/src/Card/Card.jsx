@@ -1,55 +1,130 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from '../lib/motion';
+import { useCart } from '../context/CartContext';
+import { toast } from 'react-toastify';
 
-const Card = ({productName, mrp}) => {
+const Card = ({ 
+  id, 
+  productName, 
+  description,
+  price,
+  mrp,
+  imageUrl,
+  rating = 4,
+  stock = 10,
+  discount = 0,
+  product
+}) => {
+  const { addToCart } = useCart();
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Calculate actual discount if not provided
+  const calculatedDiscount = discount || (mrp && price ? Math.round(((mrp - price) / mrp) * 100) : 0);
+    const handleAddToCart = () => {
+    if (!product) return;
+    
+    // Prepare product for cart
+    const cartProduct = {
+      _id: id || product._id,
+      name: productName || product.name || 'Unknown Product',
+      price: price || mrp || product.price || 0,
+      mrp: mrp || product.mrp || price || 0,
+      imageUrl: imageUrl || product.imageUrl || '',
+      stock: stock || product.stock || 0
+    };
+    
+    addToCart(cartProduct);
+    toast.success(`${cartProduct.name} added to cart`);
+  };
+  
   return (
-    <div className='w-[260px] h-[360px] rounded-xl my-4 mx-auto group card-hover relative'>
+    <motion.div
+      whileHover={{ y: -5 }}
+      className="w-full rounded-xl my-4 mx-auto group relative"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="rounded-xl border border-gray-100 flex flex-col bg-white dark:bg-gray-800 p-3 shadow-md dark:border-gray-700 h-full transition-all relative">
-        {/* Discount badge and wishlist */}
-        <div className="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button className="p-2 bg-white dark:bg-gray-700 rounded-full shadow-md hover:bg-[#e0f7fa] dark:hover:bg-gray-600 transition-colors">
+        {/* Quick action buttons - show on hover */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          className="absolute top-2 right-2 flex flex-col gap-2 z-10"
+        >
+          <motion.button 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-2 bg-white dark:bg-gray-700 rounded-full shadow-md hover:bg-[#e0f7fa] dark:hover:bg-gray-600 transition-colors"
+          >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#036372] dark:text-[#1fa9be]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
-          </button>
-          <button className="p-2 bg-white dark:bg-gray-700 rounded-full shadow-md hover:bg-[#e0f7fa] dark:hover:bg-gray-600 transition-colors">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#036372] dark:text-[#1fa9be]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </button>
-        </div>
+          </motion.button>
+          <Link to={`/products/${id}`}>
+            <motion.button 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="p-2 bg-white dark:bg-gray-700 rounded-full shadow-md hover:bg-[#e0f7fa] dark:hover:bg-gray-600 transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#036372] dark:text-[#1fa9be]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </motion.button>
+          </Link>
+        </motion.div>
         
         {/* Discount tag */}
-        <div className="absolute top-2 left-2">
-          <span className="bg-[#036372]/10 dark:bg-[#1fa9be]/20 text-[#036372] dark:text-[#1fa9be] text-xs font-medium px-2.5 py-1 rounded-full">
-            15% OFF
-          </span>
-        </div>
+        {calculatedDiscount > 0 && (
+          <div className="absolute top-2 left-2">
+            <span className="bg-[#036372]/10 dark:bg-[#1fa9be]/20 text-[#036372] dark:text-[#1fa9be] text-xs font-semibold px-2.5 py-1 rounded-full">
+              {calculatedDiscount}% OFF
+            </span>
+          </div>
+        )}
+        
+        {/* Out of stock overlay */}
+        {stock <= 0 && (
+          <div className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center z-10">
+            <span className="bg-red-500 text-white px-3 py-1.5 rounded-lg font-medium">Out of Stock</span>
+          </div>
+        )}
         
         {/* Product Image */}
-        <div className="h-[180px] w-full flex items-center justify-center mb-4 rounded-lg overflow-hidden bg-[#e0f7fa]/30 dark:bg-gray-700/30">
-          <a href="#" className="relative w-full h-full flex items-center justify-center">
-            <img className="h-[160px] object-contain hover:scale-110 transition-transform duration-300" 
-                 src="./src/assets/lohasav.jpg" 
-                 alt="Image Not Available" />
-          </a>
-        </div>
+        <Link to={`/products/${id}`} className="block">
+          <div className="h-[180px] w-full flex items-center justify-center mb-4 rounded-lg overflow-hidden bg-[#e0f7fa]/30 dark:bg-gray-700/30">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <motion.img 
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="h-[160px] object-contain" 
+                src={imageUrl || "./src/assets/lohasav.jpg"} 
+                alt={productName || "Product image"} 
+              />
+            </div>
+          </div>
+        </Link>
         
         {/* Product Info */}
         <div className="flex-grow flex flex-col">
           {/* Product Name */}
-          <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-2 min-h-[40px]">
-            {productName || "Lohasav Syrup"}
-          </h3>
+          <Link to={`/products/${id}`} className="block">
+            <h3 className="text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-2 min-h-[40px] hover:text-[#036372] dark:hover:text-[#1fa9be] transition-colors">
+              {productName}
+            </h3>
+          </Link>
           
           {/* Price */}
           <div className="mt-2 flex items-center gap-2">
             <span className="text-lg font-bold text-[#036372] dark:text-[#1fa9be]">
-              ₹{mrp || '120'}
+              ₹{price || mrp}
             </span>
-            <span className="text-xs line-through text-gray-500 dark:text-gray-400">
-              ₹{Math.round((mrp || 120) * 1.15)}
-            </span>
+            {mrp && price && mrp > price && (
+              <span className="text-xs line-through text-gray-500 dark:text-gray-400">
+                ₹{mrp}
+              </span>
+            )}
           </div>
           
           {/* Rating */}
@@ -58,7 +133,7 @@ const Card = ({productName, mrp}) => {
               {[...Array(5)].map((_, i) => (
                 <svg 
                   key={i} 
-                  className={`w-3.5 h-3.5 ${i < 4 ? "text-yellow-400" : "text-gray-300 dark:text-gray-500"}`}
+                  className={`w-3.5 h-3.5 ${i < rating ? "text-yellow-400" : "text-gray-300 dark:text-gray-500"}`}
                   aria-hidden="true" 
                   xmlns="http://www.w3.org/2000/svg" 
                   fill="currentColor" 
@@ -68,17 +143,27 @@ const Card = ({productName, mrp}) => {
                 </svg>
               ))}
             </div>
-            <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">(4.0)</span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 ml-1">({rating}.0)</span>
           </div>
           
           {/* Add to Cart Button */}
-          <button className="mt-auto w-full bg-[#036372] hover:bg-[#1fa9be] dark:bg-[#1fa9be] dark:hover:bg-[#036372] text-white text-sm font-medium py-2 rounded-lg transition-colors">
-            Add to Cart
-          </button>
+          <motion.button 
+            onClick={handleAddToCart}
+            disabled={stock <= 0}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className={`mt-auto w-full text-white text-sm font-medium py-2 rounded-lg transition-colors ${
+              stock <= 0 
+                ? 'bg-gray-400 dark:bg-gray-600 cursor-not-allowed' 
+                : 'bg-[#036372] hover:bg-[#1fa9be] dark:bg-[#1fa9be] dark:hover:bg-[#036372]'
+            }`}
+          >
+            {stock <= 0 ? 'Out of Stock' : 'Add to Cart'}
+          </motion.button>
         </div>
       </div>
-    </div>
-  )
-}
+    </motion.div>
+  );
+};
 
 export default Card

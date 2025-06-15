@@ -1,12 +1,46 @@
 import React, { useState, useEffect } from "react";
 import DropDown from "../DropDown/DropDown";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import NotificationBadge from "../components/Notifications/NotificationBadge";
+import { useCart } from "../context/CartContext";
+import { motion } from "../lib/motion";
 
-const NavBar = () => {
-  const navigate = useNavigate();
+// CartButton Component
+const CartButton = () => {
+  const { toggleCart, getItemCount } = useCart();
+  const itemCount = getItemCount();
+  
+  return (
+    <motion.button
+      onClick={toggleCart}
+      className="relative rounded-full p-2 text-[#036372] dark:text-[#1fa9be] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      {itemCount > 0 && (
+        <motion.div 
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
+        >
+          {itemCount}
+        </motion.div>
+      )}
+    </motion.button>
+  );
+};
+
+const NavBar = () => {  const navigate = useNavigate();
   const location = useLocation();
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
   const isLoggedIn = !!localStorage.getItem("token");
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
+  const isAdmin = user && user.role === "admin";
   const [scrolled, setScrolled] = useState(false);
 
   // Handle dark mode toggle
@@ -42,9 +76,10 @@ const NavBar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
     navigate("/login");
   };
 
@@ -132,24 +167,17 @@ const NavBar = () => {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http  ://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
-            )}
-          </button>
+            )}          </button>
+            {/* Cart Button */}
+          <CartButton />
 
-          {/* Notification Bell */}
-          <button
-            type="button"
-            className="relative rounded-full p-2 text-[#036372] dark:text-[#1fa9be] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="View notifications"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-            <span className="absolute top-1 right-1 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">2</span>
-          </button>
+          {/* Notification Badge */}
+          {isLoggedIn && (
+            <NotificationBadge />
+          )}
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-2 ml-2">
@@ -168,11 +196,20 @@ const NavBar = () => {
                   Sign Up
                 </Link>
               </>
-            ) : (
-              <div className="flex items-center gap-3">
+            ) : (              <div className="flex items-center gap-3">
                 <div className="hidden md:block">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Welcome back</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Welcome back{user && user.name ? `, ${user.name.split(' ')[0]}` : ''}
+                  </span>
                 </div>
+                {isAdmin && (
+                  <Link 
+                    to="/admin" 
+                    className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
+                  >
+                    Admin Dashboard
+                  </Link>
+                )}
                 <button
                   onClick={handleLogout}
                   className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"

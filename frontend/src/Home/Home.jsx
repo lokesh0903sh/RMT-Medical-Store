@@ -2,6 +2,8 @@ import React from 'react'
 import NavBar from '../navbar/NavBar'
 import Footer from '../Footer/Footer'
 import HeroSection from './HeroSection'
+import Cart from '../components/Cart/Cart'
+import Product from '../Product/Product'
 
 const Home = () => {
   return (
@@ -10,9 +12,11 @@ const Home = () => {
         <main className='flex-grow'>
           <div className='container mx-auto px-4'>
             <HeroSection/>
+            <Product />
           </div>
         </main>
         <Footer/>
+        <Cart />
     </div>
   )
 }
