@@ -15,6 +15,12 @@ const UserManagement = () => {
     fetchUsers();
   }, [currentPage, searchTerm, roleFilter, statusFilter]);
 
+  // Auto-refresh every 30 seconds to catch new users
+  useEffect(() => {
+    const interval = setInterval(fetchUsers, 30000);
+    return () => clearInterval(interval);
+  }, [currentPage, searchTerm, roleFilter, statusFilter]);
+
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -29,7 +35,10 @@ const UserManagement = () => {
       });
 
       const response = await axios.get(`http://localhost:5000/api/users?${params}`, {
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
 
       setUsers(response.data.users);
@@ -46,7 +55,12 @@ const UserManagement = () => {
       const token = localStorage.getItem('token');
       await axios.put(`http://localhost:5000/api/users/${userId}/role`, 
         { role: newRole },
-        { headers: { 'x-auth-token': token } }
+        { 
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'x-auth-token': token 
+          } 
+        }
       );
       
       fetchUsers();
@@ -60,7 +74,12 @@ const UserManagement = () => {
       const token = localStorage.getItem('token');
       await axios.put(`http://localhost:5000/api/users/${userId}/status`, 
         { isActive: !currentStatus },
-        { headers: { 'x-auth-token': token } }
+        { 
+          headers: { 
+            'Authorization': `Bearer ${token}`,
+            'x-auth-token': token 
+          } 
+        }
       );
       
       fetchUsers();
@@ -75,7 +94,10 @@ const UserManagement = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`http://localhost:5000/api/users/${userId}`, {
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       fetchUsers();

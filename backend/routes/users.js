@@ -31,6 +31,7 @@ router.get('/', adminAuth, async (req, res) => {
 
     res.json({
       users,
+      total,
       pagination: {
         current: page,
         pages: Math.ceil(total / limit),
