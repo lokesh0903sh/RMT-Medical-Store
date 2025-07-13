@@ -101,20 +101,20 @@ const OrderConfirmation = () => {
                 <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                   <div>
                     <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
-                      Order #{order.orderId}
+                      Order #{order?.orderId || 'Unknown'}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Placed on {formatDate(order.createdAt)}
+                      Placed on {order?.createdAt ? formatDate(order.createdAt) : 'Unknown date'}
                     </p>
                   </div>
                   <div className="mt-4 md:mt-0">
-                    <span className="inline-block px-3 py-1 rounded-full text-sm font-medium 
-                      ${order.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' : 
-                      order.status === 'processing' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' :
-                      order.status === 'shipped' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300' :
-                      order.status === 'delivered' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' :
-                      'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'}">
-                      {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                    <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium 
+                      ${order?.status === 'pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' : 
+                      order?.status === 'processing' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300' :
+                      order?.status === 'shipped' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300' :
+                      order?.status === 'delivered' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' :
+                      'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300'}`}>
+                      {order?.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1) : 'Unknown'}
                     </span>
                   </div>
                 </div>
@@ -126,28 +126,34 @@ const OrderConfirmation = () => {
                   </h3>
                   <div className="border dark:border-gray-700 rounded-lg overflow-hidden">
                     <div className="divide-y divide-gray-200 dark:divide-gray-700">
-                      {order.items.map((item, index) => (
-                        <div key={index} className="flex items-center p-4">
-                          <div className="h-16 w-16 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden flex-shrink-0">
-                            <img 
-                              src={item.product.imageUrl || './src/assets/lohasav.jpg'} 
-                              alt={item.product.name} 
-                              className="h-full w-full object-cover"
-                            />
-                          </div>
-                          <div className="ml-4 flex-grow">
-                            <h4 className="text-sm font-medium text-gray-800 dark:text-gray-200">{item.product.name}</h4>
-                            <div className="flex justify-between mt-1">
-                              <span className="text-sm text-gray-500 dark:text-gray-400">
-                                ₹{item.price} × {item.quantity}
-                              </span>
-                              <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                                ₹{(item.price * item.quantity).toFixed(2)}
-                              </span>
+                      {order?.items && order.items.length > 0 ? (
+                        order.items.map((item, index) => (
+                          <div key={index} className="flex items-center p-4">
+                            <div className="h-16 w-16 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden flex-shrink-0">
+                              <img 
+                                src={item.product?.imageUrl || './src/assets/lohasav.jpg'} 
+                                alt={item.product?.name || 'Product'} 
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+                            <div className="ml-4 flex-grow">
+                              <h4 className="text-sm font-medium text-gray-800 dark:text-gray-200">{item.product?.name || 'Product'}</h4>
+                              <div className="flex justify-between mt-1">
+                                <span className="text-sm text-gray-500 dark:text-gray-400">
+                                  ₹{item.price} × {item.quantity}
+                                </span>
+                                <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                                  ₹{(item.price * item.quantity).toFixed(2)}
+                                </span>
+                              </div>
                             </div>
                           </div>
+                        ))
+                      ) : (
+                        <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+                          No items found in this order
                         </div>
-                      ))}
+                      )}
                     </div>
                   </div>
                 </div>
@@ -160,19 +166,19 @@ const OrderConfirmation = () => {
                     </h3>
                     <div className="bg-gray-50 dark:bg-gray-700/30 rounded-lg p-4">
                       <p className="text-sm text-gray-800 dark:text-gray-200 font-medium">
-                        {order.shippingAddress.name}
+                        {order?.shippingAddress?.name || 'Name not available'}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        {order.shippingAddress.street}
+                        {order?.shippingAddress?.street || 'Address not available'}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.postalCode}
+                        {order?.shippingAddress?.city || 'City'}, {order?.shippingAddress?.state || 'State'} {order?.shippingAddress?.postalCode || 'Postal Code'}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {order.shippingAddress.country}
+                        {order?.shippingAddress?.country || 'Country'}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                        Phone: {order.shippingAddress.phone}
+                        Phone: {order?.shippingAddress?.phone || 'Phone not available'}
                       </p>
                     </div>
                   </div>
@@ -186,25 +192,26 @@ const OrderConfirmation = () => {
                       <div className="flex justify-between mb-2">
                         <span className="text-sm text-gray-600 dark:text-gray-400">Payment Method</span>
                         <span className="text-sm text-gray-800 dark:text-gray-200">
-                          {order.paymentMethod === 'cod' ? 'Cash on Delivery' : 
-                           order.paymentMethod === 'online' ? 'Online Payment' : 'Wallet'}
+                          {order?.paymentMethod === 'cod' ? 'Cash on Delivery' : 
+                           order?.paymentMethod === 'online' ? 'Online Payment' : 
+                           order?.paymentMethod === 'wallet' ? 'Wallet' : 'Unknown'}
                         </span>
                       </div>
                       <div className="flex justify-between mb-2">
                         <span className="text-sm text-gray-600 dark:text-gray-400">Payment Status</span>
                         <span className="text-sm">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium
-                            ${order.paymentStatus === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' : 
-                            order.paymentStatus === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' :
+                            ${order?.paymentStatus === 'paid' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300' : 
+                            order?.paymentStatus === 'failed' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' :
                             'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'}`}>
-                            {order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)}
+                            {order?.paymentStatus ? order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1) : 'Unknown'}
                           </span>
                         </span>
                       </div>
                       <div className="border-t dark:border-gray-600 my-3 pt-3">
                         <div className="flex justify-between mb-2">
                           <span className="text-sm text-gray-600 dark:text-gray-400">Subtotal</span>
-                          <span className="text-sm text-gray-800 dark:text-gray-200">₹{order.totalAmount.toFixed(2)}</span>
+                          <span className="text-sm text-gray-800 dark:text-gray-200">₹{order?.totalAmount ? order.totalAmount.toFixed(2) : '0.00'}</span>
                         </div>
                         <div className="flex justify-between mb-2">
                           <span className="text-sm text-gray-600 dark:text-gray-400">Shipping</span>
@@ -212,7 +219,7 @@ const OrderConfirmation = () => {
                         </div>
                         <div className="flex justify-between font-bold mt-2 pt-2 border-t dark:border-gray-600">
                           <span className="text-gray-800 dark:text-gray-100">Total</span>
-                          <span className="text-[#036372] dark:text-[#1fa9be]">₹{order.totalAmount.toFixed(2)}</span>
+                          <span className="text-[#036372] dark:text-[#1fa9be]">₹{order?.totalAmount ? order.totalAmount.toFixed(2) : '0.00'}</span>
                         </div>
                       </div>
                     </div>

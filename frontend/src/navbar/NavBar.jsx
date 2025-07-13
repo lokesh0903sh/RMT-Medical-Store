@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import NotificationBadge from "../components/Notifications/NotificationBadge";
 import { useCart } from "../context/CartContext";
 import { motion } from "../lib/motion";
+import logoImage from "../assets/RMT_Medical_Store.png";
 
 // CartButton Component
 const CartButton = () => {
@@ -87,7 +88,13 @@ const NavBar = () => {
 
   // Check if a route is active
   const isActive = (path) => {
-    return location.pathname === path;
+    if (path === '/admin') {
+      return location.pathname === path || location.pathname === '/admin/';
+    }
+    if (path === '/orders') {
+      return location.pathname === path || location.pathname.startsWith('/orders/');
+    }
+    return location.pathname === path || location.pathname.startsWith(path + '/');
   };
 
   return (
@@ -97,51 +104,132 @@ const NavBar = () => {
       <div className="container mx-auto relative px-4 md:px-6 flex h-20 items-center justify-between">
         <div className="flex items-center">
           <Link to="/">
-            <img className="h-[60px] w-auto" src="./src/assets/RMT_Medical_Store.png" alt="RMT Medical Store" />
+            <img className="h-[60px] w-auto" src={logoImage} alt="RMT Medical Store" />
           </Link>
           <div className="hidden md:ml-8 md:flex">
-            <div className="flex space-x-1">
-              <DropDown />
-              <Link 
-                to="/products"
-                className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
-                  isActive('/products') 
-                    ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
-                    : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
-                }`}
-              >
-                Browse Products
-              </Link>
-              <Link 
-                to="/about"
-                className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
-                  isActive('/about') 
-                    ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
-                    : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
-                }`}
-              >
-                About
-              </Link>
-              <Link 
-                to="/contact"
-                className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
-                  isActive('/contact') 
-                    ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
-                    : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
-                }`}
-              >
-                Contact Us
-              </Link>
-              <Link 
-                to="/help"
-                className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
-                  isActive('/help') 
-                    ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
-                    : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
-                }`}
-              >
-                Help Desk
-              </Link>
+            <div className="flex items-center space-x-2">
+              {isAdmin ? (
+                // Admin Navigation
+                <>
+                  <Link 
+                    to="/admin"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/admin') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link 
+                    to="/admin/products"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/admin/products') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Products
+                  </Link>
+                  <Link 
+                    to="/admin/categories"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/admin/categories') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Categories
+                  </Link>
+                  <Link 
+                    to="/admin/orders"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/admin/orders') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Orders
+                  </Link>
+                  <Link 
+                    to="/admin/users"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/admin/users') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Users
+                  </Link>
+                  <Link 
+                    to="/admin/queries"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/admin/queries') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Queries
+                  </Link>
+                </>
+              ) : (
+                // Regular User Navigation
+                <>
+                  <DropDown />
+                  <Link 
+                    to="/products"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/products') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Browse Products
+                  </Link>
+                  {isLoggedIn && (
+                    <Link 
+                      to="/orders"
+                      className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                        isActive('/orders') 
+                          ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                          : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                      }`}
+                    >
+                      My Orders
+                    </Link>
+                  )}
+                  <Link 
+                    to="/about"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/about') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    About
+                  </Link>
+                  <Link 
+                    to="/contact"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/contact') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Contact Us
+                  </Link>
+                  <Link 
+                    to="/help"
+                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      isActive('/help') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    Help Desk
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>        <div className="flex items-center gap-3">
@@ -149,7 +237,7 @@ const NavBar = () => {
           <div className="hidden md:flex rounded-md border-2 border-[#036372] dark:border-[#1fa9be] overflow-hidden w-[300px] lg:w-[400px] transition-all">
             <input 
               type="text" 
-              placeholder="Search for Life Savings..." 
+              placeholder={isAdmin ? "Search products, users, orders..." : "Search for Life Savings..."} 
               className="w-full outline-none bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-sm px-4 py-2.5"
             />
             <button type='button' className="flex items-center justify-center bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] px-4 transition-colors">
@@ -183,8 +271,8 @@ const NavBar = () => {
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
             )}          </button>
-            {/* Cart Button */}
-          <CartButton />
+          {/* Cart Button - Only show for regular users */}
+          {!isAdmin && <CartButton />}
 
           {/* Notification Badge */}
           {isLoggedIn && (
@@ -212,16 +300,9 @@ const NavBar = () => {
                 <div className="hidden md:block">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Welcome back{user && user.name ? `, ${user.name.split(' ')[0]}` : ''}
+                    {isAdmin && <span className="ml-2 px-2 py-1 text-xs bg-[#036372] text-white rounded-full">Admin</span>}
                   </span>
                 </div>
-                {isAdmin && (
-                  <Link 
-                    to="/admin" 
-                    className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
-                  >
-                    Admin Dashboard
-                  </Link>
-                )}
                 <button
                   onClick={handleLogout}
                   className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
@@ -247,36 +328,96 @@ const NavBar = () => {
         
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700">
+          <div className="absolute top-full left-0 right-0 md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700 shadow-lg">
             <div className="px-4 py-2 space-y-1">
-              <Link 
-                to="/products"
-                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Browse Products
-              </Link>
-              <Link 
-                to="/about"
-                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link 
-                to="/contact"
-                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
-              <Link 
-                to="/help"
-                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Help Desk
-              </Link>
+              {isAdmin ? (
+                // Admin Mobile Navigation
+                <>
+                  <Link 
+                    to="/admin"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link 
+                    to="/admin/products"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Products
+                  </Link>
+                  <Link 
+                    to="/admin/categories"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Categories
+                  </Link>
+                  <Link 
+                    to="/admin/orders"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Orders
+                  </Link>
+                  <Link 
+                    to="/admin/users"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Users
+                  </Link>
+                  <Link 
+                    to="/admin/queries"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Queries
+                  </Link>
+                </>
+              ) : (
+                // Regular User Mobile Navigation
+                <>
+                  <Link 
+                    to="/products"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Browse Products
+                  </Link>
+                  {isLoggedIn && (
+                    <Link 
+                      to="/orders"
+                      className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      My Orders
+                    </Link>
+                  )}
+                  <Link 
+                    to="/about"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    About
+                  </Link>
+                  <Link 
+                    to="/contact"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                  <Link 
+                    to="/help"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Help Desk
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

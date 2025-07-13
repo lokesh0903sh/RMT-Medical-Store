@@ -57,15 +57,13 @@ router.post('/', auth, async (req, res) => {
 
     await order.save();
 
+    // Populate the order with product details for the response
+    const populatedOrder = await Order.findById(order._id)
+      .populate('items.product', 'name imageUrl price');
+
     res.status(201).json({ 
       message: 'Order created successfully',
-      order: {
-        _id: order._id,
-        orderId: order.orderId,
-        totalAmount: order.totalAmount,
-        status: order.status,
-        createdAt: order.createdAt
-      }
+      order: populatedOrder
     });
   } catch (err) {
     console.error('Order creation error:', err);

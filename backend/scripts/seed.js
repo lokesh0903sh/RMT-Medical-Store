@@ -12,11 +12,11 @@ const seedData = async () => {
     await mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/rmt-medical');
     console.log('Connected to database...');
 
-    // Clear existing data
+    // Clear existing users only (keep products and categories for real data)
     await User.deleteMany({});
-    await Category.deleteMany({});
-    await Product.deleteMany({});
-    console.log('Cleared existing data...');    // Create admin user
+    console.log('Cleared existing users...');
+
+    // Create admin user
     const adminPassword = await bcrypt.hash('admin123', 10);
     const admin = new User({
       name: 'Admin User',
@@ -38,102 +38,9 @@ const seedData = async () => {
     await user.save();
     console.log('Test user created...');
 
-    // Create categories
-    const categories = [
-      {
-        name: 'Allopathic',
-        slug: 'allopathic',
-        description: 'All allopathic medicines',
-        featured: true
-      },
-      {
-        name: 'Ayurvedic',
-        slug: 'ayurvedic',
-        description: 'All ayurvedic medicines',
-        featured: true
-      },
-      {
-        name: 'Baby Care',
-        slug: 'baby-care',
-        description: 'Products for babies and infants',
-        featured: false
-      },
-      {
-        name: 'Personal Care',
-        slug: 'personal-care',
-        description: 'Personal hygiene and care products',
-        featured: true
-      }
-    ];
-
-    const createdCategories = await Category.insertMany(categories);
-    console.log('Categories created...');
-
-    // Create sample products
-    const products = [
-      {
-        name: 'Paracetamol',
-        description: 'Fever and pain relief tablet',
-        price: 15,
-        mrp: 20,
-        discount: 25,
-        category: createdCategories[0]._id,
-        subCategory: 'Pain Relief',
-        stock: 100,
-        sku: 'PCM001',
-        manufacturer: 'Cipla',
-        requiresPrescription: false,
-        dosage: '500mg',
-        featured: true
-      },
-      {
-        name: 'Ashwagandha',
-        description: 'Ayurvedic stress relief supplement',
-        price: 150,
-        mrp: 180,
-        discount: 17,
-        category: createdCategories[1]._id,
-        subCategory: 'Supplements',
-        stock: 50,
-        sku: 'ASH001',
-        manufacturer: 'Dabur',
-        requiresPrescription: false,
-        featured: true
-      },
-      {
-        name: 'Baby Lotion',
-        description: 'Gentle moisturizing lotion for babies',
-        price: 120,
-        mrp: 140,
-        discount: 14,
-        category: createdCategories[2]._id,
-        subCategory: 'Skin Care',
-        stock: 30,
-        sku: 'BL001',
-        manufacturer: 'Johnson & Johnson',
-        requiresPrescription: false,
-        featured: false
-      },
-      {
-        name: 'Antibacterial Soap',
-        description: 'Kills germs and bacteria',
-        price: 40,
-        mrp: 45,
-        discount: 11,
-        category: createdCategories[3]._id,
-        subCategory: 'Soaps',
-        stock: 200,
-        sku: 'ABS001',
-        manufacturer: 'Dettol',
-        requiresPrescription: false,
-        featured: false
-      }
-    ];
-
-    await Product.insertMany(products);
-    console.log('Products created...');
-
-    console.log('Database seeded successfully!');
+    console.log('User credentials seeded successfully!');
+    console.log('Admin: admin@rmtmedical.com / admin123');
+    console.log('User: user@example.com / user123');
     mongoose.connection.close();
   } catch (error) {
     console.error('Seeding error:', error);

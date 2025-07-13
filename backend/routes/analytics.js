@@ -1,248 +1,327 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
-const Category = require('../models/Category');
 const User = require('../models/UserSchema');
 const Order = require('../models/Order');
+const Category = require('../models/Category');
 const MedicalQuery = require('../models/MedicalQuery');
 const adminAuth = require('../middleware/adminAuth');
+
+// Helper function to get date range based on period
+const getDateRange = (period) => {
+  const now = new Date();
+  let startDate, endDate = now;
+
+  switch (period) {
+    case 'daily':
+      startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      break;
+    case 'weekly':
+      startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+      break;
+    case 'monthly':
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      break;
+    case 'yearly':
+      startDate = new Date(now.getFullYear(), 0, 1);
+      break;
+    default:
+      startDate = new Date('2020-01-01'); // All time
+  }
+
+  return { startDate, endDate };
+};
+
+// Calculate growth percentage
+const calculateGrowth = (current, previous) => {
+  if (previous === 0) return current > 0 ? 100 : 0;
+  return ((current - previous) / previous) * 100;
+};
 
 // Get dashboard analytics
 router.get('/dashboard', adminAuth, async (req, res) => {
   try {
-    // Get basic counts
-    const totalProducts = await Product.countDocuments();
-    const totalCategories = await Category.countDocuments();
-    const totalUsers = await User.countDocuments();
-    const totalOrders = await Order.countDocuments();
-    const pendingQueries = await MedicalQuery.countDocuments({ status: 'pending' });
+    const { period = 'all' } = req.query;
+    const { startDate, endDate } = getDateRange(period);
 
-    // Get revenue data
-    const orders = await Order.find({}).populate('items.product');
-    const totalRevenue = orders.reduce((sum, order) => sum + order.totalAmount, 0);
+    // Get current period data
+    const [
+      totalProducts,
+      totalUsers,
+      totalOrders,
+      totalRevenue,
+      topProducts,
+      lowStockProducts,
+      pendingOrders,
+      recentQueries
+    ] = await Promise.all([
+      Product.countDocuments(),
+      User.countDocuments({ role: { $ne: 'admin' } }),
+      Order.countDocuments({ createdAt: { $gte: startDate, $lte: endDate } }),
+      Order.aggregate([
+        { $match: { createdAt: { $gte: startDate, $lte: endDate }, status: 'completed' } },
+        { $group: { _id: null, total: { $sum: '$totalPrice' } } }
+      ]).then(result => result[0]?.total || 0),
+      
+      // Top selling products
+      Order.aggregate([
+        { $match: { createdAt: { $gte: startDate, $lte: endDate }, status: 'completed' } },
+        { $unwind: '$items' },
+        {
+          $group: {
+            _id: '$items.product',
+            sold: { $sum: '$items.quantity' },
+            revenue: { $sum: { $multiply: ['$items.quantity', '$items.price'] } }
+          }
+        },
+        {
+          $lookup: {
+            from: 'products',
+            localField: '_id',
+            foreignField: '_id',
+            as: 'productInfo'
+          }
+        },
+        { $unwind: '$productInfo' },
+        {
+          $project: {
+            name: '$productInfo.name',
+            sold: 1,
+            revenue: 1
+          }
+        },
+        { $sort: { sold: -1 } },
+        { $limit: 5 }
+      ]),
 
-    // Get low stock products (products with stock < 10)
-    const lowStockProducts = await Product.countDocuments({ stock: { $lt: 10 } });
-
-    // Get recent orders
-    const recentOrders = await Order.find({})
-      .populate('user', 'name email')
-      .populate('items.product', 'name')
-      .sort({ createdAt: -1 })
-      .limit(5);
-
-    // Get top selling products (based on orders)
-    const topProducts = await Order.aggregate([
-      { $unwind: '$items' },
-      { 
-        $group: { 
-          _id: '$items.product', 
-          totalSold: { $sum: '$items.quantity' },
-          revenue: { $sum: { $multiply: ['$items.quantity', '$items.price'] } }
-        } 
-      },
-      { $sort: { totalSold: -1 } },
-      { $limit: 5 },
-      {
-        $lookup: {
-          from: 'products',
-          localField: '_id',
-          foreignField: '_id',
-          as: 'product'
-        }
-      },
-      { $unwind: '$product' }
+      // Low stock products
+      Product.countDocuments({ stock: { $lt: 10 } }),
+      
+      // Pending orders
+      Order.countDocuments({ status: 'pending' }),
+      
+      // Recent medical queries
+      MedicalQuery.countDocuments({ status: 'pending' })
     ]);
 
+    // Calculate previous period for growth comparison
+    let previousStartDate, previousEndDate;
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    previousEndDate = new Date(startDate.getTime() - 1);
+    previousStartDate = new Date(previousEndDate.getTime() - timeDiff);
+
+    const [
+      previousUsers,
+      previousOrders,
+      previousRevenue
+    ] = await Promise.all([
+      User.countDocuments({ 
+        role: { $ne: 'admin' },
+        createdAt: { $gte: previousStartDate, $lte: previousEndDate }
+      }),
+      Order.countDocuments({ 
+        createdAt: { $gte: previousStartDate, $lte: previousEndDate }
+      }),
+      Order.aggregate([
+        { 
+          $match: { 
+            createdAt: { $gte: previousStartDate, $lte: previousEndDate },
+            status: 'completed'
+          }
+        },
+        { $group: { _id: null, total: { $sum: '$totalPrice' } } }
+      ]).then(result => result[0]?.total || 0)
+    ]);
+
+    // Calculate growth percentages
+    const growth = {
+      users: calculateGrowth(totalUsers, previousUsers),
+      orders: calculateGrowth(totalOrders, previousOrders),
+      revenue: calculateGrowth(totalRevenue, previousRevenue),
+      products: 0 // Products don't have time-based growth in this context
+    };
+
+    // Generate alerts
+    const alerts = [];
+    if (lowStockProducts > 0) {
+      alerts.push({
+        type: 'warning',
+        title: 'Low Stock Alert',
+        message: `${lowStockProducts} products are running low on stock`
+      });
+    }
+    if (pendingOrders > 0) {
+      alerts.push({
+        type: 'info',
+        title: 'Pending Orders',
+        message: `You have ${pendingOrders} orders waiting for processing`
+      });
+    }
+    if (recentQueries > 0) {
+      alerts.push({
+        type: 'info',
+        title: 'Medical Queries',
+        message: `${recentQueries} new medical queries need attention`
+      });
+    }
+
     res.json({
-      stats: {
+      overview: {
         totalProducts,
-        totalCategories,
         totalUsers,
-        totalOrders,
         totalRevenue,
-        lowStockProducts,
-        pendingQueries
+        totalOrders
       },
-      recentOrders,
-      topProducts
+      growth,
+      topProducts,
+      alerts
     });
+
   } catch (error) {
-    console.error('Analytics error:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching dashboard analytics:', error);
+    res.status(500).json({ message: 'Error fetching analytics data' });
   }
 });
 
-// Get sales analytics by time period
-router.get('/sales/:period', adminAuth, async (req, res) => {
+// Get revenue analytics with time series data
+router.get('/revenue', adminAuth, async (req, res) => {
   try {
-    const { period } = req.params;
-    let dateFilter = {};
-    let groupBy = {};
+    const { period = 'monthly' } = req.query;
+    const { startDate, endDate } = getDateRange(period);
 
-    const now = new Date();
-    
+    let groupBy;
+    let dateFormat;
+
     switch (period) {
       case 'daily':
-        // Last 7 days
-        dateFilter = {
-          createdAt: {
-            $gte: new Date(now.setDate(now.getDate() - 7))
-          }
-        };
-        groupBy = {
-          year: { $year: '$createdAt' },
-          month: { $month: '$createdAt' },
-          day: { $dayOfMonth: '$createdAt' }
-        };
+        groupBy = { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } };
+        dateFormat = 'daily';
         break;
       case 'weekly':
-        // Last 12 weeks
-        dateFilter = {
-          createdAt: {
-            $gte: new Date(now.setDate(now.getDate() - 84))
-          }
-        };
-        groupBy = {
-          year: { $year: '$createdAt' },
-          week: { $week: '$createdAt' }
-        };
+        groupBy = { $dateToString: { format: '%Y-W%U', date: '$createdAt' } };
+        dateFormat = 'weekly';
         break;
       case 'monthly':
-        // Last 12 months
-        dateFilter = {
-          createdAt: {
-            $gte: new Date(now.setMonth(now.getMonth() - 12))
-          }
-        };
-        groupBy = {
-          year: { $year: '$createdAt' },
-          month: { $month: '$createdAt' }
-        };
+        groupBy = { $dateToString: { format: '%Y-%m', date: '$createdAt' } };
+        dateFormat = 'monthly';
         break;
       case 'yearly':
-        // Last 5 years
-        dateFilter = {
-          createdAt: {
-            $gte: new Date(now.setFullYear(now.getFullYear() - 5))
-          }
-        };
-        groupBy = {
-          year: { $year: '$createdAt' }
-        };
+        groupBy = { $dateToString: { format: '%Y', date: '$createdAt' } };
+        dateFormat = 'yearly';
         break;
       default:
-        return res.status(400).json({ message: 'Invalid period' });
+        groupBy = { $dateToString: { format: '%Y-%m', date: '$createdAt' } };
+        dateFormat = 'monthly';
     }
 
-    const salesData = await Order.aggregate([
-      { $match: dateFilter },
+    const revenueData = await Order.aggregate([
+      {
+        $match: {
+          createdAt: { $gte: startDate, $lte: endDate },
+          status: 'completed'
+        }
+      },
       {
         $group: {
           _id: groupBy,
-          totalSales: { $sum: '$totalAmount' },
-          orderCount: { $sum: 1 },
-          avgOrderValue: { $avg: '$totalAmount' }
+          revenue: { $sum: '$totalPrice' },
+          orders: { $sum: 1 }
         }
       },
-      { $sort: { '_id.year': 1, '_id.month': 1, '_id.day': 1, '_id.week': 1 } }
+      { $sort: { _id: 1 } }
     ]);
 
-    res.json({ salesData, period });
+    res.json({
+      period: dateFormat,
+      data: revenueData.map(item => ({
+        period: item._id,
+        revenue: item.revenue,
+        orders: item.orders
+      }))
+    });
+
   } catch (error) {
-    console.error('Sales analytics error:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching revenue analytics:', error);
+    res.status(500).json({ message: 'Error fetching revenue data' });
   }
 });
 
 // Get user analytics
 router.get('/users', adminAuth, async (req, res) => {
   try {
-    const totalUsers = await User.countDocuments();
-    const adminUsers = await User.countDocuments({ role: 'admin' });
-    const regularUsers = totalUsers - adminUsers;
+    const { period = 'monthly' } = req.query;
+    const { startDate, endDate } = getDateRange(period);
 
-    // User registration trend (last 12 months)
-    const userTrend = await User.aggregate([
-      {
-        $match: {
-          createdAt: {
-            $gte: new Date(new Date().setMonth(new Date().getMonth() - 12))
-          }
-        }
-      },
-      {
-        $group: {
-          _id: {
-            year: { $year: '$createdAt' },
-            month: { $month: '$createdAt' }
-          },
-          count: { $sum: 1 }
-        }
-      },
-      { $sort: { '_id.year': 1, '_id.month': 1 } }
+    const [totalUsers, newUsers, activeUsers] = await Promise.all([
+      User.countDocuments({ role: { $ne: 'admin' } }),
+      User.countDocuments({
+        role: { $ne: 'admin' },
+        createdAt: { $gte: startDate, $lte: endDate }
+      }),
+      User.countDocuments({
+        role: { $ne: 'admin' },
+        lastLogin: { $gte: startDate, $lte: endDate }
+      })
     ]);
 
-    // Recent users
-    const recentUsers = await User.find({})
-      .select('name email createdAt role')
-      .sort({ createdAt: -1 })
-      .limit(10);
-
     res.json({
-      stats: {
-        totalUsers,
-        adminUsers,
-        regularUsers
-      },
-      userTrend,
-      recentUsers
+      totalUsers,
+      newUsers,
+      activeUsers,
+      period
     });
+
   } catch (error) {
-    console.error('User analytics error:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching user analytics:', error);
+    res.status(500).json({ message: 'Error fetching user data' });
   }
 });
 
 // Get product analytics
 router.get('/products', adminAuth, async (req, res) => {
   try {
-    const totalProducts = await Product.countDocuments();
-    const lowStockProducts = await Product.find({ stock: { $lt: 10 } })
-      .select('name stock category');
-    
-    // Products by category
-    const productsByCategory = await Product.aggregate([
-      {
-        $lookup: {
-          from: 'categories',
-          localField: 'category',
-          foreignField: '_id',
-          as: 'categoryInfo'
-        }
-      },
-      { $unwind: '$categoryInfo' },
-      {
-        $group: {
-          _id: '$categoryInfo.name',
-          count: { $sum: 1 },
-          totalStock: { $sum: '$stock' }
-        }
-      },
-      { $sort: { count: -1 } }
+    const [
+      totalProducts,
+      activeProducts,
+      lowStockProducts,
+      outOfStockProducts,
+      categoryDistribution
+    ] = await Promise.all([
+      Product.countDocuments(),
+      Product.countDocuments({ status: 'active' }),
+      Product.countDocuments({ stock: { $lt: 10, $gt: 0 } }),
+      Product.countDocuments({ stock: 0 }),
+      Product.aggregate([
+        {
+          $lookup: {
+            from: 'categories',
+            localField: 'category',
+            foreignField: '_id',
+            as: 'categoryInfo'
+          }
+        },
+        { $unwind: '$categoryInfo' },
+        {
+          $group: {
+            _id: '$categoryInfo.name',
+            count: { $sum: 1 }
+          }
+        },
+        { $sort: { count: -1 } }
+      ])
     ]);
 
     res.json({
-      stats: {
-        totalProducts,
-        lowStockCount: lowStockProducts.length
-      },
+      totalProducts,
+      activeProducts,
       lowStockProducts,
-      productsByCategory
+      outOfStockProducts,
+      categoryDistribution
     });
+
   } catch (error) {
-    console.error('Product analytics error:', error);
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching product analytics:', error);
+    res.status(500).json({ message: 'Error fetching product data' });
   }
 });
 
