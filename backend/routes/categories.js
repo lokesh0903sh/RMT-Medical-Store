@@ -4,36 +4,8 @@ const Category = require('../models/Category');
 const Product = require('../models/Product');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
-const multer = require('multer');
-const path = require('path');
+const { uploadCategory, deleteFromCloudinary, extractPublicId } = require('../config/cloudinary');
 const slugify = require('slugify');
-
-// Configure storage for multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/categories/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  }
-});
-
-// File filter for multer - only accept images
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image/')) {
-    cb(null, true);
-  } else {
-    cb(new Error('Not an image! Please upload only images.'), false);
-  }
-};
-
-const upload = multer({
-  storage: storage,
-  fileFilter: fileFilter,
-  limits: {
-    fileSize: 2 * 1024 * 1024 // 2MB max size
-  }
-});
 
 // Get all categories (public)
 router.get('/', async (req, res) => {
@@ -185,7 +157,7 @@ router.get('/:identifier/products', async (req, res) => {
 });
 
 // Create new category (admin only)
-router.post('/', [auth, adminAuth, upload.single('image')], async (req, res) => {
+router.post('/', [auth, adminAuth, uploadCategory.single('image')], async (req, res) => {
   try {
     const {
       name,
@@ -225,9 +197,9 @@ router.post('/', [auth, adminAuth, upload.single('image')], async (req, res) => 
       displayOrder: displayOrder ? parseInt(displayOrder) : 0
     });
 
-    // Add image if uploaded
+    // Add image if uploaded (Cloudinary URL)
     if (req.file) {
-      category.imageUrl = `/uploads/categories/${req.file.filename}`;
+      category.imageUrl = req.file.path; // Cloudinary provides the full URL in req.file.path
     }
 
     // Save category
@@ -240,7 +212,7 @@ router.post('/', [auth, adminAuth, upload.single('image')], async (req, res) => 
 });
 
 // Update category (admin only)
-router.put('/:id', [auth, adminAuth, upload.single('image')], async (req, res) => {
+router.put('/:id', [auth, adminAuth, uploadCategory.single('image')], async (req, res) => {
   try {
     const {
       name,
@@ -301,9 +273,22 @@ router.put('/:id', [auth, adminAuth, upload.single('image')], async (req, res) =
     if (featured !== undefined) category.featured = featured === 'true';
     if (displayOrder !== undefined) category.displayOrder = parseInt(displayOrder);
 
-    // Add image if uploaded
+    // If new image is uploaded, delete old image from Cloudinary
+    if (req.file && category.imageUrl) {
+      try {
+        const publicId = extractPublicId(category.imageUrl);
+        if (publicId) {
+          await deleteFromCloudinary(publicId);
+        }
+      } catch (error) {
+        console.error('Error deleting old image from Cloudinary:', error);
+        // Continue with update even if old image deletion fails
+      }
+    }
+
+    // Add/update image if uploaded (Cloudinary URL)
     if (req.file) {
-      category.imageUrl = `/uploads/categories/${req.file.filename}`;
+      category.imageUrl = req.file.path; // Cloudinary provides the full URL in req.file.path
     }
 
     // Save updated category
@@ -337,6 +322,19 @@ router.delete('/:id', [auth, adminAuth], async (req, res) => {
       return res.status(400).json({ 
         message: `Cannot delete category: ${childrenCount} subcategories are using this as parent` 
       });
+    }
+
+    // Delete image from Cloudinary if exists
+    if (category.imageUrl) {
+      try {
+        const publicId = extractPublicId(category.imageUrl);
+        if (publicId) {
+          await deleteFromCloudinary(publicId);
+        }
+      } catch (error) {
+        console.error('Error deleting image from Cloudinary:', error);
+        // Continue with category deletion even if image deletion fails
+      }
     }
 
     await category.deleteOne();

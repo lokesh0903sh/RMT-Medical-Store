@@ -4,35 +4,7 @@ const Product = require('../models/Product');
 const Category = require('../models/Category');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
-const multer = require('multer');
-const path = require('path');
-
-// Configure storage for multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/products/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  }
-});
-
-// File filter for multer - only accept images
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image/')) {
-    cb(null, true);
-  } else {
-    cb(new Error('Not an image! Please upload only images.'), false);
-  }
-};
-
-const upload = multer({
-  storage: storage,
-  fileFilter: fileFilter,
-  limits: {
-    fileSize: 5 * 1024 * 1024 // 5MB max size
-  }
-});
+const { uploadProduct, deleteFromCloudinary, extractPublicId } = require('../config/cloudinary');
 
 // Get all products (public)
 router.get('/', async (req, res) => {
@@ -134,7 +106,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create a new product (admin only)
-router.post('/', [auth, adminAuth, upload.single('image')], async (req, res) => {
+router.post('/', [auth, adminAuth, uploadProduct.single('image')], async (req, res) => {
   try {
     const {
       name,
@@ -174,9 +146,9 @@ router.post('/', [auth, adminAuth, upload.single('image')], async (req, res) => 
       featured: featured === 'true'
     });
 
-    // Add image if uploaded
+    // Add image if uploaded (Cloudinary URL)
     if (req.file) {
-      product.imageUrl = `/uploads/products/${req.file.filename}`;
+      product.imageUrl = req.file.path; // Cloudinary provides the full URL in req.file.path
     }
 
     // Save product
@@ -189,7 +161,7 @@ router.post('/', [auth, adminAuth, upload.single('image')], async (req, res) => 
 });
 
 // Update a product (admin only)
-router.put('/:id', [auth, adminAuth, upload.single('image')], async (req, res) => {
+router.put('/:id', [auth, adminAuth, uploadProduct.single('image')], async (req, res) => {
   try {
     const {
       name,
@@ -220,6 +192,19 @@ router.put('/:id', [auth, adminAuth, upload.single('image')], async (req, res) =
       }
     }
 
+    // If new image is uploaded, delete old image from Cloudinary
+    if (req.file && product.imageUrl) {
+      try {
+        const publicId = extractPublicId(product.imageUrl);
+        if (publicId) {
+          await deleteFromCloudinary(publicId);
+        }
+      } catch (error) {
+        console.error('Error deleting old image from Cloudinary:', error);
+        // Continue with update even if old image deletion fails
+      }
+    }
+
     // Update fields
     product.name = name || product.name;
     product.description = description || product.description;
@@ -237,9 +222,9 @@ router.put('/:id', [auth, adminAuth, upload.single('image')], async (req, res) =
     if (dosage !== undefined) product.dosage = dosage;
     if (featured !== undefined) product.featured = featured === 'true';
 
-    // Add/update image if uploaded
+    // Add/update image if uploaded (Cloudinary URL)
     if (req.file) {
-      product.imageUrl = `/uploads/products/${req.file.filename}`;
+      product.imageUrl = req.file.path; // Cloudinary provides the full URL in req.file.path
     }
 
     // Save updated product
@@ -257,6 +242,19 @@ router.delete('/:id', [auth, adminAuth], async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Delete image from Cloudinary if exists
+    if (product.imageUrl) {
+      try {
+        const publicId = extractPublicId(product.imageUrl);
+        if (publicId) {
+          await deleteFromCloudinary(publicId);
+        }
+      } catch (error) {
+        console.error('Error deleting image from Cloudinary:', error);
+        // Continue with product deletion even if image deletion fails
+      }
     }
 
     await product.deleteOne();

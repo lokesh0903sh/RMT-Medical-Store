@@ -35,9 +35,11 @@ const CartButton = () => {
   );
 };
 
-const NavBar = () => {  const navigate = useNavigate();
+const NavBar = () => {  
+  const navigate = useNavigate();
   const location = useLocation();
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isLoggedIn = !!localStorage.getItem("token");
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
   const isAdmin = user && user.role === "admin";
@@ -100,6 +102,16 @@ const NavBar = () => {  const navigate = useNavigate();
           <div className="hidden md:ml-8 md:flex">
             <div className="flex space-x-1">
               <DropDown />
+              <Link 
+                to="/products"
+                className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                  isActive('/products') 
+                    ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                    : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                }`}
+              >
+                Browse Products
+              </Link>
               <Link 
                 to="/about"
                 className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
@@ -221,7 +233,10 @@ const NavBar = () => {  const navigate = useNavigate();
           </div>
 
           {/* Mobile menu button */}
-          <button className="md:hidden rounded-md p-2 text-[#036372] dark:text-[#1fa9be]">
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden rounded-md p-2 text-[#036372] dark:text-[#1fa9be]"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -229,6 +244,42 @@ const NavBar = () => {  const navigate = useNavigate();
             </svg>
           </button>
         </div>
+        
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700">
+            <div className="px-4 py-2 space-y-1">
+              <Link 
+                to="/products"
+                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Browse Products
+              </Link>
+              <Link 
+                to="/about"
+                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                to="/contact"
+                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact Us
+              </Link>
+              <Link 
+                to="/help"
+                className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Help Desk
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

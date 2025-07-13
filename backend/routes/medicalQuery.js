@@ -6,6 +6,8 @@ const fs = require("fs");
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const MedicalQuery = require("../models/MedicalQuery");
+const auth = require("../middleware/auth");
+const adminAuth = require("../middleware/adminAuth");
 require("dotenv").config();
 
 const storage = multer.diskStorage({
@@ -177,6 +179,135 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
   } catch (error) {
     console.error("Error in /medical-query:", error);
     res.status(500).json({ error: "Submission failed" });
+  }
+});
+
+// GET /api/medical-queries - Get all queries (Admin only)
+router.get("/", adminAuth, async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+    const status = req.query.status;
+
+    const filter = {};
+    if (status) {
+      filter.status = status;
+    }
+
+    const queries = await MedicalQuery.find(filter)
+      .populate('user', 'name email')
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
+
+    const total = await MedicalQuery.countDocuments(filter);
+
+    res.json({
+      queries,
+      total,
+      page,
+      pages: Math.ceil(total / limit)
+    });
+  } catch (error) {
+    console.error("Error fetching queries:", error);
+    res.status(500).json({ error: "Failed to fetch queries" });
+  }
+});
+
+// PUT /api/medical-queries/:id/status - Update query status (Admin only)
+router.put("/:id/status", adminAuth, async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ['pending', 'in-progress', 'resolved', 'closed'];
+    
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: "Invalid status" });
+    }
+
+    const query = await MedicalQuery.findByIdAndUpdate(
+      req.params.id,
+      { status, updatedAt: new Date() },
+      { new: true }
+    ).populate('user', 'name email');
+
+    if (!query) {
+      return res.status(404).json({ error: "Query not found" });
+    }
+
+    res.json(query);
+  } catch (error) {
+    console.error("Error updating query status:", error);
+    res.status(500).json({ error: "Failed to update query status" });
+  }
+});
+
+// POST /api/medical-queries/:id/response - Add response to query (Admin only)
+router.post("/:id/response", adminAuth, async (req, res) => {
+  try {
+    const { response } = req.body;
+    
+    if (!response || !response.trim()) {
+      return res.status(400).json({ error: "Response is required" });
+    }
+
+    const query = await MedicalQuery.findByIdAndUpdate(
+      req.params.id,
+      { 
+        response: response.trim(),
+        responseDate: new Date(),
+        status: 'resolved',
+        updatedAt: new Date()
+      },
+      { new: true }
+    ).populate('user', 'name email');
+
+    if (!query) {
+      return res.status(404).json({ error: "Query not found" });
+    }
+
+    // Send email notification to user if email exists
+    if (query.email) {
+      try {
+        const transporter = nodemailer.createTransporter({
+          service: "gmail",
+          auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
+          },
+        });
+
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          to: query.email,
+          subject: "Response to Your Medical Query - RMT Medical Store",
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #036372;">Response to Your Medical Query</h2>
+              <p>Dear ${query.fullName || 'Valued Customer'},</p>
+              <p>We have reviewed your medical query and here is our response:</p>
+              <div style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid #036372; margin: 20px 0;">
+                <p><strong>Your Query:</strong></p>
+                <p>${query.message || 'N/A'}</p>
+              </div>
+              <div style="background-color: #e8f5e8; padding: 15px; border-left: 4px solid #28a745; margin: 20px 0;">
+                <p><strong>Our Response:</strong></p>
+                <p>${response}</p>
+              </div>
+              <p><em>Note: This response is for informational purposes only and should not replace professional medical advice. Please consult with a healthcare provider for proper diagnosis and treatment.</em></p>
+              <p>Best regards,<br>RMT Medical Store Team</p>
+            </div>
+          `,
+        });
+      } catch (emailError) {
+        console.error("Error sending response email:", emailError);
+      }
+    }
+
+    res.json(query);
+  } catch (error) {
+    console.error("Error adding response:", error);
+    res.status(500).json({ error: "Failed to add response" });
   }
 });
 

@@ -41,14 +41,21 @@ const productRoutes = require('./routes/products');
 const categoryRoutes = require('./routes/categories');
 const notificationRoutes = require('./routes/notifications');
 const orderRoutes = require('./routes/orders');
+const analyticsRoutes = require('./routes/analytics');
+const userRoutes = require('./routes/users');
+const uploadRoutes = require('./routes/uploads');
 
 // API endpoints
 app.use('/api/auth', authRoutes);
 app.use('/api/medical-query', medicalQueryRoutes);
+app.use('/api/medical-queries', medicalQueryRoutes); // Admin route for query management
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/uploads', uploadRoutes);
 
 // 404 Error handler
 app.use((req, res, next) => {

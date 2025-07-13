@@ -91,7 +91,11 @@ const ProductForm = () => {
       
       // Set image preview if product has an image
       if (product.imageUrl) {
-        setImagePreview(`http://localhost:5000${product.imageUrl}`);
+        // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
+        const imageUrl = product.imageUrl.startsWith('http') 
+          ? product.imageUrl 
+          : `http://localhost:5000${product.imageUrl}`;
+        setImagePreview(imageUrl);
       }
     } catch (err) {
       console.error('Error fetching product:', err);

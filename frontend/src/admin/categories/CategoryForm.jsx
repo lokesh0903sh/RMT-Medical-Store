@@ -82,7 +82,11 @@ const CategoryForm = () => {
       
       // Set image preview if category has an image
       if (category.imageUrl) {
-        setImagePreview(`http://localhost:5000${category.imageUrl}`);
+        // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
+        const imageUrl = category.imageUrl.startsWith('http') 
+          ? category.imageUrl 
+          : `http://localhost:5000${category.imageUrl}`;
+        setImagePreview(imageUrl);
       }
     } catch (err) {
       console.error('Error fetching category:', err);

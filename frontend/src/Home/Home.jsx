@@ -12,7 +12,6 @@ const Home = () => {
         <main className='flex-grow'>
           <div className='container mx-auto px-4'>
             <HeroSection/>
-            <Product />
           </div>
         </main>
         <Footer/>

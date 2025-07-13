@@ -12,10 +12,13 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { CartProvider } from './context/CartContext';
 import Cart from './components/Cart/Cart';
 import ProductDetail from './Product/ProductDetail';
+import Products from './Product/Products';
 import Checkout from './components/Checkout/Checkout';
 import Orders from './components/Orders/Orders';
 import OrderConfirmation from './components/Orders/OrderConfirmation';
 import AboutUs from './AboutUs/AboutUs';
+import Contact from './Contact/Contact';
+import Help from './Help/Help';
 
 // Admin Components
 import AdminLayout from './admin/components/AdminLayout';
@@ -35,6 +38,15 @@ import NotificationForm from './admin/notifications/NotificationForm';
 
 // Order Management
 import OrderList from './admin/orders/OrderList';
+
+// User Management
+import UserManagement from './admin/users/UserManagement';
+
+// Settings Management
+import AdminSettings from './admin/settings/AdminSettings';
+
+// Query Management
+import QueryManagement from './admin/queries/QueryManagement';
 
 function App() {
   // Initialize dark mode from localStorage
@@ -56,8 +68,20 @@ function App() {
       element: <Home/>
     },
     {
+      path: '/products',
+      element: <Products/>
+    },
+    {
       path: '/about',
       element: <AboutUs/>
+    },
+    {
+      path: '/contact',
+      element: <Contact/>
+    },
+    {
+      path: '/help',
+      element: <Help/>
     },
     {
       path: '/login',
@@ -143,6 +167,21 @@ function App() {
         {
           path: 'orders',
           element: <OrderList />
+        },
+        // User Management Routes
+        {
+          path: 'users',
+          element: <UserManagement />
+        },
+        // Settings Routes
+        {
+          path: 'settings',
+          element: <AdminSettings />
+        },
+        // Query Management Routes
+        {
+          path: 'queries',
+          element: <QueryManagement />
         }
       ]
     }
