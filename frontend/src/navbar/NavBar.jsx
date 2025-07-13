@@ -107,7 +107,7 @@ const NavBar = () => {
             <img className="h-[60px] w-auto" src={logoImage} alt="RMT Medical Store" />
           </Link>
           <div className="hidden md:ml-8 md:flex">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-4">
               {isAdmin ? (
                 // Admin Navigation
                 <>
@@ -178,7 +178,7 @@ const NavBar = () => {
                   <DropDown />
                   <Link 
                     to="/products"
-                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                    className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
                       isActive('/products') 
                         ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
                         : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
@@ -189,7 +189,7 @@ const NavBar = () => {
                   {isLoggedIn && (
                     <Link 
                       to="/orders"
-                      className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                      className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
                         isActive('/orders') 
                           ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
                           : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
@@ -200,7 +200,7 @@ const NavBar = () => {
                   )}
                   <Link 
                     to="/about"
-                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                    className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
                       isActive('/about') 
                         ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
                         : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
@@ -210,7 +210,7 @@ const NavBar = () => {
                   </Link>
                   <Link 
                     to="/contact"
-                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                    className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
                       isActive('/contact') 
                         ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
                         : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
@@ -220,7 +220,7 @@ const NavBar = () => {
                   </Link>
                   <Link 
                     to="/help"
-                    className={`rounded-md px-4 py-2 text-sm font-semibold transition-all ${
+                    className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
                       isActive('/help') 
                         ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
                         : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
@@ -234,11 +234,11 @@ const NavBar = () => {
           </div>
         </div>        <div className="flex items-center gap-3">
           {/* Search Bar */}
-          <div className="hidden md:flex rounded-md border-2 border-[#036372] dark:border-[#1fa9be] overflow-hidden w-[300px] lg:w-[400px] transition-all">
+          <div className="hidden md:flex rounded-md border-2 border-[#036372] dark:border-[#1fa9be] overflow-hidden w-[300px] lg:w-[325px] transition-all">
             <input 
               type="text" 
               placeholder={isAdmin ? "Search products, users, orders..." : "Search for Life Savings..."} 
-              className="w-full outline-none bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-sm px-4 py-2.5"
+              className="w-full outline-none bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-sm px-2 py-2.5"
             />
             <button type='button' className="flex items-center justify-center bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] px-4 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18px" height="18px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-white">
