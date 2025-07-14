@@ -34,7 +34,7 @@ const UserManagement = () => {
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await axios.get(`https://rmt-medical-store.vercel.app//api/users?${params}`, {
+      const response = await axios.get(`https://rmt-medical-store.vercel.app/api/users?${params}`, {
         headers: { 
           'Authorization': `Bearer ${token}`,
           'x-auth-token': token 
@@ -53,7 +53,7 @@ const UserManagement = () => {
   const updateUserRole = async (userId, newRole) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://rmt-medical-store.vercel.app//api/users/${userId}/role`, 
+      await axios.put(`https://rmt-medical-store.vercel.app/api/users/${userId}/role`, 
         { role: newRole },
         { 
           headers: { 
@@ -72,7 +72,7 @@ const UserManagement = () => {
   const toggleUserStatus = async (userId, currentStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://rmt-medical-store.vercel.app//api/users/${userId}/status`, 
+      await axios.put(`https://rmt-medical-store.vercel.app/api/users/${userId}/status`, 
         { isActive: !currentStatus },
         { 
           headers: { 
@@ -93,7 +93,7 @@ const UserManagement = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://rmt-medical-store.vercel.app//api/users/${userId}`, {
+      await axios.delete(`https://rmt-medical-store.vercel.app/api/users/${userId}`, {
         headers: { 
           'Authorization': `Bearer ${token}`,
           'x-auth-token': token 

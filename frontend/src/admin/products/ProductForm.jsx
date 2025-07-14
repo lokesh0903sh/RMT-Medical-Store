@@ -45,7 +45,7 @@ const ProductForm = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app//api/categories', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
         headers: { 'x-auth-token': token }
       });
       
@@ -65,7 +65,7 @@ const ProductForm = () => {
     try {
       setFetchingProduct(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/products/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/products/${id}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -186,8 +186,8 @@ const ProductForm = () => {
       
       // Determine if creating or updating
       const url = isEditMode 
-        ? `https://rmt-medical-store.vercel.app//api/products/${id}`
-        : 'https://rmt-medical-store.vercel.app//api/products';
+        ? `https://rmt-medical-store.vercel.app/api/products/${id}`
+        : 'https://rmt-medical-store.vercel.app/api/products';
         
       const method = isEditMode ? 'PUT' : 'POST';
       

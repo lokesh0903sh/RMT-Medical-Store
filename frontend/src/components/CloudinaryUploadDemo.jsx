@@ -79,7 +79,7 @@ const CloudinaryUploadDemo = () => {
       const token = localStorage.getItem('token');
       const encodedPublicId = encodeURIComponent(publicId);
       
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/uploads/delete/${encodedPublicId}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/uploads/delete/${encodedPublicId}`, {
         method: 'DELETE',
         headers: {
           'x-auth-token': token

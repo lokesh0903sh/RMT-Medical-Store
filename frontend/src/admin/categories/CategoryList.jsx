@@ -26,7 +26,7 @@ const CategoryList = () => {
     try {
       const token = localStorage.getItem('token');
       // Fetch only root categories for the dropdown
-      const response = await fetch('https://rmt-medical-store.vercel.app//api/categories?parent=root', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories?parent=root', {
         headers: { 'x-auth-token': token }
       });
       
@@ -50,7 +50,7 @@ const CategoryList = () => {
       const token = localStorage.getItem('token');
       const { parent, search, sort } = filters;
       
-      let url = `https://rmt-medical-store.vercel.app//api/categories?sort=${sort}`;
+      let url = `https://rmt-medical-store.vercel.app/api/categories?sort=${sort}`;
       if (parent) url += `&parent=${parent}`;
       // If search is implemented in the backend, add it here
       
@@ -91,7 +91,7 @@ const CategoryList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/categories/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/categories/${id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token }
       });

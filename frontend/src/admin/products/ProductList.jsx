@@ -27,7 +27,7 @@ const ProductList = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app//api/categories', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
         headers: { 'x-auth-token': token }
       });
       
@@ -51,7 +51,7 @@ const ProductList = () => {
       const token = localStorage.getItem('token');
       const { category, search, sort } = filters;
       
-      let url = `https://rmt-medical-store.vercel.app//api/products?page=${currentPage}&sort=${sort}`;
+      let url = `https://rmt-medical-store.vercel.app/api/products?page=${currentPage}&sort=${sort}`;
       if (category) url += `&category=${category}`;
       if (search) url += `&search=${encodeURIComponent(search)}`;
       
@@ -89,7 +89,7 @@ const ProductList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/products/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/products/${id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token }
       });

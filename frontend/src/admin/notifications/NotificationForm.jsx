@@ -55,7 +55,7 @@ const NotificationForm = () => {
     try {
       setFetchingUsers(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app//api/auth/users', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/auth/users', {
         headers: { 'x-auth-token': token }
       });
       
@@ -83,7 +83,7 @@ const NotificationForm = () => {
     try {
       setFetchingNotification(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/notifications/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/notifications/${id}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -163,8 +163,8 @@ const NotificationForm = () => {
       
       // Make API request
       const url = isEditMode 
-        ? `https://rmt-medical-store.vercel.app//api/notifications/${id}`
-        : 'https://rmt-medical-store.vercel.app//api/notifications';
+        ? `https://rmt-medical-store.vercel.app/api/notifications/${id}`
+        : 'https://rmt-medical-store.vercel.app/api/notifications';
         
       const method = isEditMode ? 'PUT' : 'POST';
       

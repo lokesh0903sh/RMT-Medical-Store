@@ -23,7 +23,7 @@ const NotificationList = () => {
       setError(null);
       
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app//api/notifications/all', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/notifications/all', {
         headers: { 'x-auth-token': token }
       });
       
@@ -73,7 +73,7 @@ const NotificationList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/notifications/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/notifications/${id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token }
       });

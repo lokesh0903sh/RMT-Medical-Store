@@ -27,7 +27,7 @@ const Orders = () => {
       }
       
       const response = await axios.get(
-        'https://rmt-medical-store.vercel.app//api/orders/my-orders',
+        'https://rmt-medical-store.vercel.app/api/orders/my-orders',
         { headers: { 'x-auth-token': token } }
       );
       
@@ -81,7 +81,7 @@ const Orders = () => {
       }
       
       await axios.patch(
-        `https://rmt-medical-store.vercel.app//api/orders/${orderId}/cancel`,
+        `https://rmt-medical-store.vercel.app/api/orders/${orderId}/cancel`,
         {},
         { headers: { 'x-auth-token': token } }
       );

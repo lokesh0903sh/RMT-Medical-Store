@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   // Fetch analytics data
   const fetchAnalytics = async () => {
     try {
-      const response = await fetch(`https://rmt-medical-store.vercel.app//api/analytics/dashboard?period=${selectedPeriod}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/analytics/dashboard?period=${selectedPeriod}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

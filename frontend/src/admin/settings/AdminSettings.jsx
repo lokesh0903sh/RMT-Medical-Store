@@ -40,7 +40,7 @@ const AdminSettings = () => {
     try {
       const token = localStorage.getItem('token');
       // In a real app, you would save these to your backend
-      // await axios.put('https://rmt-medical-store.vercel.app//api/settings', settings, {
+      // await axios.put('https://rmt-medical-store.vercel.app/api/settings', settings, {
       //   headers: { 'x-auth-token': token }
       // });
       
