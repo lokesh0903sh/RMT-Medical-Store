@@ -41,10 +41,10 @@ app.use(express.json());
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
-    message: 'RMT Medical Store API is running',
+    message: 'RMT Medical Store API is running (Fixed)',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    version: '1.0.1'
+    version: '1.0.2'
   });
 });
 
