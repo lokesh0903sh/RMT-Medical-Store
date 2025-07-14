@@ -37,7 +37,7 @@ const OrderList = () => {
       }
       
       const response = await axios.get(
-        `http://localhost:5000/api/orders${query}`,
+        `https://rmt-medical-store.vercel.app//api/orders${query}`,
         { headers: { 'x-auth-token': token } }
       );
       
@@ -57,7 +57,7 @@ const OrderList = () => {
       const token = localStorage.getItem('token');
       
       const response = await axios.get(
-        `http://localhost:5000/api/orders/${orderId}`,
+        `https://rmt-medical-store.vercel.app//api/orders/${orderId}`,
         { headers: { 'x-auth-token': token } }
       );
       
@@ -74,7 +74,7 @@ const OrderList = () => {
       const token = localStorage.getItem('token');
       
       await axios.patch(
-        `http://localhost:5000/api/orders/${orderId}`,
+        `https://rmt-medical-store.vercel.app//api/orders/${orderId}`,
         { status },
         { headers: { 'x-auth-token': token } }
       );

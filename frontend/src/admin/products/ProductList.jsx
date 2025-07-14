@@ -27,7 +27,7 @@ const ProductList = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/categories', {
+      const response = await fetch('https://rmt-medical-store.vercel.app//api/categories', {
         headers: { 'x-auth-token': token }
       });
       
@@ -51,7 +51,7 @@ const ProductList = () => {
       const token = localStorage.getItem('token');
       const { category, search, sort } = filters;
       
-      let url = `http://localhost:5000/api/products?page=${currentPage}&sort=${sort}`;
+      let url = `https://rmt-medical-store.vercel.app//api/products?page=${currentPage}&sort=${sort}`;
       if (category) url += `&category=${category}`;
       if (search) url += `&search=${encodeURIComponent(search)}`;
       
@@ -89,7 +89,7 @@ const ProductList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app//api/products/${id}`, {
         method: 'DELETE',
         headers: { 'x-auth-token': token }
       });
@@ -242,7 +242,7 @@ const ProductList = () => {
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-12 w-12 rounded bg-gray-100 dark:bg-gray-700 overflow-hidden">
                           {product.imageUrl ? (
-                            <img src={`http://localhost:5000${product.imageUrl}`} alt={product.name} className="h-full w-full object-contain" />
+                            <img src={`https://rmt-medical-store.vercel.app/${product.imageUrl}`} alt={product.name} className="h-full w-full object-contain" />
                           ) : (
                             <div className="h-full w-full flex items-center justify-center text-gray-400">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

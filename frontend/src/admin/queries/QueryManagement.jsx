@@ -28,7 +28,7 @@ const QueryManagement = () => {
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await axios.get(`http://localhost:5000/api/medical-queries?${params}`, {
+      const response = await axios.get(`https://rmt-medical-store.vercel.app//api/medical-queries?${params}`, {
         headers: { 'x-auth-token': token }
       });
 
@@ -44,7 +44,7 @@ const QueryManagement = () => {
   const updateQueryStatus = async (queryId, newStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/medical-queries/${queryId}/status`, 
+      await axios.put(`https://rmt-medical-store.vercel.app//api/medical-queries/${queryId}/status`, 
         { status: newStatus },
         { headers: { 'x-auth-token': token } }
       );
@@ -61,7 +61,7 @@ const QueryManagement = () => {
     setSubmittingResponse(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:5000/api/medical-queries/${selectedQuery._id}/response`, 
+      await axios.post(`https://rmt-medical-store.vercel.app//api/medical-queries/${selectedQuery._id}/response`, 
         { response: responseText },
         { headers: { 'x-auth-token': token } }
       );

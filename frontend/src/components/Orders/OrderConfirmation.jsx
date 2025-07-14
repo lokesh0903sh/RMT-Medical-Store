@@ -31,7 +31,7 @@ const OrderConfirmation = () => {
       }
       
       const response = await axios.get(
-        `http://localhost:5000/api/orders/${id}`,
+        `https://rmt-medical-store.vercel.app//api/orders/${id}`,
         { headers: { 'x-auth-token': token } }
       );
       

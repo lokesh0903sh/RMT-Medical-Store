@@ -80,7 +80,7 @@ const Checkout = () => {
       
       // Submit order
       const response = await axios.post(
-        'http://localhost:5000/api/orders', 
+        'https://rmt-medical-store.vercel.app//api/orders', 
         orderData,
         { headers: { 'x-auth-token': token } }
       );

@@ -190,7 +190,7 @@ The frontend automatically handles both local and Cloudinary URLs:
 // Smart URL handling
 const imageUrl = product.imageUrl.startsWith('http') 
   ? product.imageUrl  // Cloudinary URL
-  : `http://localhost:5000${product.imageUrl}`; // Local URL
+  : `https://rmt-medical-store.vercel.app/${product.imageUrl}`; // Local URL
 ```
 
 ### Backward Compatibility

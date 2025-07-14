@@ -41,7 +41,7 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await fetch('http://localhost:5000/api/notifications/unread-count', {
+      const response = await fetch('https://rmt-medical-store.vercel.app//api/notifications/unread-count', {
         headers: { 'x-auth-token': token }
       });
       
@@ -63,7 +63,7 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await fetch('http://localhost:5000/api/notifications/my', {
+      const response = await fetch('https://rmt-medical-store.vercel.app//api/notifications/my', {
         headers: { 'x-auth-token': token }
       });
       
@@ -91,7 +91,7 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      await fetch(`http://localhost:5000/api/notifications/read/${id}`, {
+      await fetch(`https://rmt-medical-store.vercel.app//api/notifications/read/${id}`, {
         method: 'PUT',
         headers: { 'x-auth-token': token }
       });

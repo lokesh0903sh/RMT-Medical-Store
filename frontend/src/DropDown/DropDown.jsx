@@ -11,7 +11,7 @@ const DropDown = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/categories');
+        const response = await axios.get('https://rmt-medical-store.vercel.app//api/categories');
         console.log('Categories for dropdown:', response.data);
         
         if (Array.isArray(response.data)) {
