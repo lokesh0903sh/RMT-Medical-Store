@@ -57,7 +57,7 @@ function MedicalQueryForm() {
     }
 
     try {
-      const res = await axios.post('https://rmt-medical-store.vercel.app//api/medical-query', data);
+      const res = await axios.post('https://rmt-medical-store.vercel.app/api/medical-query', data);
       setSuccessMsg('Form submitted successfully!');
       setFormData({
         fullName: '',

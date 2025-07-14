@@ -159,8 +159,13 @@ const CategoryForm = () => {
       
       // Make API request
       const url = isEditMode 
+<<<<<<< HEAD
         ? `https://rmt-medical-store.vercel.app//api/categories/${id}`
         : 'https://rmt-medical-store.vercel.app//api/categories';
+=======
+        ? `https://rmt-medical-store.vercel.app/api/categories/${id}`
+        : 'https://rmt-medical-store.vercel.app/api/categories';
+>>>>>>> 7a3f1344388f1ca1fc77a08a4ff7801307f91ed4
         
       const method = isEditMode ? 'PUT' : 'POST';
       

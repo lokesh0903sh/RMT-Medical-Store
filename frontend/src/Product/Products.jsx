@@ -51,7 +51,11 @@ const Products = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get('https://rmt-medical-store.vercel.app//api/categories');
+=======
+        const response = await axios.get('https://rmt-medical-store.vercel.app/api/categories');
+>>>>>>> 7a3f1344388f1ca1fc77a08a4ff7801307f91ed4
         console.log('Categories API Response:', response.data);
         
         if (Array.isArray(response.data)) {
@@ -105,7 +109,11 @@ const Products = () => {
             params.append('sort', '-createdAt');
         }
         
+<<<<<<< HEAD
         const response = await axios.get(`https://rmt-medical-store.vercel.app//api/products?${params}`);
+=======
+        const response = await axios.get(`https://rmt-medical-store.vercel.app/api/products?${params}`);
+>>>>>>> 7a3f1344388f1ca1fc77a08a4ff7801307f91ed4
         console.log('API Response:', response.data);
         
         if (Array.isArray(response.data)) {

@@ -14,7 +14,7 @@ const HoverRightDropDown = ({ value, categoryId }) => {
       const fetchSubcategories = async () => {
         try {
           // Fetch products of this category to get unique subcategories
-          const response = await axios.get(`https://rmt-medical-store.vercel.app//api/products?category=${categoryId}`);
+          const response = await axios.get(`https://rmt-medical-store.vercel.app/api/products?category=${categoryId}`);
           
           let products = [];
           if (Array.isArray(response.data)) {

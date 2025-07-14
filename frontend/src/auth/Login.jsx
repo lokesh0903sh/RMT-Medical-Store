@@ -20,7 +20,11 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
+<<<<<<< HEAD
       const res = await fetch("https://rmt-medical-store.vercel.app//api/auth/login", {
+=======
+      const res = await fetch("https://rmt-medical-store.vercel.app/api/auth/login", {
+>>>>>>> 7a3f1344388f1ca1fc77a08a4ff7801307f91ed4
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
