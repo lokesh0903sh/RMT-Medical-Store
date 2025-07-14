@@ -33,18 +33,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-<<<<<<< HEAD
-
-// Configure CORS to allow requests from frontend
-const corsOptions = {
-  origin: process.env.CORS_ORIGIN || '*', // In production, this will be set to the frontend URL
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
-};
-app.use(cors(corsOptions));
-=======
->>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
 
 // Note: No local directory creation needed for Vercel serverless functions
 // Files are handled by Cloudinary, not local storage

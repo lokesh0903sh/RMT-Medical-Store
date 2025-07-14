@@ -25,13 +25,7 @@ const QueryManagement = () => {
         ...(statusFilter && { status: statusFilter })
       });
 
-<<<<<<< HEAD
       const response = await api.get(`/medical-queries?${params}`);
-=======
-      const response = await axios.get(`https://rmt-medical-store.vercel.app/api/medical-queries?${params}`, {
-        headers: { 'x-auth-token': token }
-      });
->>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
 
       setQueries(response.data.queries);
       setTotalPages(Math.ceil(response.data.total / 10));
@@ -44,16 +38,7 @@ const QueryManagement = () => {
 
   const updateQueryStatus = async (queryId, newStatus) => {
     try {
-<<<<<<< HEAD
       await api.put(`/medical-queries/${queryId}/status`, { status: newStatus });
-=======
-      const token = localStorage.getItem('token');
-      await axios.put(`https://rmt-medical-store.vercel.app/api/medical-queries/${queryId}/status`, 
-        { status: newStatus },
-        { headers: { 'x-auth-token': token } }
-      );
-      
->>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
       fetchQueries();
     } catch (error) {
       console.error('Error updating query status:', error);
@@ -65,15 +50,7 @@ const QueryManagement = () => {
     
     setSubmittingResponse(true);
     try {
-<<<<<<< HEAD
       await api.post(`/medical-queries/${selectedQuery._id}/response`, { response: responseText });
-=======
-      const token = localStorage.getItem('token');
-      await axios.post(`https://rmt-medical-store.vercel.app/api/medical-queries/${selectedQuery._id}/response`, 
-        { response: responseText },
-        { headers: { 'x-auth-token': token } }
-      );
->>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
       
       setResponseModal(false);
       setResponseText('');

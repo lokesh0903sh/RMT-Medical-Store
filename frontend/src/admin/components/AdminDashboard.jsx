@@ -26,16 +26,7 @@ const AdminDashboard = () => {
   // Fetch analytics data
   const fetchAnalytics = async () => {
     try {
-<<<<<<< HEAD
       const response = await api.get(`/api/analytics/dashboard?period=${selectedPeriod}`);
-=======
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
-      const response = await fetch(`${apiBaseUrl}/api/analytics/dashboard?period=${selectedPeriod}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
->>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
       
       if (response.ok) {
         const data = await response.json();

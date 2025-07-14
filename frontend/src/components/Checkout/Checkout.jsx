@@ -79,15 +79,7 @@ const Checkout = () => {
       }
       
       // Submit order
-<<<<<<< HEAD
       const response = await api.post('/api/orders', orderData);
-=======
-      const response = await axios.post(
-        'https://rmt-medical-store.vercel.app/api/orders', 
-        orderData,
-        { headers: { 'x-auth-token': token } }
-      );
->>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
       
       // Clear cart on success
       clearCart();
