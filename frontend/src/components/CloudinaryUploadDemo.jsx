@@ -38,7 +38,7 @@ const CloudinaryUploadDemo = () => {
         ? '/api/uploads/upload/document'
         : '/api/uploads/upload/general';
 
-      const response = await fetch(`http://localhost:5000${endpoint}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/${endpoint}`, {
         method: 'POST',
         headers: {
           'x-auth-token': token
@@ -79,7 +79,7 @@ const CloudinaryUploadDemo = () => {
       const token = localStorage.getItem('token');
       const encodedPublicId = encodeURIComponent(publicId);
       
-      const response = await fetch(`http://localhost:5000/api/uploads/delete/${encodedPublicId}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/uploads/delete/${encodedPublicId}`, {
         method: 'DELETE',
         headers: {
           'x-auth-token': token

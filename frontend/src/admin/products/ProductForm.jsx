@@ -45,7 +45,7 @@ const ProductForm = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/categories', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
         headers: { 'x-auth-token': token }
       });
       
@@ -65,7 +65,7 @@ const ProductForm = () => {
     try {
       setFetchingProduct(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/products/${id}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -94,7 +94,7 @@ const ProductForm = () => {
         // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
         const imageUrl = product.imageUrl.startsWith('http') 
           ? product.imageUrl 
-          : `http://localhost:5000${product.imageUrl}`;
+          : `https://rmt-medical-store.vercel.app/${product.imageUrl}`;
         setImagePreview(imageUrl);
       }
     } catch (err) {
@@ -186,8 +186,8 @@ const ProductForm = () => {
       
       // Determine if creating or updating
       const url = isEditMode 
-        ? `http://localhost:5000/api/products/${id}`
-        : 'http://localhost:5000/api/products';
+        ? `https://rmt-medical-store.vercel.app/api/products/${id}`
+        : 'https://rmt-medical-store.vercel.app/api/products';
         
       const method = isEditMode ? 'PUT' : 'POST';
       

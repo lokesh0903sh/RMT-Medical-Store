@@ -1,13 +1,39 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
 
 const app = express();
+
+// CORS configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'https://rmt-medical-store-eafh.vercel.app/',
+      // Add your actual Vercel frontend URL here
+      process.env.FRONTEND_URL
+    ].filter(Boolean);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+<<<<<<< HEAD
 
 // Configure CORS to allow requests from frontend
 const corsOptions = {
@@ -17,20 +43,22 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
 };
 app.use(cors(corsOptions));
+=======
+>>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
 
-// Create upload directories if they don't exist
-const dirs = ['uploads', 'uploads/products', 'uploads/categories', 'receipts'];
-dirs.forEach(dir => {
-  const dirPath = path.join(__dirname, dir);
-  if (!fs.existsSync(dirPath)){
-    fs.mkdirSync(dirPath, { recursive: true });
-    console.log(`Created directory: ${dirPath}`);
-  }
+// Note: No local directory creation needed for Vercel serverless functions
+// Files are handled by Cloudinary, not local storage
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    message: 'RMT Medical Store API is running (Fixed)',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    version: '1.0.2'
+  });
 });
-
-// Static file serving
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
 
 // Database connection
 main().then(() => {

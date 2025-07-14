@@ -21,11 +21,11 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const response = await axios.get(`https://rmt-medical-store.vercel.app/api/products/${id}`);
         setProduct(response.data.product);
         
         // Fetch related products
-        const relatedResponse = await axios.get(`http://localhost:5000/api/products?category=${response.data.product.category._id}&limit=5&excludeProduct=${id}`);
+        const relatedResponse = await axios.get(`https://rmt-medical-store.vercel.app/api/products?category=${response.data.product.category._id}&limit=5&excludeProduct=${id}`);
         setRelatedProducts(relatedResponse.data.products);
         
         setLoading(false);

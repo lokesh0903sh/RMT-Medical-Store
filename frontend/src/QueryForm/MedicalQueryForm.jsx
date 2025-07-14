@@ -57,11 +57,16 @@ function MedicalQueryForm() {
     }
 
     try {
+<<<<<<< HEAD
       const res = await api.post('/medical-query', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
+=======
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+      const res = await axios.post(`${apiBaseUrl}/api/medical-query`, data);
+>>>>>>> bc9623143134f924b162dc7fce963c0b07560d5c
       setSuccessMsg('Form submitted successfully!');
       setFormData({
         fullName: '',
