@@ -51,7 +51,7 @@ const Products = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/categories');
+        const response = await axios.get('https://rmt-medical-store.vercel.app/api/categories');
         console.log('Categories API Response:', response.data);
         
         if (Array.isArray(response.data)) {
@@ -105,7 +105,7 @@ const Products = () => {
             params.append('sort', '-createdAt');
         }
         
-        const response = await axios.get(`http://localhost:5000/api/products?${params}`);
+        const response = await axios.get(`https://rmt-medical-store.vercel.app/api/products?${params}`);
         console.log('API Response:', response.data);
         
         if (Array.isArray(response.data)) {
