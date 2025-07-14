@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
 
@@ -36,19 +34,18 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Create upload directories if they don't exist
-const dirs = ['uploads', 'uploads/products', 'uploads/categories', 'receipts'];
-dirs.forEach(dir => {
-  const dirPath = path.join(__dirname, dir);
-  if (!fs.existsSync(dirPath)){
-    fs.mkdirSync(dirPath, { recursive: true });
-    console.log(`Created directory: ${dirPath}`);
-  }
-});
+// Note: No local directory creation needed for Vercel serverless functions
+// Files are handled by Cloudinary, not local storage
 
-// Static file serving
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/receipts', express.static(path.join(__dirname, 'receipts')));
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    message: 'RMT Medical Store API is running',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
 
 // Database connection
 main().then(() => {
