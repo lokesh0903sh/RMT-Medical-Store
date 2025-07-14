@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import api from '../../lib/api';
 
 const AdminDashboard = () => {
   const [analytics, setAnalytics] = useState({
@@ -25,11 +26,7 @@ const AdminDashboard = () => {
   // Fetch analytics data
   const fetchAnalytics = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/analytics/dashboard?period=${selectedPeriod}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
+      const response = await api.get(`/api/analytics/dashboard?period=${selectedPeriod}`);
       
       if (response.ok) {
         const data = await response.json();

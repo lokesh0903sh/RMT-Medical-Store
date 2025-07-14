@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../lib/api';
 
 function MedicalQueryForm() {
   const [formData, setFormData] = useState({
@@ -57,7 +57,11 @@ function MedicalQueryForm() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/medical-query', data);
+      const res = await api.post('/medical-query', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       setSuccessMsg('Form submitted successfully!');
       setFormData({
         fullName: '',
@@ -70,7 +74,8 @@ function MedicalQueryForm() {
       });
       setFile(null);
     } catch (err) {
-      setErrorMsg('Submission failed. Please try again.');
+      console.error('Submission error:', err);
+      setErrorMsg(err.response?.data?.message || 'Submission failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -230,7 +235,7 @@ function MedicalQueryForm() {
 
       {successMsg && (
   <div className="text-green-600 text-center mt-6">
-    Your query has been submitted. A receipt has been sent to your email.
+    Your query has been submitted successfully. {formData.email && "A receipt will be sent to your email."}
   </div>
 )}
 

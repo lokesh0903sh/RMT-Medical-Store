@@ -8,7 +8,15 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+// Configure CORS to allow requests from frontend
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || '*', // In production, this will be set to the frontend URL
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
+};
+app.use(cors(corsOptions));
 
 // Create upload directories if they don't exist
 const dirs = ['uploads', 'uploads/products', 'uploads/categories', 'receipts'];
@@ -73,4 +81,11 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Use this for local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// Export the Express app for Vercel
+module.exports = app;

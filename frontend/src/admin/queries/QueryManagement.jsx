@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from '../../lib/motion';
-import axios from 'axios';
+import api from '../../lib/api';
 
 const QueryManagement = () => {
   const [queries, setQueries] = useState([]);
@@ -19,18 +19,13 @@ const QueryManagement = () => {
 
   const fetchQueries = async () => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
       const params = new URLSearchParams({
         page: currentPage,
         limit: 10,
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await axios.get(`http://localhost:5000/api/medical-queries?${params}`, {
-        headers: { 'x-auth-token': token }
-      });
+      const response = await api.get(`/medical-queries?${params}`);
 
       setQueries(response.data.queries);
       setTotalPages(Math.ceil(response.data.total / 10));
@@ -43,12 +38,7 @@ const QueryManagement = () => {
 
   const updateQueryStatus = async (queryId, newStatus) => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/medical-queries/${queryId}/status`, 
-        { status: newStatus },
-        { headers: { 'x-auth-token': token } }
-      );
-      
+      await api.put(`/medical-queries/${queryId}/status`, { status: newStatus });
       fetchQueries();
     } catch (error) {
       console.error('Error updating query status:', error);
@@ -60,11 +50,7 @@ const QueryManagement = () => {
     
     setSubmittingResponse(true);
     try {
-      const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:5000/api/medical-queries/${selectedQuery._id}/response`, 
-        { response: responseText },
-        { headers: { 'x-auth-token': token } }
-      );
+      await api.post(`/medical-queries/${selectedQuery._id}/response`, { response: responseText });
       
       setResponseModal(false);
       setResponseText('');
@@ -232,6 +218,25 @@ const QueryManagement = () => {
                     <p className="text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
                       {query.currentMedications}
                     </p>
+                  </div>
+                )}
+
+                {query.prescriptionFile && (
+                  <div className="mb-4">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Prescription File:</p>
+                    <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
+                      <a 
+                        href={query.prescriptionFile} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-sm text-[#036372] dark:text-[#1fa9be] hover:underline flex items-center"
+                      >
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+                        </svg>
+                        View Prescription
+                      </a>
+                    </div>
                   </div>
                 )}
 

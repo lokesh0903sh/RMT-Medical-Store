@@ -5,7 +5,8 @@ const medicalQuerySchema = new mongoose.Schema({
   phone: String,
   email: String,
   hasPrescription: Boolean,
-  prescriptionFile: String,
+  prescriptionFile: String, // Cloudinary URL
+  prescriptionFileId: String, // Cloudinary public ID for deletion
   purchaseWithoutPrescription: Boolean,
   productList: String,
   message: String,

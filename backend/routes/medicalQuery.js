@@ -10,10 +10,18 @@ const auth = require("../middleware/auth");
 const adminAuth = require("../middleware/adminAuth");
 require("dotenv").config();
 
-const storage = multer.diskStorage({
-  destination: "./uploads/",
-  filename: (req, file, cb) =>
-    cb(null, Date.now() + path.extname(file.originalname)),
+// Use Cloudinary storage for prescription files instead of local storage
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
+
+// Configure Cloudinary storage for medical query prescriptions
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'rmt-medical/prescriptions',
+    allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
+    transformation: [{ quality: 'auto' }]
+  }
 });
 const upload = multer({ storage });
 
@@ -28,7 +36,9 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
     message,
   } = req.body;
 
-  const filePath = req.file ? req.file.filename : null;
+  // Get Cloudinary file URL and public ID if a file was uploaded
+  const fileUrl = req.file ? req.file.path : null;
+  const filePublicId = req.file ? req.file.public_id : null;
 
   try {
     const newQuery = new MedicalQuery({
@@ -36,7 +46,8 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
       phone,
       email,
       hasPrescription: hasPrescription === "yes",
-      prescriptionFile: filePath,
+      prescriptionFile: fileUrl,
+      prescriptionFileId: filePublicId,
       purchaseWithoutPrescription: purchaseWithoutPrescription === "yes",
       productList,
       message,

@@ -4,7 +4,7 @@ import { motion } from '../../lib/motion';
 import { useCart } from '../../context/CartContext';
 import NavBar from '../../navbar/NavBar';
 import Footer from '../../Footer/Footer';
-import axios from 'axios';
+import api from '../../lib/api';
 import { toast } from 'react-toastify';
 
 const Checkout = () => {
@@ -79,11 +79,7 @@ const Checkout = () => {
       }
       
       // Submit order
-      const response = await axios.post(
-        'http://localhost:5000/api/orders', 
-        orderData,
-        { headers: { 'x-auth-token': token } }
-      );
+      const response = await api.post('/api/orders', orderData);
       
       // Clear cart on success
       clearCart();
