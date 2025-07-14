@@ -38,7 +38,7 @@ const CategoryForm = () => {
   const fetchParentCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/categories', {
+      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
         headers: { 'x-auth-token': token }
       });
       
@@ -63,7 +63,7 @@ const CategoryForm = () => {
     try {
       setFetchingCategory(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/categories/${id}`, {
+      const response = await fetch(`https://rmt-medical-store.vercel.app/api/categories/${id}`, {
         headers: { 'x-auth-token': token }
       });
       
@@ -159,8 +159,8 @@ const CategoryForm = () => {
       
       // Make API request
       const url = isEditMode 
-        ? `http://localhost:5000/api/categories/${id}`
-        : 'http://localhost:5000/api/categories';
+        ? `https://rmt-medical-store.vercel.app/api/categories/${id}`
+        : 'https://rmt-medical-store.vercel.app/api/categories';
         
       const method = isEditMode ? 'PUT' : 'POST';
       
