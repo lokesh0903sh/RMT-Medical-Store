@@ -9,14 +9,21 @@ const api = axios.create({
   }
 });
 
-// Request interceptor to add authorization token
+// Request interceptor to add authorization token and handle API paths
 api.interceptors.request.use(
   config => {
+    // Add authentication token if available
     const token = localStorage.getItem('token');
     if (token) {
       config.headers['x-auth-token'] = token;
       config.headers['Authorization'] = `Bearer ${token}`;
     }
+    
+    // Ensure URLs have the /api prefix
+    if (config.url && !config.url.startsWith('/api') && !config.url.startsWith('http')) {
+      config.url = `/api${config.url.startsWith('/') ? config.url : `/${config.url}`}`;
+    }
+    
     return config;
   },
   error => {
@@ -39,5 +46,4 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 export default api;
