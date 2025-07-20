@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const CategoryForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -38,8 +41,12 @@ const CategoryForm = () => {
   const fetchParentCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/categories`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch parent categories');
@@ -63,8 +70,12 @@ const CategoryForm = () => {
     try {
       setFetchingCategory(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app/api/categories/${id}`, {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch category');
@@ -85,7 +96,7 @@ const CategoryForm = () => {
         // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
         const imageUrl = category.imageUrl.startsWith('http') 
           ? category.imageUrl 
-          : `https://rmt-medical-store.vercel.app/${category.imageUrl}`;
+          : `${API_BASE_URL}/${category.imageUrl}`;
         setImagePreview(imageUrl);
       }
     } catch (err) {
@@ -159,14 +170,15 @@ const CategoryForm = () => {
       
       // Make API request
       const url = isEditMode 
-        ? `https://rmt-medical-store.vercel.app/api/categories/${id}`
-        : 'https://rmt-medical-store.vercel.app/api/categories';
+        ? `${API_BASE_URL}/api/categories/${id}`
+        : `${API_BASE_URL}/api/categories`;
         
       const method = isEditMode ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
         method,
         headers: {
+          'Authorization': `Bearer ${token}`,
           'x-auth-token': token
         },
         body: formDataToSend

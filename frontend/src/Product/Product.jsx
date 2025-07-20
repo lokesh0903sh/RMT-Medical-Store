@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
-import api from '../lib/api';
 import { motion } from '../lib/motion';
 import { toast } from 'react-toastify';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const Product = ({ featured = false, limit = 10 }) => {
   const [products, setProducts] = useState([]);
@@ -17,17 +18,29 @@ const Product = ({ featured = false, limit = 10 }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await api.get('/api/categories');
-        console.log('Categories API Response:', response.data);
+        // Use fetch with API_BASE_URL instead of api client
+        const response = await fetch(`${API_BASE_URL}/api/categories`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        
+        const data = await response.json();
+        console.log('Categories API Response:', data);
         
         // Check if the response contains categories array or if it's directly an array
-        if (Array.isArray(response.data)) {
-          setCategories(response.data);
-        } else if (response.data && Array.isArray(response.data.categories)) {
-          setCategories(response.data.categories);
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else if (data && Array.isArray(data.categories)) {
+          setCategories(data.categories);
         } else {
           // Fallback to empty array if no valid categories data
-          console.error('No valid categories data in API response', response.data);
+          console.error('No valid categories data in API response', data);
           setCategories([]);
         }
       } catch (err) {
@@ -69,18 +82,33 @@ const Product = ({ featured = false, limit = 10 }) => {
             break;
           default:
             params.append('sort', '-createdAt');
-        }        
-        const response = await api.get(`/api/products?${params}`);
-        console.log('API Response:', response.data);
+        }
+        
+        // Use fetch with API_BASE_URL instead of api client
+        const response = await fetch(`${API_BASE_URL}/api/products?${params}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('token')
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        
+        const data = await response.json();
+        console.log('API Response:', data);
         
         // Check if the response contains products array or if it's directly an array
-        if (Array.isArray(response.data)) {
-          setProducts(response.data);
-        } else if (response.data && Array.isArray(response.data.products)) {
-          setProducts(response.data.products);
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else if (data && Array.isArray(data.products)) {
+          setProducts(data.products);
         } else {
           // Fallback to empty array if no valid products data
-          console.error('No valid products data in API response', response.data);
+          console.error('No valid products data in API response', data);
           setProducts([]);
         }
         
@@ -89,7 +117,7 @@ const Product = ({ featured = false, limit = 10 }) => {
         console.error('Error fetching products:', err);
         setError('Failed to load products');
         setLoading(false);
-        toast.error('Error fetching products. Please try again.');
+        toast.error(err.message || 'Error fetching products. Please try again.');
       }
     };
     

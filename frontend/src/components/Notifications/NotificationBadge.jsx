@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from '../../lib/motion';
 import { Link } from 'react-router-dom';
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const NotificationBadge = () => {
   const [notifications, setNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -41,8 +44,11 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/notifications/unread-count', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/notifications/unread-count`, {
+        headers: { 
+          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch notifications');
@@ -63,8 +69,11 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/notifications/my', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/notifications/my`, {
+        headers: { 
+          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch notifications');
@@ -91,9 +100,12 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      await fetch(`https://rmt-medical-store.vercel.app/api/notifications/read/${id}`, {
+      await fetch(`${API_BASE_URL}/api/notifications/read/${id}`, {
         method: 'PUT',
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`
+        }
       });
       
       // Update UI

@@ -7,6 +7,9 @@ import Pill2 from "../assets/capsule2.png.png";
 import Pill3 from "../assets/capsule3.png.png";
 import Pill4 from "../assets/capsule4.png.png";
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const Login = () => {
 
   const [form, setForm] = useState({ email: "", password: "" });
@@ -20,8 +23,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
-      const res = await fetch(`${apiBaseUrl}/api/auth/login`, {
+      // Use API_BASE_URL for backend connectivity
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

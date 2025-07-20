@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import { motion } from '../../lib/motion';
 
 const OrderList = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,13 +38,24 @@ const OrderList = () => {
         query += `&status=${filter}`;
       }
       
-      const response = await axios.get(
-        `https://rmt-medical-store.vercel.app/api/orders${query}`,
-        { headers: { 'x-auth-token': token } }
+      const response = await fetch(
+        `${API_BASE_URL}/api/orders${query}`,
+        { 
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'x-auth-token': token 
+          } 
+        }
       );
       
-      setOrders(response.data.orders);
-      setTotalPages(response.data.pagination.pages);
+      if (!response.ok) {
+        throw new Error('Failed to fetch orders');
+      }
+      
+      const data = await response.json();
+      setOrders(data.orders);
+      setTotalPages(data.pagination.pages);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -56,12 +69,23 @@ const OrderList = () => {
     try {
       const token = localStorage.getItem('token');
       
-      const response = await axios.get(
-        `https://rmt-medical-store.vercel.app/api/orders/${orderId}`,
-        { headers: { 'x-auth-token': token } }
+      const response = await fetch(
+        `${API_BASE_URL}/api/orders/${orderId}`,
+        { 
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'x-auth-token': token 
+          } 
+        }
       );
       
-      setSelectedOrder(response.data.order);
+      if (!response.ok) {
+        throw new Error('Failed to fetch order details');
+      }
+      
+      const data = await response.json();
+      setSelectedOrder(data.order);
       setIsModalOpen(true);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -73,11 +97,22 @@ const OrderList = () => {
     try {
       const token = localStorage.getItem('token');
       
-      await axios.patch(
-        `https://rmt-medical-store.vercel.app/api/orders/${orderId}`,
-        { status },
-        { headers: { 'x-auth-token': token } }
+      const response = await fetch(
+        `${API_BASE_URL}/api/orders/${orderId}`,
+        {
+          method: 'PATCH',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'x-auth-token': token 
+          },
+          body: JSON.stringify({ status })
+        }
       );
+      
+      if (!response.ok) {
+        throw new Error('Failed to update order status');
+      }
       
       // Update order in state
       setOrders(prevOrders =>

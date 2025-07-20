@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import HoverRightDropDown from './HoverRightDropDown';
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const DropDown = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,15 +14,27 @@ const DropDown = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('https://rmt-medical-store.vercel.app/api/categories');
-        console.log('Categories for dropdown:', response.data);
+        // Use fetch with API_BASE_URL instead of axios
+        const response = await fetch(`${API_BASE_URL}/api/categories`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
         
-        if (Array.isArray(response.data)) {
-          setCategories(response.data);
-        } else if (response.data && Array.isArray(response.data.categories)) {
-          setCategories(response.data.categories);
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        
+        const data = await response.json();
+        console.log('Categories for dropdown:', data);
+        
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else if (data && Array.isArray(data.categories)) {
+          setCategories(data.categories);
         } else {
-          console.error('No valid categories data in API response', response.data);
+          console.error('No valid categories data in API response', data);
           setCategories([]);
         }
         setLoading(false);

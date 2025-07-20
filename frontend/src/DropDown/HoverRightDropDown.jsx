@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const HoverRightDropDown = ({ value, categoryId }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
@@ -13,14 +16,25 @@ const HoverRightDropDown = ({ value, categoryId }) => {
       setLoading(true);
       const fetchSubcategories = async () => {
         try {
-          // Fetch products of this category to get unique subcategories
-          const response = await axios.get(`https://rmt-medical-store.vercel.app/api/products?category=${categoryId}`);
+          // Use fetch with API_BASE_URL instead of axios
+          const response = await fetch(`${API_BASE_URL}/api/products?category=${categoryId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          
+          if (!response.ok) {
+            throw new Error('Failed to fetch products');
+          }
+          
+          const data = await response.json();
           
           let products = [];
-          if (Array.isArray(response.data)) {
-            products = response.data;
-          } else if (response.data && Array.isArray(response.data.products)) {
-            products = response.data.products;
+          if (Array.isArray(data)) {
+            products = data;
+          } else if (data && Array.isArray(data.products)) {
+            products = data.products;
           }
 
           // Extract unique subcategories

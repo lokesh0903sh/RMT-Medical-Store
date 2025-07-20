@@ -6,6 +6,9 @@ import { toast } from 'react-toastify';
 import NavBar from '../../navbar/NavBar';
 import Footer from '../../Footer/Footer';
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,18 +29,29 @@ const Orders = () => {
         return;
       }
       
-      const response = await axios.get(
-        'https://rmt-medical-store.vercel.app/api/orders/my-orders',
-        { headers: { 'x-auth-token': token } }
-      );
+      // Use fetch with API_BASE_URL instead of axios
+      const response = await fetch(`${API_BASE_URL}/api/orders/my-orders`, {
+        method: 'GET',
+        headers: { 
+          'Content-Type': 'application/json',
+          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`
+        }
+      });
       
-      setOrders(response.data.orders);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to load orders');
+      }
+      
+      const data = await response.json();
+      setOrders(data.orders);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching orders:', error);
       setError('Failed to load orders. Please try again.');
       setLoading(false);
-      toast.error(error.response?.data?.message || 'Failed to load orders');
+      toast.error(error.message || 'Failed to load orders');
     }
   };
   
@@ -80,11 +94,20 @@ const Orders = () => {
         return;
       }
       
-      await axios.patch(
-        `https://rmt-medical-store.vercel.app/api/orders/${orderId}/cancel`,
-        {},
-        { headers: { 'x-auth-token': token } }
-      );
+      // Use fetch with API_BASE_URL instead of axios
+      const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}/cancel`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to cancel order');
+      }
       
       // Update order in state
       setOrders(prevOrders => 
@@ -98,7 +121,7 @@ const Orders = () => {
       toast.success('Order cancelled successfully');
     } catch (error) {
       console.error('Error cancelling order:', error);
-      toast.error(error.response?.data?.message || 'Failed to cancel order');
+      toast.error(error.message || 'Failed to cancel order');
     }
   };
   

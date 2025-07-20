@@ -5,8 +5,9 @@ import NavBar from '../navbar/NavBar';
 import Footer from '../Footer/Footer';
 import Cart from '../components/Cart/Cart';
 import Card from '../Card/Card';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const Products = () => {
   const location = useLocation();
@@ -51,16 +52,28 @@ const Products = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
-        const response = await axios.get(`${apiBaseUrl}/api/categories`);
-        console.log('Categories API Response:', response.data);
+        const response = await fetch(`${API_BASE_URL}/api/categories`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('token')
+          }
+        });
         
-        if (Array.isArray(response.data)) {
-          setCategories(response.data);
-        } else if (response.data && Array.isArray(response.data.categories)) {
-          setCategories(response.data.categories);
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        
+        const data = await response.json();
+        console.log('Categories API Response:', data);
+        
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else if (data && Array.isArray(data.categories)) {
+          setCategories(data.categories);
         } else {
-          console.error('No valid categories data in API response', response.data);
+          console.error('No valid categories data in API response', data);
           setCategories([]);
         }
       } catch (err) {
@@ -106,18 +119,30 @@ const Products = () => {
             params.append('sort', '-createdAt');
         }
         
-        const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
-        const response = await axios.get(`${apiBaseUrl}/api/products?${params}`);
-        console.log('API Response:', response.data);
+        const response = await fetch(`${API_BASE_URL}/api/products?${params}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('token')
+          }
+        });
         
-        if (Array.isArray(response.data)) {
-          setProducts(response.data);
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        
+        const data = await response.json();
+        console.log('API Response:', data);
+        
+        if (Array.isArray(data)) {
+          setProducts(data);
           setTotalPages(1);
-        } else if (response.data && Array.isArray(response.data.products)) {
-          setProducts(response.data.products);
-          setTotalPages(response.data.pagination?.pages || 1);
+        } else if (data && Array.isArray(data.products)) {
+          setProducts(data.products);
+          setTotalPages(data.pagination?.pages || 1);
         } else {
-          console.error('No valid products data in API response', response.data);
+          console.error('No valid products data in API response', data);
           setProducts([]);
         }
         

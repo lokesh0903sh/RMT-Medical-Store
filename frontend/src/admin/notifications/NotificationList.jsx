@@ -4,6 +4,8 @@ import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 
 const NotificationList = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,8 +25,12 @@ const NotificationList = () => {
       setError(null);
       
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/notifications/all', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/notifications/all`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch notifications');
@@ -73,9 +79,13 @@ const NotificationList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app/api/notifications/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/notifications/${id}`, {
         method: 'DELETE',
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to delete notification');

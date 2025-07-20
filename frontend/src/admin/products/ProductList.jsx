@@ -4,6 +4,8 @@ import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 
 const ProductList = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,8 +29,12 @@ const ProductList = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/categories`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch categories');
@@ -51,12 +57,16 @@ const ProductList = () => {
       const token = localStorage.getItem('token');
       const { category, search, sort } = filters;
       
-      let url = `https://rmt-medical-store.vercel.app/api/products?page=${currentPage}&sort=${sort}`;
+      let url = `${API_BASE_URL}/api/products?page=${currentPage}&sort=${sort}`;
       if (category) url += `&category=${category}`;
       if (search) url += `&search=${encodeURIComponent(search)}`;
       
       const response = await fetch(url, {
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch products');
@@ -89,9 +99,13 @@ const ProductList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app/api/products/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
         method: 'DELETE',
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to delete product');

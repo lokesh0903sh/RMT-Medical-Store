@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from '../../lib/motion';
-import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const UserManagement = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,18 +36,26 @@ const UserManagement = () => {
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await axios.get(`https://rmt-medical-store.vercel.app/api/users?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/api/users?${params}`, {
+        method: 'GET',
         headers: { 
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
           'x-auth-token': token 
         }
       });
 
-      setUsers(response.data.users);
-      setTotalPages(Math.ceil(response.data.total / 10));
+      if (!response.ok) {
+        throw new Error('Failed to fetch users');
+      }
+
+      const data = await response.json();
+      setUsers(data.users);
+      setTotalPages(Math.ceil(data.total / 10));
       setLoading(false);
     } catch (error) {
       console.error('Error fetching users:', error);
+      toast.error(error.message || 'Error fetching users');
       setLoading(false);
     }
   };
@@ -53,38 +63,50 @@ const UserManagement = () => {
   const updateUserRole = async (userId, newRole) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://rmt-medical-store.vercel.app/api/users/${userId}/role`, 
-        { role: newRole },
-        { 
-          headers: { 
-            'Authorization': `Bearer ${token}`,
-            'x-auth-token': token 
-          } 
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/users/${userId}/role`, {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        },
+        body: JSON.stringify({ role: newRole })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update user role');
+      }
       
       fetchUsers();
+      toast.success('User role updated successfully');
     } catch (error) {
       console.error('Error updating user role:', error);
+      toast.error(error.message || 'Error updating user role');
     }
   };
 
   const toggleUserStatus = async (userId, currentStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://rmt-medical-store.vercel.app/api/users/${userId}/status`, 
-        { isActive: !currentStatus },
-        { 
-          headers: { 
-            'Authorization': `Bearer ${token}`,
-            'x-auth-token': token 
-          } 
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/users/${userId}/status`, {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        },
+        body: JSON.stringify({ isActive: !currentStatus })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update user status');
+      }
       
       fetchUsers();
+      toast.success(`User ${!currentStatus ? 'activated' : 'deactivated'} successfully`);
     } catch (error) {
       console.error('Error updating user status:', error);
+      toast.error(error.message || 'Error updating user status');
     }
   };
 
@@ -93,16 +115,23 @@ const UserManagement = () => {
     
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://rmt-medical-store.vercel.app/api/users/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
+        method: 'DELETE',
         headers: { 
           'Authorization': `Bearer ${token}`,
           'x-auth-token': token 
         }
       });
       
+      if (!response.ok) {
+        throw new Error('Failed to delete user');
+      }
+      
       fetchUsers();
+      toast.success('User deleted successfully');
     } catch (error) {
       console.error('Error deleting user:', error);
+      toast.error(error.message || 'Error deleting user');
     }
   };
 

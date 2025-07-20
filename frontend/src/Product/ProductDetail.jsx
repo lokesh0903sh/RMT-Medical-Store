@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
 import { motion } from '../lib/motion';
 import { toast } from 'react-toastify';
 import { useCart } from '../context/CartContext';
 import NavBar from '../navbar/NavBar';
 import Footer from '../Footer/Footer';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -21,19 +22,47 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://rmt-medical-store.vercel.app/api/products/${id}`);
-        setProduct(response.data.product);
         
-        // Fetch related products
-        const relatedResponse = await axios.get(`https://rmt-medical-store.vercel.app/api/products?category=${response.data.product.category._id}&limit=5&excludeProduct=${id}`);
-        setRelatedProducts(relatedResponse.data.products);
+        // Use fetch with API_BASE_URL instead of axios
+        const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('token')
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch product details');
+        }
+        
+        const data = await response.json();
+        setProduct(data.product);
+        
+        // Fetch related products with API_BASE_URL
+        const relatedResponse = await fetch(`${API_BASE_URL}/api/products?category=${data.product.category._id}&limit=5&excludeProduct=${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'x-auth-token': localStorage.getItem('token')
+          }
+        });
+        
+        if (!relatedResponse.ok) {
+          throw new Error('Failed to fetch related products');
+        }
+        
+        const relatedData = await relatedResponse.json();
+        setRelatedProducts(relatedData.products);
         
         setLoading(false);
       } catch (err) {
         console.error('Error fetching product:', err);
         setError('Failed to load product details');
         setLoading(false);
-        toast.error('Error loading product details');
+        toast.error(err.message || 'Error loading product details');
       }
     };
     
