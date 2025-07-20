@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from '../../lib/motion';
 import { Link } from 'react-router-dom';
 
-// Use VITE_API_BASE_URL from environment
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const NotificationBadge = () => {

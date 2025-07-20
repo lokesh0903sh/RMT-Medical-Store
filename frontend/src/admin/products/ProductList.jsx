@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
+import api from '../../lib/api';
 
 const ProductList = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,19 +27,8 @@ const ProductList = () => {
 
   const fetchCategories = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/categories`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch categories');
-      
-      const data = await response.json();
-      setCategories(data);
+      const response = await api.get('/api/categories');
+      setCategories(response.data);
     } catch (err) {
       console.error('Error fetching categories:', err);
       toast.error('Could not load categories');
@@ -54,26 +42,20 @@ const ProductList = () => {
       setLoading(true);
       setError(null);
       
-      const token = localStorage.getItem('token');
       const { category, search, sort } = filters;
       
-      let url = `${API_BASE_URL}/api/products?page=${currentPage}&sort=${sort}`;
-      if (category) url += `&category=${category}`;
-      if (search) url += `&search=${encodeURIComponent(search)}`;
+      let params = {
+        page: currentPage,
+        sort: sort
+      };
       
-      const response = await fetch(url, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      if (category) params.category = category;
+      if (search) params.search = search;
       
-      if (!response.ok) throw new Error('Failed to fetch products');
+      const response = await api.get('/api/products', { params });
       
-      const data = await response.json();
-      setProducts(data.products);
-      setTotalPages(data.pagination.pages);
+      setProducts(response.data.products);
+      setTotalPages(response.data.pagination.pages);
     } catch (err) {
       console.error('Error fetching products:', err);
       setError('Failed to load products. Please try again.');
@@ -98,17 +80,7 @@ const ProductList = () => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
-        method: 'DELETE',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
-      
-      if (!response.ok) throw new Error('Failed to delete product');
+      await api.delete(`/api/products/${id}`);
       
       // Remove the deleted product from state
       setProducts(products.filter(product => product._id !== id));

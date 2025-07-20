@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { motion } from '../../lib/motion';
+import api from '../../lib/api';
 
 const OrderList = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,24 +36,10 @@ const OrderList = () => {
         query += `&status=${filter}`;
       }
       
-      const response = await fetch(
-        `${API_BASE_URL}/api/orders${query}`,
-        { 
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'x-auth-token': token 
-          } 
-        }
-      );
+      const response = await api.get(`/api/orders${query}`);
       
-      if (!response.ok) {
-        throw new Error('Failed to fetch orders');
-      }
-      
-      const data = await response.json();
-      setOrders(data.orders);
-      setTotalPages(data.pagination.pages);
+      setOrders(response.data.orders);
+      setTotalPages(response.data.pagination.pages);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching orders:', error);
@@ -67,25 +51,9 @@ const OrderList = () => {
   
   const fetchOrderDetails = async (orderId) => {
     try {
-      const token = localStorage.getItem('token');
+      const response = await api.get(`/api/orders/${orderId}`);
       
-      const response = await fetch(
-        `${API_BASE_URL}/api/orders/${orderId}`,
-        { 
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'x-auth-token': token 
-          } 
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch order details');
-      }
-      
-      const data = await response.json();
-      setSelectedOrder(data.order);
+      setSelectedOrder(response.data.order);
       setIsModalOpen(true);
     } catch (error) {
       console.error('Error fetching order details:', error);
@@ -95,24 +63,7 @@ const OrderList = () => {
   
   const updateOrderStatus = async (orderId, status) => {
     try {
-      const token = localStorage.getItem('token');
-      
-      const response = await fetch(
-        `${API_BASE_URL}/api/orders/${orderId}`,
-        {
-          method: 'PATCH',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'x-auth-token': token 
-          },
-          body: JSON.stringify({ status })
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error('Failed to update order status');
-      }
+      await api.patch(`/api/orders/${orderId}`, { status });
       
       // Update order in state
       setOrders(prevOrders =>

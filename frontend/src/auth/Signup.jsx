@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import api from '../lib/api';
 
 const Signup = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
@@ -18,21 +19,11 @@ const Signup = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
-      const res = await fetch(`${apiBaseUrl}/api/auth/signup`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        toast.error(data.message || 'Signup failed')
-      } else {
-        toast.success('Signup successful! Redirecting to login...')
-        setTimeout(() => navigate('/login'), 1500)
-      }
+      const response = await api.post('/api/auth/signup', form);
+      toast.success('Signup successful! Redirecting to login...')
+      setTimeout(() => navigate('/login'), 1500)
     } catch (err) {
-      toast.error('Server error')
+      toast.error(err.response?.data?.message || 'Signup failed')
     }
     setLoading(false)
   }

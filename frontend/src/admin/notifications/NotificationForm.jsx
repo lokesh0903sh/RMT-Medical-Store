@@ -3,10 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 import Select from 'react-select';
+import api from '../../lib/api';
 
 const NotificationForm = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditMode = !!id;
@@ -56,21 +55,10 @@ const NotificationForm = () => {
   const fetchUsers = async () => {
     try {
       setFetchingUsers(true);
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/auth/users`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token
-        }
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch users');
-      
-      const data = await response.json();
+      const response = await api.get('/api/auth/users');
       
       // Format users for react-select
-      const formattedUsers = data.map(user => ({
+      const formattedUsers = response.data.map(user => ({
         value: user._id,
         label: `${user.name} (${user.email})`,
         role: user.role
@@ -88,18 +76,9 @@ const NotificationForm = () => {
   const fetchNotificationData = async () => {
     try {
       setFetchingNotification(true);
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/notifications/${id}`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token
-        }
-      });
+      const response = await api.get(`/api/notifications/${id}`);
       
-      if (!response.ok) throw new Error('Failed to fetch notification');
-      
-      const notification = await response.json();
+      const notification = response.data;
       
       // Calculate remaining days
       const expireDate = new Date(notification.expiresAt);
@@ -171,35 +150,21 @@ const NotificationForm = () => {
         return;
       }
       
-      // Make API request
-      const url = isEditMode 
-        ? `${API_BASE_URL}/api/notifications/${id}`
-        : `${API_BASE_URL}/api/notifications`;
-        
-      const method = isEditMode ? 'PUT' : 'POST';
-      
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token
-        },
-        body: JSON.stringify(formData)
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to save notification');
+      // Make API request using axios
+      let response;
+      if (isEditMode) {
+        response = await api.put(`/api/notifications/${id}`, formData);
+      } else {
+        response = await api.post('/api/notifications', formData);
       }
       
-      const savedNotification = await response.json();
+      const savedNotification = response.data;
       
       toast.success(`Notification ${isEditMode ? 'updated' : 'created'} successfully`);
       navigate('/admin/notifications');
     } catch (err) {
       console.error('Error saving notification:', err);
-      toast.error(err.message || `Failed to ${isEditMode ? 'update' : 'create'} notification`);
+      toast.error(err.response?.data?.message || `Failed to ${isEditMode ? 'update' : 'create'} notification`);
     } finally {
       setLoading(false);
     }

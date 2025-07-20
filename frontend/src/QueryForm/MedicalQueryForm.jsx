@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import { motion } from '../lib/motion';
+import { toast } from 'react-toastify';
+import api from '../lib/api';
 
 function MedicalQueryForm() {
   const [formData, setFormData] = useState({
@@ -59,23 +59,14 @@ function MedicalQueryForm() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/medical-query`, {
-        method: 'POST',
+      const response = await api.post('/api/medical-query', data, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'x-auth-token': localStorage.getItem('token')
-          // Note: Do not set Content-Type for FormData, browser will set it with the boundary
-        },
-        body: data
+          // Note: Do not set Content-Type for FormData, axios will set it automatically
+        }
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Submission failed. Please try again.');
-      }
-
-      const res = await response.json();
-      setSuccessMsg('Form submitted successfully!');
+      setSuccessMsg('Your medical query has been submitted successfully. We will respond as soon as possible.');
+      
       setFormData({
         fullName: '',
         phone: '',
@@ -88,7 +79,7 @@ function MedicalQueryForm() {
       setFile(null);
     } catch (err) {
       console.error('Submission error:', err);
-      setErrorMsg(err.message || 'Submission failed. Please try again.');
+      setErrorMsg(err.response?.data?.message || err.message || 'Submission failed. Please try again.');
     } finally {
       setLoading(false);
     }

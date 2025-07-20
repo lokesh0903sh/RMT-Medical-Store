@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
+import api from '../../lib/api';
 
 const AdminSettings = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [settings, setSettings] = useState({
     storeName: 'RMT Medical Store',
     storeEmail: 'info@rmtmedical.com',
@@ -38,26 +37,14 @@ const AdminSettings = () => {
     try {
       const token = localStorage.getItem('token');
       // In a real app, you would fetch from your backend
-      // const response = await fetch(`${API_BASE_URL}/api/settings`, {
-      //   method: 'GET',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${token}`,
-      //     'x-auth-token': token
-      //   }
-      // });
+      // const response = await api.get('/api/settings');
       // 
-      // if (!response.ok) {
-      //   throw new Error('Failed to fetch settings');
-      // }
-      // 
-      // const data = await response.json();
-      // setSettings(data);
+      // setSettings(response.data);
       
       // For now, we're using the default settings
     } catch (error) {
       console.error('Error fetching settings:', error);
-      toast.error(error.message || 'Error fetching settings');
+      toast.error(error.response?.data?.message || error.message || 'Error fetching settings');
     }
   };
 
@@ -75,21 +62,10 @@ const AdminSettings = () => {
       const token = localStorage.getItem('token');
       
       // In a real app, you would save these to your backend
-      const response = await fetch(`${API_BASE_URL}/api/settings`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token
-        },
-        body: JSON.stringify(settings)
-      });
+      // await api.put('/api/settings', settings);
       
       // For demonstration purposes, simulate a successful response
       // In production, you would handle the actual response
-      // if (!response.ok) {
-      //   throw new Error('Failed to save settings');
-      // }
       
       // Simulate saving for demo purposes
       setTimeout(() => {
@@ -101,7 +77,7 @@ const AdminSettings = () => {
       
     } catch (error) {
       console.error('Error saving settings:', error);
-      toast.error(error.message || 'Error saving settings');
+      toast.error(error.response?.data?.message || error.message || 'Error saving settings');
       setLoading(false);
     }
   };

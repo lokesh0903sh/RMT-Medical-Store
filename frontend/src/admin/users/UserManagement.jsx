@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
+import api from '../../lib/api';
 
 const UserManagement = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,77 +35,39 @@ const UserManagement = () => {
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await fetch(`${API_BASE_URL}/api/users?${params}`, {
-        method: 'GET',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get(`/api/users?${params}`);
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch users');
-      }
-
-      const data = await response.json();
-      setUsers(data.users);
-      setTotalPages(Math.ceil(data.total / 10));
+      setUsers(response.data.users);
+      setTotalPages(Math.ceil(response.data.total / 10));
       setLoading(false);
     } catch (error) {
       console.error('Error fetching users:', error);
-      toast.error(error.message || 'Error fetching users');
+      toast.error(error.response?.data?.message || error.message || 'Error fetching users');
       setLoading(false);
     }
   };
 
   const updateUserRole = async (userId, newRole) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/users/${userId}/role`, {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        },
-        body: JSON.stringify({ role: newRole })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to update user role');
-      }
+      await api.put(`/api/users/${userId}/role`, { role: newRole });
       
       fetchUsers();
       toast.success('User role updated successfully');
     } catch (error) {
       console.error('Error updating user role:', error);
-      toast.error(error.message || 'Error updating user role');
+      toast.error(error.response?.data?.message || error.message || 'Error updating user role');
     }
   };
 
   const toggleUserStatus = async (userId, currentStatus) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/users/${userId}/status`, {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        },
-        body: JSON.stringify({ isActive: !currentStatus })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to update user status');
-      }
+      await api.put(`/api/users/${userId}/status`, { isActive: !currentStatus });
       
       fetchUsers();
       toast.success(`User ${!currentStatus ? 'activated' : 'deactivated'} successfully`);
     } catch (error) {
       console.error('Error updating user status:', error);
-      toast.error(error.message || 'Error updating user status');
+      toast.error(error.response?.data?.message || error.message || 'Error updating user status');
     }
   };
 
@@ -114,24 +75,13 @@ const UserManagement = () => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
-        method: 'DELETE',
-        headers: { 
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to delete user');
-      }
+      await api.delete(`/api/users/${userId}`);
       
       fetchUsers();
       toast.success('User deleted successfully');
     } catch (error) {
       console.error('Error deleting user:', error);
-      toast.error(error.message || 'Error deleting user');
+      toast.error(error.response?.data?.message || error.message || 'Error deleting user');
     }
   };
 

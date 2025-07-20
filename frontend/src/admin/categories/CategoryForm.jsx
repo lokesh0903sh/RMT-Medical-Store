@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../../lib/api';
 
 const CategoryForm = () => {
   const { id } = useParams();
@@ -40,22 +38,12 @@ const CategoryForm = () => {
 
   const fetchParentCategories = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/categories`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get('/api/categories');
       
-      if (!response.ok) throw new Error('Failed to fetch parent categories');
-      
-      const data = await response.json();
       // If in edit mode, filter out the current category to prevent self-reference
       const filteredCategories = isEditMode 
-        ? data.filter(cat => cat._id !== id)
-        : data;
+        ? response.data.filter(cat => cat._id !== id)
+        : response.data;
         
       setCategories(filteredCategories);
     } catch (err) {
@@ -69,18 +57,8 @@ const CategoryForm = () => {
   const fetchCategoryData = async () => {
     try {
       setFetchingCategory(true);
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch category');
-      
-      const category = await response.json();
+      const response = await api.get(`/api/categories/${id}`);
+      const category = response.data;
       
       // Set form data
       setFormData({
@@ -93,10 +71,10 @@ const CategoryForm = () => {
       
       // Set image preview if category has an image
       if (category.imageUrl) {
-        // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
+        // For Cloudinary URLs, use as is
         const imageUrl = category.imageUrl.startsWith('http') 
           ? category.imageUrl 
-          : `${API_BASE_URL}/${category.imageUrl}`;
+          : `${api.defaults.baseURL}/${category.imageUrl}`;
         setImagePreview(imageUrl);
       }
     } catch (err) {
@@ -147,7 +125,6 @@ const CategoryForm = () => {
     
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
       
       // Create form data for multipart/form-data request
       const formDataToSend = new FormData();
@@ -168,28 +145,23 @@ const CategoryForm = () => {
         formDataToSend.append('image', imageFile);
       }
       
-      // Make API request
-      const url = isEditMode 
-        ? `${API_BASE_URL}/api/categories/${id}`
-        : `${API_BASE_URL}/api/categories`;
-        
-      const method = isEditMode ? 'PUT' : 'POST';
-      
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token
-        },
-        body: formDataToSend
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to save category');
+      // Make API request with axios
+      let response;
+      if (isEditMode) {
+        response = await api.put(`/api/categories/${id}`, formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+      } else {
+        response = await api.post('/api/categories', formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
       }
       
-      const savedCategory = await response.json();
+      const savedCategory = response.data;
       
       toast.success(`Category ${isEditMode ? 'updated' : 'created'} successfully`);
       navigate('/admin/categories');

@@ -2,13 +2,11 @@ import React,  { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import api from "../lib/api";
 import Pill1 from "../assets/capsule1.png.png";
 import Pill2 from "../assets/capsule2.png.png";
 import Pill3 from "../assets/capsule3.png.png";
 import Pill4 from "../assets/capsule4.png.png";
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const Login = () => {
 
@@ -23,31 +21,25 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      // Use API_BASE_URL for backend connectivity
-      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.message || "Login failed");
+      // Use api utility for backend connectivity
+      const response = await api.post('/api/auth/login', form);
+      const data = response.data;
+      
+      // Save token and user data in localStorage
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      
+      toast.success("Login successful!");
+      
+      // Redirect based on user role
+      if (data.user && data.user.role === 'admin') {
+        setTimeout(() => navigate("/admin"), 1500);
       } else {
-        // Save token and user data in localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        
-        toast.success("Login successful!");
-        
-        // Redirect based on user role
-        if (data.user && data.user.role === 'admin') {
-          setTimeout(() => navigate("/admin"), 1500);
-        } else {
-          setTimeout(() => navigate("/"), 1500);
-        }
+        setTimeout(() => navigate("/"), 1500);
       }
     } catch (err) {
       console.error('Login error:', err);
+      toast.error(err.response?.data?.message || "Login failed");
       toast.error("Server error");
     }
     setLoading(false);

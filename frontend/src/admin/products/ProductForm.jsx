@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
+import api from '../../lib/api';
 
 const ProductForm = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditMode = !!id;
@@ -46,19 +45,9 @@ const ProductForm = () => {
 
   const fetchCategories = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/categories`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get('/api/categories');
       
-      if (!response.ok) throw new Error('Failed to fetch categories');
-      
-      const data = await response.json();
-      setCategories(data);
+      setCategories(response.data);
     } catch (err) {
       console.error('Error fetching categories:', err);
       toast.error('Could not load categories');
@@ -70,18 +59,9 @@ const ProductForm = () => {
   const fetchProductData = async () => {
     try {
       setFetchingProduct(true);
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get(`/api/products/${id}`);
       
-      if (!response.ok) throw new Error('Failed to fetch product');
-      
-      const product = await response.json();
+      const product = response.data;
       
       // Set form data
       setFormData({
@@ -101,10 +81,10 @@ const ProductForm = () => {
       
       // Set image preview if product has an image
       if (product.imageUrl) {
-        // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
+        // Check if it's a Cloudinary URL or local path
         const imageUrl = product.imageUrl.startsWith('http') 
           ? product.imageUrl 
-          : `${API_BASE_URL}/${product.imageUrl}`;
+          : `${api.defaults.baseURL}/${product.imageUrl}`;
         setImagePreview(imageUrl);
       }
     } catch (err) {
@@ -181,8 +161,6 @@ const ProductForm = () => {
     setLoading(true);
     
     try {
-      const token = localStorage.getItem('token');
-      
       // Create form data for multipart/form-data (for image upload)
       const formDataToSend = new FormData();
       Object.keys(formData).forEach(key => {
@@ -194,26 +172,20 @@ const ProductForm = () => {
         formDataToSend.append('image', imageFile);
       }
       
-      // Determine if creating or updating
-      const url = isEditMode 
-        ? `${API_BASE_URL}/api/products/${id}`
-        : `${API_BASE_URL}/api/products`;
-        
-      const method = isEditMode ? 'PUT' : 'POST';
-      
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token
-          // No Content-Type header for multipart/form-data
-        },
-        body: formDataToSend
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to save product');
+      // Make API request using axios
+      let response;
+      if (isEditMode) {
+        response = await api.put(`/api/products/${id}`, formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+      } else {
+        response = await api.post('/api/products', formDataToSend, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
       }
       
       toast.success(isEditMode ? 'Product updated successfully' : 'Product created successfully');

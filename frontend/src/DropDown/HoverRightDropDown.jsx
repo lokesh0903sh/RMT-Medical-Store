@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../lib/api';
 
 const HoverRightDropDown = ({ value, categoryId }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,19 +13,11 @@ const HoverRightDropDown = ({ value, categoryId }) => {
       setLoading(true);
       const fetchSubcategories = async () => {
         try {
-          // Use fetch with API_BASE_URL instead of axios
-          const response = await fetch(`${API_BASE_URL}/api/products?category=${categoryId}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'
-            }
+          const response = await api.get(`/api/products`, {
+            params: { category: categoryId }
           });
           
-          if (!response.ok) {
-            throw new Error('Failed to fetch products');
-          }
-          
-          const data = await response.json();
+          const data = response.data;
           
           let products = [];
           if (Array.isArray(data)) {

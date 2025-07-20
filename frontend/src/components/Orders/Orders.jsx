@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 import NavBar from '../../navbar/NavBar';
 import Footer from '../../Footer/Footer';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../../lib/api';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -29,29 +26,15 @@ const Orders = () => {
         return;
       }
       
-      // Use fetch with API_BASE_URL instead of axios
-      const response = await fetch(`${API_BASE_URL}/api/orders/my-orders`, {
-        method: 'GET',
-        headers: { 
-          'Content-Type': 'application/json',
-          'x-auth-token': token,
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await api.get('/api/orders/my-orders');
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to load orders');
-      }
-      
-      const data = await response.json();
-      setOrders(data.orders);
+      setOrders(response.data.orders);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching orders:', error);
       setError('Failed to load orders. Please try again.');
       setLoading(false);
-      toast.error(error.message || 'Failed to load orders');
+      toast.error(error.response?.data?.message || 'Failed to load orders');
     }
   };
   
@@ -94,20 +77,7 @@ const Orders = () => {
         return;
       }
       
-      // Use fetch with API_BASE_URL instead of axios
-      const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}/cancel`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-auth-token': token,
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to cancel order');
-      }
+      await api.patch(`/api/orders/${orderId}/cancel`);
       
       // Update order in state
       setOrders(prevOrders => 

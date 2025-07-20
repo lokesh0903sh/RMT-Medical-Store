@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import { motion } from '../lib/motion';
 import { toast } from 'react-toastify';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../lib/api';
 
 const Product = ({ featured = false, limit = 10 }) => {
   const [products, setProducts] = useState([]);
@@ -18,19 +17,9 @@ const Product = ({ featured = false, limit = 10 }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        // Use fetch with API_BASE_URL instead of api client
-        const response = await fetch(`${API_BASE_URL}/api/categories`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
+        const response = await api.get('/api/categories');
+        const data = response.data;
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        
-        const data = await response.json();
         console.log('Categories API Response:', data);
         
         // Check if the response contains categories array or if it's directly an array
@@ -59,46 +48,33 @@ const Product = ({ featured = false, limit = 10 }) => {
         setLoading(true);
         
         // Build query parameters
-        const params = new URLSearchParams();
+        let params = {};
         
-        if (featured) params.append('featured', 'true');
-        if (limit) params.append('limit', limit);
-        if (filter !== 'all') params.append('category', filter);
-        if (searchQuery) params.append('search', searchQuery);
+        if (featured) params.featured = 'true';
+        if (limit) params.limit = limit;
+        if (filter !== 'all') params.category = filter;
+        if (searchQuery) params.search = searchQuery;
         
         // Handle sorting
         switch (sort) {
           case 'price-low':
-            params.append('sort', 'price');
+            params.sort = 'price';
             break;
           case 'price-high':
-            params.append('sort', '-price');
+            params.sort = '-price';
             break;
           case 'newest':
-            params.append('sort', '-createdAt');
+            params.sort = '-createdAt';
             break;
           case 'popular':
-            params.append('sort', '-rating');
+            params.sort = '-rating';
             break;
           default:
-            params.append('sort', '-createdAt');
+            params.sort = '-createdAt';
         }
         
-        // Use fetch with API_BASE_URL instead of api client
-        const response = await fetch(`${API_BASE_URL}/api/products?${params}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'x-auth-token': localStorage.getItem('token')
-          }
-        });
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        
-        const data = await response.json();
+        const response = await api.get('/api/products', { params });
+        const data = response.data;
         console.log('API Response:', data);
         
         // Check if the response contains products array or if it's directly an array

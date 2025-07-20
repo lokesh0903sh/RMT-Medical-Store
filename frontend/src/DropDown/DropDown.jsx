@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import HoverRightDropDown from './HoverRightDropDown';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../lib/api';
 
 const DropDown = () => {
   const [categories, setCategories] = useState([]);
@@ -14,19 +11,9 @@ const DropDown = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        // Use fetch with API_BASE_URL instead of axios
-        const response = await fetch(`${API_BASE_URL}/api/categories`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
+        const response = await api.get('/api/categories');
+        const data = response.data;
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        
-        const data = await response.json();
         console.log('Categories for dropdown:', data);
         
         if (Array.isArray(data)) {

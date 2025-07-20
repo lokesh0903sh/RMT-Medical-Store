@@ -6,8 +6,7 @@ import Footer from '../Footer/Footer';
 import Cart from '../components/Cart/Cart';
 import Card from '../Card/Card';
 import { toast } from 'react-toastify';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../lib/api';
 
 const Products = () => {
   const location = useLocation();
@@ -52,20 +51,9 @@ const Products = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/categories`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'x-auth-token': localStorage.getItem('token')
-          }
-        });
+        const response = await api.get('/api/categories');
+        const data = response.data;
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch categories');
-        }
-        
-        const data = await response.json();
         console.log('Categories API Response:', data);
         
         if (Array.isArray(data)) {
@@ -91,48 +79,37 @@ const Products = () => {
       try {
         setLoading(true);
         
-        const params = new URLSearchParams();
+        let params = {};
         
-        if (filter !== 'all') params.append('category', filter);
-        if (searchQuery) params.append('search', searchQuery);
-        params.append('page', currentPage);
-        params.append('limit', productsPerPage);
+        if (filter !== 'all') params.category = filter;
+        if (searchQuery) params.search = searchQuery;
+        params.page = currentPage;
+        params.limit = productsPerPage;
         
         // Handle sorting
         switch (sort) {
           case 'price-low':
-            params.append('sort', 'price');
+            params.sort = 'price';
             break;
           case 'price-high':
-            params.append('sort', '-price');
+            params.sort = '-price';
             break;
           case 'newest':
-            params.append('sort', '-createdAt');
+            params.sort = '-createdAt';
             break;
           case 'popular':
-            params.append('sort', '-rating');
+            params.sort = '-rating';
             break;
           case 'name':
-            params.append('sort', 'name');
+            params.sort = 'name';
             break;
           default:
-            params.append('sort', '-createdAt');
+            params.sort = '-createdAt';
         }
         
-        const response = await fetch(`${API_BASE_URL}/api/products?${params}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            'x-auth-token': localStorage.getItem('token')
-          }
-        });
+        const response = await api.get('/api/products', { params });
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        
-        const data = await response.json();
+        const data = response.data;
         console.log('API Response:', data);
         
         if (Array.isArray(data)) {

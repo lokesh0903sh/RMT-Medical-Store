@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
 import { motion } from '../../lib/motion';
 import NavBar from '../../navbar/NavBar';
 import Footer from '../../Footer/Footer';
 import { toast } from 'react-toastify';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../../lib/api';
 
 const OrderConfirmation = () => {
   const { id } = useParams();
@@ -33,29 +30,15 @@ const OrderConfirmation = () => {
         return;
       }
       
-      // Use fetch with API_BASE_URL instead of axios
-      const response = await fetch(`${API_BASE_URL}/api/orders/${id}`, {
-        method: 'GET',
-        headers: { 
-          'Content-Type': 'application/json',
-          'x-auth-token': token,
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await api.get(`/api/orders/${id}`);
       
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to load order details');
-      }
-      
-      const data = await response.json();
-      setOrder(data.order);
+      setOrder(response.data.order);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching order details:', error);
       setError('Failed to load order details. Please try again.');
       setLoading(false);
-      toast.error(error.message || 'Failed to load order details');
+      toast.error(error.response?.data?.message || 'Failed to load order details');
     }
   };
   

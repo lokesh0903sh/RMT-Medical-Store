@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
+import api from '../../lib/api';
 
 const NotificationList = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -24,18 +23,9 @@ const NotificationList = () => {
       setLoading(true);
       setError(null);
       
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/notifications/all`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get('/api/notifications/all');
       
-      if (!response.ok) throw new Error('Failed to fetch notifications');
-      
-      let data = await response.json();
+      let data = response.data;
       
       // Apply client-side filtering
       if (filters.type && filters.type !== 'all') {
@@ -78,24 +68,14 @@ const NotificationList = () => {
     if (!window.confirm('Are you sure you want to delete this notification?')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/notifications/${id}`, {
-        method: 'DELETE',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
-      
-      if (!response.ok) throw new Error('Failed to delete notification');
+      await api.delete(`/api/notifications/${id}`);
       
       // Remove the deleted notification from state
       setNotifications(notifications.filter(notification => notification._id !== id));
       toast.success('Notification deleted successfully');
     } catch (err) {
       console.error('Error deleting notification:', err);
-      toast.error('Failed to delete notification');
+      toast.error(err.response?.data?.message || 'Failed to delete notification');
     }
   };
 

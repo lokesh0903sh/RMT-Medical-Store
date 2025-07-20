@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
+import api from '../../lib/api';
 
 const AdminLayout = () => {
-  // Use VITE_API_BASE_URL from environment
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [isOpen, setIsOpen] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
@@ -20,19 +19,9 @@ const AdminLayout = () => {
 
     const checkAdmin = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/auth/me`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-            'x-auth-token': token
-          }
-        });
+        const response = await api.get('/api/auth/me');
         
-        if (!response.ok) {
-          throw new Error('Failed to authenticate');
-        }
-        
-        const userData = await response.json();
+        const userData = response.data;
         if (userData.role !== 'admin') {
           toast.error('Admin access required');
           navigate('/');

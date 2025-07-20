@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
-
-// Use VITE_API_BASE_URL from environment
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+import api from '../../lib/api';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -27,20 +25,10 @@ const CategoryList = () => {
 
   const fetchParentCategories = async () => {
     try {
-      const token = localStorage.getItem('token');
       // Fetch only root categories for the dropdown
-      const response = await fetch(`${API_BASE_URL}/api/categories?parent=root`, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get('/api/categories?parent=root');
       
-      if (!response.ok) throw new Error('Failed to fetch parent categories');
-      
-      const data = await response.json();
-      setParentCategories(data);
+      setParentCategories(response.data);
     } catch (err) {
       console.error('Error fetching parent categories:', err);
       toast.error('Could not load parent categories');
@@ -54,28 +42,18 @@ const CategoryList = () => {
       setLoading(true);
       setError(null);
       
-      const token = localStorage.getItem('token');
       const { parent, search, sort } = filters;
       
-      let url = `${API_BASE_URL}/api/categories?sort=${sort}`;
+      let url = `/api/categories?sort=${sort}`;
       if (parent) url += `&parent=${parent}`;
       // If search is implemented in the backend, add it here
       
-      const response = await fetch(url, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
+      const response = await api.get(url);
       
-      if (!response.ok) throw new Error('Failed to fetch categories');
-      
-      const data = await response.json();
       // Filter by name client-side if search term exists
       const filteredData = search 
-        ? data.filter(cat => cat.name.toLowerCase().includes(search.toLowerCase()))
-        : data;
+        ? response.data.filter(cat => cat.name.toLowerCase().includes(search.toLowerCase()))
+        : response.data;
         
       setCategories(filteredData);
     } catch (err) {
@@ -101,27 +79,14 @@ const CategoryList = () => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
-        method: 'DELETE',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-          'x-auth-token': token 
-        }
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Failed to delete category');
-      }
+      await api.delete(`/api/categories/${id}`);
       
       // Remove the deleted category from state
       setCategories(categories.filter(category => category._id !== id));
       toast.success('Category deleted successfully');
     } catch (err) {
       console.error('Error deleting category:', err);
-      toast.error(err.message || 'Failed to delete category');
+      toast.error(err.response?.data?.message || 'Failed to delete category');
     }
   };
 

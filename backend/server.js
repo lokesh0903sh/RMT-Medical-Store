@@ -15,19 +15,18 @@ const corsOptions = {
     const allowedOrigins = [
       'http://localhost:5173',
       'http://localhost:3000',
-      'https://rmt-medical-store-eafh.vercel.app/',
-      // Add your actual Vercel frontend URL here
+      'https://rmt-medical-store-eafh.vercel.app',
       process.env.FRONTEND_URL
     ].filter(Boolean);
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token']
 };
 
@@ -41,10 +40,9 @@ app.use(express.json());
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
-    message: 'RMT Medical Store API is running (Fixed)',
+    message: 'RMT Medical Store API is running',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development',
-    version: '1.0.2'
+    version: '1.0.3'
   });
 });
 
@@ -56,7 +54,7 @@ main().then(() => {
 });
 
 async function main() {
-  await mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/rmt-medical');
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 // Routes
@@ -92,16 +90,14 @@ app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   res.status(statusCode).json({
     message: err.message || 'Server Error',
-    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack
+    stack: '🥞'
   });
 });
 
 const PORT = process.env.PORT || 5000;
 
-// Use this for local development
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+// Start the server for local development
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // Export the Express app for Vercel
 module.exports = app;
