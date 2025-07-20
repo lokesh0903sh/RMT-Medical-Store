@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from '../../lib/motion';
-import api from '../../lib/api';
 
 const QueryManagement = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [queries, setQueries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,10 +26,23 @@ const QueryManagement = () => {
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await api.get(`/medical-queries?${params}`);
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/api/medical-queries?${params}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        }
+      });
 
-      setQueries(response.data.queries);
-      setTotalPages(Math.ceil(response.data.total / 10));
+      if (!response.ok) {
+        throw new Error('Failed to fetch queries');
+      }
+
+      const data = await response.json();
+      setQueries(data.queries);
+      setTotalPages(Math.ceil(data.total / 10));
       setLoading(false);
     } catch (error) {
       console.error('Error fetching queries:', error);
@@ -38,7 +52,21 @@ const QueryManagement = () => {
 
   const updateQueryStatus = async (queryId, newStatus) => {
     try {
-      await api.put(`/medical-queries/${queryId}/status`, { status: newStatus });
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/api/medical-queries/${queryId}/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        },
+        body: JSON.stringify({ status: newStatus })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update query status');
+      }
+
       fetchQueries();
     } catch (error) {
       console.error('Error updating query status:', error);
@@ -50,7 +78,20 @@ const QueryManagement = () => {
     
     setSubmittingResponse(true);
     try {
-      await api.post(`/medical-queries/${selectedQuery._id}/response`, { response: responseText });
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/api/medical-queries/${selectedQuery._id}/response`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        },
+        body: JSON.stringify({ response: responseText })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit response');
+      }
       
       setResponseModal(false);
       setResponseText('');

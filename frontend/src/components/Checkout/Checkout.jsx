@@ -4,8 +4,9 @@ import { motion } from '../../lib/motion';
 import { useCart } from '../../context/CartContext';
 import NavBar from '../../navbar/NavBar';
 import Footer from '../../Footer/Footer';
-import api from '../../lib/api';
 import { toast } from 'react-toastify';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -79,20 +80,34 @@ const Checkout = () => {
       }
       
       // Submit order
-      const response = await api.post('/api/orders', orderData);
+      const response = await fetch(`${API_BASE_URL}/api/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        },
+        body: JSON.stringify(orderData)
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to place order');
+      }
       
       // Clear cart on success
       clearCart();
       
       // Show success and navigate to order confirmation
       toast.success('Order placed successfully!');
-      navigate(`/orders/${response.data.order._id}`, { 
-        state: { orderDetails: response.data.order } 
+      navigate(`/orders/${data.order._id}`, { 
+        state: { orderDetails: data.order } 
       });
       
     } catch (error) {
       console.error('Error placing order:', error);
-      toast.error(error.response?.data?.message || 'Failed to place order. Please try again.');
+      toast.error(error.message || 'Failed to place order. Please try again.');
     } finally {
       setLoading(false);
     }

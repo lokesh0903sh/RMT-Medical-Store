@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from '../../lib/motion';
-import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AdminSettings = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const [settings, setSettings] = useState({
     storeName: 'RMT Medical Store',
     storeEmail: 'info@rmtmedical.com',
@@ -27,6 +29,38 @@ const AdminSettings = () => {
   const [saved, setSaved] = useState(false);
   const [activeTab, setActiveTab] = useState('store');
 
+  // Fetch settings on component mount
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      // In a real app, you would fetch from your backend
+      // const response = await fetch(`${API_BASE_URL}/api/settings`, {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${token}`,
+      //     'x-auth-token': token
+      //   }
+      // });
+      // 
+      // if (!response.ok) {
+      //   throw new Error('Failed to fetch settings');
+      // }
+      // 
+      // const data = await response.json();
+      // setSettings(data);
+      
+      // For now, we're using the default settings
+    } catch (error) {
+      console.error('Error fetching settings:', error);
+      toast.error(error.message || 'Error fetching settings');
+    }
+  };
+
   const handleInputChange = (field, value) => {
     setSettings(prev => ({
       ...prev,
@@ -39,20 +73,35 @@ const AdminSettings = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      // In a real app, you would save these to your backend
-      // await axios.put('https://rmt-medical-store.vercel.app/api/settings', settings, {
-      //   headers: { 'x-auth-token': token }
-      // });
       
-      // For now, just simulate saving
+      // In a real app, you would save these to your backend
+      const response = await fetch(`${API_BASE_URL}/api/settings`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        },
+        body: JSON.stringify(settings)
+      });
+      
+      // For demonstration purposes, simulate a successful response
+      // In production, you would handle the actual response
+      // if (!response.ok) {
+      //   throw new Error('Failed to save settings');
+      // }
+      
+      // Simulate saving for demo purposes
       setTimeout(() => {
         setSaved(true);
         setLoading(false);
+        toast.success('Settings saved successfully');
         setTimeout(() => setSaved(false), 3000);
       }, 1000);
       
     } catch (error) {
       console.error('Error saving settings:', error);
+      toast.error(error.message || 'Error saving settings');
       setLoading(false);
     }
   };

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,8 +29,12 @@ const CategoryList = () => {
     try {
       const token = localStorage.getItem('token');
       // Fetch only root categories for the dropdown
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories?parent=root', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/categories?parent=root`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch parent categories');
@@ -50,12 +57,16 @@ const CategoryList = () => {
       const token = localStorage.getItem('token');
       const { parent, search, sort } = filters;
       
-      let url = `https://rmt-medical-store.vercel.app/api/categories?sort=${sort}`;
+      let url = `${API_BASE_URL}/api/categories?sort=${sort}`;
       if (parent) url += `&parent=${parent}`;
       // If search is implemented in the backend, add it here
       
       const response = await fetch(url, {
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch categories');
@@ -91,9 +102,13 @@ const CategoryList = () => {
     
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app/api/categories/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
         method: 'DELETE',
-        headers: { 'x-auth-token': token }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) {
@@ -257,7 +272,7 @@ const CategoryList = () => {
                       {category.imageUrl ? (
                         <div className="h-10 w-10 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
                           <img 
-                            src={`https://rmt-medical-store.vercel.app/${category.imageUrl}`} 
+                            src={category.imageUrl.startsWith('http') ? category.imageUrl : `${API_BASE_URL}/${category.imageUrl}`}
                             alt={category.name} 
                             className="h-full w-full object-cover" 
                             onError={(e) => {

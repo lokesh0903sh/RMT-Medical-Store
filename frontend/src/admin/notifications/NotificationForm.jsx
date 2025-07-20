@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import Select from 'react-select';
 
 const NotificationForm = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditMode = !!id;
@@ -55,8 +57,12 @@ const NotificationForm = () => {
     try {
       setFetchingUsers(true);
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/auth/users', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/auth/users`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch users');
@@ -83,8 +89,12 @@ const NotificationForm = () => {
     try {
       setFetchingNotification(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app/api/notifications/${id}`, {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/notifications/${id}`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch notification');
@@ -163,8 +173,8 @@ const NotificationForm = () => {
       
       // Make API request
       const url = isEditMode 
-        ? `https://rmt-medical-store.vercel.app/api/notifications/${id}`
-        : 'https://rmt-medical-store.vercel.app/api/notifications';
+        ? `${API_BASE_URL}/api/notifications/${id}`
+        : `${API_BASE_URL}/api/notifications`;
         
       const method = isEditMode ? 'PUT' : 'POST';
       
@@ -172,6 +182,7 @@ const NotificationForm = () => {
         method,
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
           'x-auth-token': token
         },
         body: JSON.stringify(formData)

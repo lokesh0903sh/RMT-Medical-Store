@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import api from '../lib/api';
+
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 function MedicalQueryForm() {
   const [formData, setFormData] = useState({
@@ -57,11 +59,22 @@ function MedicalQueryForm() {
     }
 
     try {
-      const res = await api.post('/medical-query', data, {
+      const response = await fetch(`${API_BASE_URL}/api/medical-query`, {
+        method: 'POST',
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'x-auth-token': localStorage.getItem('token')
+          // Note: Do not set Content-Type for FormData, browser will set it with the boundary
+        },
+        body: data
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Submission failed. Please try again.');
+      }
+
+      const res = await response.json();
       setSuccessMsg('Form submitted successfully!');
       setFormData({
         fullName: '',
@@ -75,7 +88,7 @@ function MedicalQueryForm() {
       setFile(null);
     } catch (err) {
       console.error('Submission error:', err);
-      setErrorMsg(err.response?.data?.message || 'Submission failed. Please try again.');
+      setErrorMsg(err.message || 'Submission failed. Please try again.');
     } finally {
       setLoading(false);
     }

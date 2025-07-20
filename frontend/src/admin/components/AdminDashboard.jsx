@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import api from '../../lib/api';
+
+// Use VITE_API_BASE_URL from environment
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const AdminDashboard = () => {
   const [analytics, setAnalytics] = useState({
@@ -26,13 +28,24 @@ const AdminDashboard = () => {
   // Fetch analytics data
   const fetchAnalytics = async () => {
     try {
-      const response = await api.get(`/api/analytics/dashboard?period=${selectedPeriod}`);
+      setLoading(true);
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/api/analytics/dashboard?period=${selectedPeriod}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
+        }
+      });
       
-      if (response.ok) {
-        const data = await response.json();
-        setAnalytics(data);
-        setLastUpdated(new Date());
+      if (!response.ok) {
+        throw new Error('Failed to fetch analytics data');
       }
+      
+      const data = await response.json();
+      setAnalytics(data);
+      setLastUpdated(new Date());
     } catch (error) {
       console.error('Error fetching analytics:', error);
     } finally {

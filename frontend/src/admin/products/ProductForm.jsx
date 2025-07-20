@@ -4,6 +4,8 @@ import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 
 const ProductForm = () => {
+  // Use VITE_API_BASE_URL from environment
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
   const { id } = useParams();
   const navigate = useNavigate();
   const isEditMode = !!id;
@@ -45,8 +47,12 @@ const ProductForm = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://rmt-medical-store.vercel.app/api/categories', {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/categories`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch categories');
@@ -65,8 +71,12 @@ const ProductForm = () => {
     try {
       setFetchingProduct(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://rmt-medical-store.vercel.app/api/products/${id}`, {
-        headers: { 'x-auth-token': token }
+      const response = await fetch(`${API_BASE_URL}/api/products/${id}`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token 
+        }
       });
       
       if (!response.ok) throw new Error('Failed to fetch product');
@@ -94,7 +104,7 @@ const ProductForm = () => {
         // Check if it's a Cloudinary URL (starts with http) or local path (starts with /)
         const imageUrl = product.imageUrl.startsWith('http') 
           ? product.imageUrl 
-          : `https://rmt-medical-store.vercel.app/${product.imageUrl}`;
+          : `${API_BASE_URL}/${product.imageUrl}`;
         setImagePreview(imageUrl);
       }
     } catch (err) {
@@ -186,15 +196,16 @@ const ProductForm = () => {
       
       // Determine if creating or updating
       const url = isEditMode 
-        ? `https://rmt-medical-store.vercel.app/api/products/${id}`
-        : 'https://rmt-medical-store.vercel.app/api/products';
+        ? `${API_BASE_URL}/api/products/${id}`
+        : `${API_BASE_URL}/api/products`;
         
       const method = isEditMode ? 'PUT' : 'POST';
       
       const response = await fetch(url, {
         method,
         headers: {
-          'x-auth-token': token,
+          'Authorization': `Bearer ${token}`,
+          'x-auth-token': token
           // No Content-Type header for multipart/form-data
         },
         body: formDataToSend
