@@ -2,7 +2,6 @@ import React from 'react'
 import NavBar from '../navbar/NavBar'
 import Footer from '../Footer/Footer'
 import HeroSection from './HeroSection'
-import Cart from '../components/Cart/Cart'
 import Product from '../Product/Product'
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
           </div>
         </main>
         <Footer/>
-        <Cart />
     </div>
   )
 }

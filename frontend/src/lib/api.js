@@ -22,6 +22,12 @@ api.interceptors.request.use(
       config.headers['Authorization'] = `Bearer ${token}`;
       config.headers['x-auth-token'] = token;
     }
+    
+    // Don't set Content-Type for FormData (browser will set it with boundary)
+    if (config.data instanceof FormData) {
+      delete config.headers['Content-Type'];
+    }
+    
     return config;
   },
   (error) => {

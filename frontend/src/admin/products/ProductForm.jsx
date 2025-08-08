@@ -21,7 +21,16 @@ const ProductForm = () => {
     manufacturer: '',
     requiresPrescription: false,
     dosage: '',
-    featured: false
+    featured: false,
+    // New fields
+    dosageForm: '',
+    packageSize: '',
+    storage: '',
+    countryOfOrigin: 'India',
+    uses: [],
+    symptoms: [],
+    sideEffects: [],
+    precautions: ''
   });
   
   const [categories, setCategories] = useState([]);
@@ -76,7 +85,16 @@ const ProductForm = () => {
         manufacturer: product.manufacturer || '',
         requiresPrescription: product.requiresPrescription || false,
         dosage: product.dosage || '',
-        featured: product.featured || false
+        featured: product.featured || false,
+        // New fields
+        dosageForm: product.dosageForm || '',
+        packageSize: product.packageSize || '',
+        storage: product.storage || '',
+        countryOfOrigin: product.countryOfOrigin || 'India',
+        uses: product.uses || [],
+        symptoms: product.symptoms || [],
+        sideEffects: product.sideEffects || [],
+        precautions: product.precautions || ''
       });
       
       // Set image preview if product has an image
@@ -446,6 +464,150 @@ const ProductForm = () => {
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                 JPG, PNG or WEBP up to 5MB
               </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Medical Information Section */}
+        <div className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6">
+          <h3 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-4">
+            Medical Information
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Left Column */}
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Dosage Form
+                </label>
+                <select
+                  name="dosageForm"
+                  value={formData.dosageForm}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                >
+                  <option value="">Select Dosage Form</option>
+                  {['Tablet', 'Capsule', 'Syrup', 'Injection', 'Cream', 'Ointment', 'Gel', 'Drops', 'Powder', 'Spray', 'Other'].map(form => (
+                    <option key={form} value={form}>{form}</option>
+                  ))}
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Package Size
+                </label>
+                <input
+                  type="text"
+                  name="packageSize"
+                  value={formData.packageSize}
+                  onChange={handleChange}
+                  placeholder="e.g., 10 tablets, 100ml"
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Storage Instructions
+                </label>
+                <input
+                  type="text"
+                  name="storage"
+                  value={formData.storage}
+                  onChange={handleChange}
+                  placeholder="e.g., Store in a cool, dry place"
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Country of Origin
+                </label>
+                <input
+                  type="text"
+                  name="countryOfOrigin"
+                  value={formData.countryOfOrigin}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
+            </div>
+            
+            {/* Right Column */}
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Uses (Separate with commas)
+                </label>
+                <textarea
+                  name="uses"
+                  value={formData.uses.join(', ')}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      uses: e.target.value.split(',').map(item => item.trim()).filter(Boolean)
+                    });
+                  }}
+                  placeholder="e.g., Pain relief, Fever reduction, Anti-inflammatory"
+                  rows="3"
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Symptoms Treated (Separate with commas)
+                </label>
+                <textarea
+                  name="symptoms"
+                  value={formData.symptoms.join(', ')}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      symptoms: e.target.value.split(',').map(item => item.trim()).filter(Boolean)
+                    });
+                  }}
+                  placeholder="e.g., Headache, Fever, Muscle pain"
+                  rows="3"
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Side Effects (Separate with commas)
+                </label>
+                <textarea
+                  name="sideEffects"
+                  value={formData.sideEffects.join(', ')}
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      sideEffects: e.target.value.split(',').map(item => item.trim()).filter(Boolean)
+                    });
+                  }}
+                  placeholder="e.g., Drowsiness, Nausea, Dizziness"
+                  rows="3"
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Precautions
+                </label>
+                <textarea
+                  name="precautions"
+                  value={formData.precautions}
+                  onChange={handleChange}
+                  placeholder="Enter any precautions or warnings"
+                  rows="3"
+                  className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
+                />
+              </div>
             </div>
           </div>
         </div>

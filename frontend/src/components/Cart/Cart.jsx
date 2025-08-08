@@ -151,7 +151,7 @@ const Cart = () => {
                 </div>                <button 
                   onClick={() => {
                     toggleCart();
-                    navigate('/checkout');
+                    navigate('checkout');
                   }}
                   className="w-full bg-[#036372] hover:bg-[#1fa9be] dark:bg-[#1fa9be] dark:hover:bg-[#036372] text-white py-3 rounded-lg flex items-center justify-center font-medium transition-colors"
                 >

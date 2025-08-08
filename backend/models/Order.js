@@ -13,6 +13,14 @@ const orderSchema = new mongoose.Schema({
         ref: 'Product',
         required: true
       },
+      productName: {
+        type: String,
+        required: true
+      },
+      productImage: {
+        type: String,
+        default: ''
+      },
       quantity: {
         type: Number,
         required: true,
@@ -21,6 +29,19 @@ const orderSchema = new mongoose.Schema({
       price: {
         type: Number,
         required: true
+      },
+      reviewed: {
+        type: Boolean,
+        default: false
+      },
+      reviewId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product.reviews',
+        default: null
+      },
+      productDeleted: {
+        type: Boolean,
+        default: false
       }
     }
   ],
@@ -73,6 +94,10 @@ const orderSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now
+  },
+  deliveredAt: {
+    type: Date,
+    default: null
   }
 });
 

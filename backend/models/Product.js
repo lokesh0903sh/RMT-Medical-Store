@@ -61,6 +61,36 @@ const productSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  // New fields for enhanced product details
+  dosageForm: {
+    type: String,
+    default: ''
+  },
+  packageSize: {
+    type: String,
+    default: ''
+  },
+  storage: {
+    type: String,
+    default: 'Store in a cool, dry place'
+  },
+  countryOfOrigin: {
+    type: String,
+    default: 'India'
+  },
+  uses: [{
+    type: String
+  }],
+  symptoms: [{
+    type: String
+  }],
+  sideEffects: [{
+    type: String
+  }],
+  precautions: {
+    type: String,
+    default: ''
+  },
   rating: {
     type: Number,
     default: 0,
@@ -70,15 +100,32 @@ const productSchema = new mongoose.Schema({
   reviews: [{
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: true
     },
-    text: String,
+    text: {
+      type: String,
+      required: true
+    },
     rating: {
       type: Number,
+      required: true,
       min: 1,
       max: 5
     },
-    date: {
+    anonymous: {
+      type: Boolean,
+      default: false
+    },
+    orderId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order'
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    },
+    updatedAt: {
       type: Date,
       default: Date.now
     }
@@ -100,6 +147,33 @@ const productSchema = new mongoose.Schema({
 // Update timestamp on save
 productSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
+  next();
+});
+
+// Create a compound index for better review queries
+productSchema.index({ 'reviews.user': 1, 'reviews.product': 1 });
+
+// When a product is deleted, clean up references in orders
+productSchema.pre('findOneAndDelete', async function(next) {
+  // Get the document that is about to be deleted
+  const productToDelete = await this.model.findOne(this.getQuery());
+  
+  if (productToDelete) {
+    try {
+      // Find any orders with this product and update them
+      const Order = mongoose.model('Order');
+      await Order.updateMany(
+        { 'items.product': productToDelete._id },
+        { $set: { 'items.$[elem].productDeleted': true } },
+        { arrayFilters: [{ 'elem.product': productToDelete._id }] }
+      );
+      
+      console.log(`Updated orders for deleted product: ${productToDelete._id}`);
+    } catch (err) {
+      console.error('Error updating orders for deleted product:', err);
+    }
+  }
+  
   next();
 });
 

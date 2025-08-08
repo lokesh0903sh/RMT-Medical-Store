@@ -3,7 +3,6 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from '../lib/motion';
 import NavBar from '../navbar/NavBar';
 import Footer from '../Footer/Footer';
-import Cart from '../components/Cart/Cart';
 import Card from '../Card/Card';
 import { toast } from 'react-toastify';
 import api from '../lib/api';
@@ -450,7 +449,6 @@ const Products = () => {
       </motion.main>
       
       <Footer />
-      <Cart />
       
       {/* Scroll to top button */}
       <AnimatePresence>

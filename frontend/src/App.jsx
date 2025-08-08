@@ -3,14 +3,14 @@ import './App.css';
 import Home from './Home/Home';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { RouterProvider } from 'react-router';
 import MedicalQueryForm from './QueryForm/MedicalQueryForm';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProtectedRoute from './components/ProtectedRoute';
 import { CartProvider } from './context/CartContext';
-import Cart from './components/Cart/Cart';
+import Layout from './components/Layout';
 import ProductDetail from './Product/ProductDetail';
 import Products from './Product/Products';
 import Checkout from './components/Checkout/Checkout';
@@ -65,123 +65,42 @@ function App() {
   const appRouter = createBrowserRouter([
     {
       path: '/',
-      element: <Home/>
-    },
-    {
-      path: '/products',
-      element: <Products/>
-    },
-    {
-      path: '/about',
-      element: <AboutUs/>
-    },
-    {
-      path: '/contact',
-      element: <Contact/>
-    },
-    {
-      path: '/help',
-      element: <Help/>
-    },
-    {
-      path: '/login',
-      element: <Login/>
-    },
-    {
-      path: '/signup',
-      element: <Signup/>
-    },
-    {
-      path: '/products/:id',
-      element: <ProductDetail />
-    },
-    {
-      path: '/checkout',
-      element: <ProtectedRoute><Checkout /></ProtectedRoute>
-    },
-    {
-      path: '/orders',
-      element: <ProtectedRoute><Orders /></ProtectedRoute>
-    },
-    {
-      path: '/orders/:id',
-      element: <ProtectedRoute><OrderConfirmation /></ProtectedRoute>
-    },
-    {
-      path: '/medical-query',
-      element: <ProtectedRoute><MedicalQueryForm/></ProtectedRoute>
-    },
-    {
-      path: '/query-form',
-      element: <ProtectedRoute><MedicalQueryForm/></ProtectedRoute>
-    },
-    // Admin Routes
-    {
-      path: '/admin',
-      element: <ProtectedRoute adminOnly={true}><AdminLayout /></ProtectedRoute>,
+      element: <Layout />,
       children: [
+        { index: true, element: <Home/> },
+        { path: 'products', element: <Products/> },
+        { path: 'about', element: <AboutUs/> },
+        { path: 'contact', element: <Contact/> },
+        { path: 'help', element: <Help/> },
+        { path: 'login', element: <Login/> },
+        { path: 'signup', element: <Signup/> },
+        { path: 'products/:id', element: <ProductDetail /> },
+        { path: 'checkout', element: <ProtectedRoute><Checkout /></ProtectedRoute> },
+        { path: 'orders', element: <ProtectedRoute><Orders /></ProtectedRoute> },
+        { path: 'orders/:id', element: <ProtectedRoute><OrderConfirmation /></ProtectedRoute> },
+        { path: 'medical-query', element: <ProtectedRoute><MedicalQueryForm/></ProtectedRoute> },
+        { path: 'query-form', element: <ProtectedRoute><MedicalQueryForm/></ProtectedRoute> },
+        
+        // Admin Routes
         {
-          index: true,
-          element: <AdminDashboard />
-        },
-        // Product Routes
-        {
-          path: 'products',
-          element: <ProductList />
-        },
-        {
-          path: 'products/new',
-          element: <ProductForm />
-        },
-        {
-          path: 'products/edit/:id',
-          element: <ProductForm />
-        },
-        // Category Routes
-        {
-          path: 'categories',
-          element: <CategoryList />
-        },
-        {
-          path: 'categories/new',
-          element: <CategoryForm />
-        },
-        {
-          path: 'categories/edit/:id',
-          element: <CategoryForm />
-        },
-        // Notification Routes
-        {
-          path: 'notifications',
-          element: <NotificationList />
-        },
-        {
-          path: 'notifications/new',
-          element: <NotificationForm />
-        },
-        {
-          path: 'notifications/edit/:id',
-          element: <NotificationForm />
-        },
-        // Order Routes
-        {
-          path: 'orders',
-          element: <OrderList />
-        },
-        // User Management Routes
-        {
-          path: 'users',
-          element: <UserManagement />
-        },
-        // Settings Routes
-        {
-          path: 'settings',
-          element: <AdminSettings />
-        },
-        // Query Management Routes
-        {
-          path: 'queries',
-          element: <QueryManagement />
+          path: 'admin',
+          element: <ProtectedRoute adminOnly={true}><AdminLayout /></ProtectedRoute>,
+          children: [
+            { index: true, element: <AdminDashboard /> },
+            { path: 'products', element: <ProductList /> },
+            { path: 'products/new', element: <ProductForm /> },
+            { path: 'products/edit/:id', element: <ProductForm /> },
+            { path: 'categories', element: <CategoryList /> },
+            { path: 'categories/new', element: <CategoryForm /> },
+            { path: 'categories/edit/:id', element: <CategoryForm /> },
+            { path: 'notifications', element: <NotificationList /> },
+            { path: 'notifications/new', element: <NotificationForm /> },
+            { path: 'notifications/edit/:id', element: <NotificationForm /> },
+            { path: 'orders', element: <OrderList /> },
+            { path: 'users', element: <UserManagement /> },
+            { path: 'settings', element: <AdminSettings /> },
+            { path: 'queries', element: <QueryManagement /> }
+          ]
         }
       ]
     }

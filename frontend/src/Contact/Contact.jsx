@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from '../lib/motion';
 import NavBar from '../navbar/NavBar';
 import Footer from '../Footer/Footer';
-import Cart from '../components/Cart/Cart';
 import { toast } from 'react-toastify';
 
 const Contact = () => {
@@ -328,7 +327,6 @@ const Contact = () => {
       </motion.main>
       
       <Footer />
-      <Cart />
       
       {/* Scroll to top button */}
       <AnimatePresence>

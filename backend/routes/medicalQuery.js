@@ -20,12 +20,54 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'rmt-medical/prescriptions',
     allowed_formats: ['jpg', 'jpeg', 'png', 'pdf'],
-    transformation: [{ quality: 'auto' }]
+    transformation: [{ quality: 'auto' }],
+    // Add resource type detection
+    resource_type: (req, file) => {
+      // Check if file is PDF or image
+      if (file.mimetype === 'application/pdf') {
+        return 'raw';
+      }
+      return 'image';
+    }
   }
 });
-const upload = multer({ storage });
 
-router.post("/", upload.single("prescriptionFile"), async (req, res) => {
+// Configure multer with file size limits and error handling
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    // Validate file types
+    const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+    if (allowedMimes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error(`Invalid file type. Only JPG, PNG and PDF files are allowed.`));
+    }
+  }
+});
+
+// Error handling middleware for multer upload errors
+const handleUpload = (req, res, next) => {
+  upload.single('prescriptionFile')(req, res, (err) => {
+    if (err) {
+      console.error('File upload error:', err);
+      if (err instanceof multer.MulterError) {
+        // Multer error (e.g., file too large)
+        return res.status(400).json({ error: `Upload error: ${err.message}` });
+      } else {
+        // Other errors
+        return res.status(400).json({ error: err.message });
+      }
+    }
+    // No error, proceed
+    next();
+  });
+};
+
+router.post("/", handleUpload, async (req, res) => {
   const {
     fullName,
     phone,
@@ -41,6 +83,12 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
   const filePublicId = req.file ? req.file.public_id : null;
 
   try {
+    // Log request info for debugging
+    console.log('Received medical query with fields:', req.body);
+    console.log('File included:', req.file ? 
+      `Yes - ${req.file.originalname} (${req.file.mimetype}, ${req.file.size} bytes)` : 
+      'No');
+    
     const newQuery = new MedicalQuery({
       fullName,
       phone,
@@ -146,10 +194,18 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
       },
     });
 
+    // Create attachments array with the PDF receipt
     const attachments = [
-      ...(filePath ? [{ path: `./uploads/${filePath}` }] : []),
       { filename: "receipt.pdf", content: pdfBuffer },
     ];
+    
+    // If we have a Cloudinary prescription file URL, add it to the email notification
+    if (fileUrl) {
+      attachments.push({
+        filename: "prescription" + (fileUrl.endsWith('.pdf') ? '.pdf' : '.jpg'),
+        path: fileUrl
+      });
+    }
 
     const ownerMailOptions = {
       from: email,
@@ -161,10 +217,11 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
         Name: ${fullName}
         Phone: ${phone}
         Email: ${email}
-        Has Prescription: ${hasPrescription}
-        Purchase Without Prescription: ${purchaseWithoutPrescription}
+        Has Prescription: ${hasPrescription === "yes" ? "Yes" : "No"}
+        Purchase Without Prescription: ${purchaseWithoutPrescription === "yes" ? "Yes" : "No"}
         Product List: ${productList || "N/A"}
         Message: ${message || "N/A"}
+        ${fileUrl ? `Prescription File: ${fileUrl}` : ""}
       `,
       attachments,
     };
@@ -182,14 +239,28 @@ router.post("/", upload.single("prescriptionFile"), async (req, res) => {
       transporter.sendMail(userMailOptions),
     ]);
 
-    if (filePath) fs.unlinkSync(`./uploads/${filePath}`);
-
     return res.status(200).json({
       message: "Your query has been submitted. A receipt has been sent to your email.",
     });
   } catch (error) {
     console.error("Error in /medical-query:", error);
-    res.status(500).json({ error: "Submission failed" });
+    
+    // Improved error logging for debugging
+    console.error('Error details:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    });
+    
+    // Send more specific error message
+    const errorMessage = error.code === 'ENOENT' ? 
+      'File access error' : 
+      (error.message || 'Submission failed');
+      
+    res.status(500).json({ 
+      error: errorMessage,
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 });
 
@@ -280,7 +351,7 @@ router.post("/:id/response", adminAuth, async (req, res) => {
     // Send email notification to user if email exists
     if (query.email) {
       try {
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
             user: process.env.EMAIL_USER,

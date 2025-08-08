@@ -66,6 +66,7 @@ const orderRoutes = require('./routes/orders');
 const analyticsRoutes = require('./routes/analytics');
 const userRoutes = require('./routes/users');
 const uploadRoutes = require('./routes/uploads');
+const reviewRoutes = require('./routes/review-routes');
 
 // API endpoints
 app.use('/api/auth', authRoutes);
@@ -78,6 +79,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/uploads', uploadRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // 404 Error handler
 app.use((req, res, next) => {

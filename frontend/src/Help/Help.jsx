@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from '../lib/motion';
 import NavBar from '../navbar/NavBar';
 import Footer from '../Footer/Footer';
-import Cart from '../components/Cart/Cart';
 
 const Help = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -345,7 +344,6 @@ const Help = () => {
       </motion.main>
       
       <Footer />
-      <Cart />
       
       {/* Scroll to top button */}
       <AnimatePresence>

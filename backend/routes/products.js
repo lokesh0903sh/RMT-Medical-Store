@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
 const auth = require('../middleware/auth');
@@ -93,7 +94,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
-      .populate('category', 'name slug');
+      .populate('category', 'name slug')
+      .populate('reviews.user', 'name email');
     
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
@@ -267,9 +269,15 @@ router.delete('/:id', [auth, adminAuth], async (req, res) => {
 // Add product review (authenticated users)
 router.post('/:id/reviews', auth, async (req, res) => {
   try {
-    const { rating, text } = req.body;
+    const { rating, text, comment, anonymous } = req.body;
+    const reviewText = text || comment; // Accept either text or comment
+    
     if (!rating || rating < 1 || rating > 5) {
       return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
+
+    if (!reviewText || reviewText.trim() === '') {
+      return res.status(400).json({ message: 'Review text is required' });
     }
 
     const product = await Product.findById(req.params.id);
@@ -279,18 +287,21 @@ router.post('/:id/reviews', auth, async (req, res) => {
 
     // Check if user already reviewed
     const alreadyReviewed = product.reviews.find(
-      review => review.user.toString() === req.user.id
+      review => review.user && review.user.toString() === req.user.id
     );
 
     if (alreadyReviewed) {
-      return res.status(400).json({ message: 'Product already reviewed' });
+      return res.status(400).json({ message: 'You have already reviewed this product' });
     }
 
     // Add review
     const review = {
       user: req.user.id,
       rating: Number(rating),
-      text
+      text: reviewText,
+      anonymous: anonymous === true,
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
 
     product.reviews.push(review);
@@ -301,9 +312,97 @@ router.post('/:id/reviews', auth, async (req, res) => {
 
     await product.save();
 
-    res.status(201).json({ message: 'Review added' });
+    // Get the newly added review with its ID
+    const savedReview = product.reviews[product.reviews.length - 1];
+    
+    // Populate user info for the review
+    await Product.populate(product, {
+      path: 'reviews.user',
+      select: 'name email'
+    });
+
+    // Make sure the review object includes populated user data
+    const populatedReview = product.reviews[product.reviews.length - 1];
+
+    res.status(201).json({ 
+      success: true, 
+      message: 'Review added successfully',
+      reviewId: savedReview._id,
+      review: populatedReview,
+      verifiedPurchase: false,
+      userName: populatedReview.anonymous ? null : (populatedReview.user ? populatedReview.user.name : null)
+    });
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+});
+
+// GET products available for review by a user
+router.get('/user/available-for-review', auth, async (req, res) => {
+  try {
+    // Find all delivered orders for this user
+    const orders = await mongoose.model('Order').find({
+      user: req.user.id,
+      status: 'delivered',
+      'items.reviewed': false
+    }).populate('items.product', 'name imageUrl price');
+
+    // Extract products that can be reviewed
+    const productsForReview = [];
+    
+    orders.forEach(order => {
+      order.items.forEach(item => {
+        if (!item.reviewed && item.product) {
+          productsForReview.push({
+            product: item.product,
+            orderId: order._id,
+            orderDate: order.createdAt,
+            deliveryDate: order.updatedAt
+          });
+        }
+      });
+    });
+
+    res.json({
+      success: true,
+      productsForReview
+    });
+  } catch (err) {
+    console.error('Error fetching reviewable products:', err);
+    res.status(500).json({ message: 'Server error when fetching reviewable products' });
+  }
+});
+
+// When deleting a product, we should handle its reviews
+router.delete('/:id', [auth, adminAuth], async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    
+    // If product has an image on Cloudinary, delete it
+    if (product.imageUrl && product.imageUrl.includes('cloudinary')) {
+      const publicId = extractPublicId(product.imageUrl);
+      await deleteFromCloudinary(publicId);
+    }
+    
+    // If product has reviews, handle them appropriately
+    if (product.reviews && product.reviews.length > 0) {
+      console.log(`Deleting ${product.reviews.length} reviews for product ${product._id}`);
+      
+      // You could also notify users that their reviews for this product were deleted
+      // Or archive the reviews instead of deleting them completely
+    }
+    
+    // Delete the product and all associated reviews
+    await Product.findByIdAndDelete(req.params.id);
+    
+    res.json({ message: 'Product deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting product:', err);
+    res.status(500).json({ message: 'Server error when deleting product' });
   }
 });
 

@@ -63,15 +63,44 @@ const AdminLayout = () => {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex flex-col md:flex-row h-screen bg-gray-100 dark:bg-gray-900">
+      {/* Mobile Header */}
+      <div className="md:hidden flex items-center justify-between p-4 bg-[#036372] dark:bg-gray-800 text-white border-b border-[#1fa9be]/20">
+        <div className="flex items-center">
+          <img src="/src/assets/RMT_Medical_Store_Transparent.png" alt="Logo" className="h-8 w-auto mr-2" />
+          <span className="text-base font-bold text-white">Admin Panel</span>
+        </div>
+        <button
+          onClick={toggleSidebar}
+          className="text-white focus:outline-none"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      
+      {/* Backdrop for mobile menu */}
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+      
       {/* Sidebar */}
       <motion.aside
         initial={false}
-        animate={{ width: isOpen ? '250px' : '80px' }}
-        className="bg-[#036372] dark:bg-gray-800 text-white flex flex-col"
+        animate={{ 
+          width: isOpen ? '250px' : '80px',
+        }}
+        transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
+        className={`bg-[#036372] dark:bg-gray-800 text-white flex-shrink-0 flex flex-col fixed md:relative h-full z-20 transition-all ${!isOpen && 'md:translate-x-0 -translate-x-full'} ${isOpen && 'shadow-lg md:shadow-none'}`}
       >
-        {/* Logo and Toggle */}
-        <div className="flex items-center p-4 h-20 border-b border-[#1fa9be]/20">
+        {/* Logo and Toggle - desktop */}
+        <div className="hidden md:flex items-center p-4 h-20 border-b border-[#1fa9be]/20">
           {isOpen ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -87,7 +116,7 @@ const AdminLayout = () => {
           )}
           <button
             onClick={toggleSidebar}
-            className={`text-white ${isOpen ? 'ml-auto' : 'mx-auto mt-4'}`}
+            className={`text-white ${isOpen ? 'ml-auto' : 'mx-auto mt-4'} hidden md:block`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               {isOpen ? (
@@ -98,10 +127,20 @@ const AdminLayout = () => {
             </svg>
           </button>
         </div>
+        
+        {/* Mobile sidebar close button */}
+        <div className="md:hidden flex justify-end p-4">
+          <button onClick={toggleSidebar} className="text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 overflow-y-auto py-4">
-          <ul className="space-y-2 px-3">
+        <nav className="flex-1 overflow-y-auto py-2 sm:py-4">
+          <ul className="space-y-1 sm:space-y-2 px-2 sm:px-3">
             {[
               { path: '/admin', icon: 'grid', label: 'Dashboard' },
               { path: '/admin/products', icon: 'package', label: 'Products' },
@@ -116,11 +155,12 @@ const AdminLayout = () => {
                   to={item.path}
                   end={item.path === '/admin'}
                   className={({ isActive }) => `
-                    flex items-center p-3 rounded-lg mb-1
+                    flex items-center p-2 sm:p-3 rounded-lg mb-1
                     ${isActive ? 'bg-[#1fa9be] shadow-md' : 'hover:bg-[#1fa9be]/50 transition-colors'}
+                    ${!isOpen && 'justify-center'}
                   `}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 sm:w-[18px] sm:h-[18px]">
                     {item.icon === 'grid' && (
                       <>
                         <rect x="3" y="3" width="7" height="7"></rect>
@@ -185,9 +225,9 @@ const AdminLayout = () => {
         </nav>
 
         {/* Bottom Actions */}
-        <div className="mt-auto p-4 border-t border-[#1fa9be]/20">
-          <NavLink to="/" className="flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="mt-auto p-2 sm:p-4 border-t border-[#1fa9be]/20">
+          <NavLink to="/" className="flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors justify-center sm:justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
@@ -202,9 +242,9 @@ const AdminLayout = () => {
           </NavLink>
           <button
             onClick={handleLogout}
-            className="mt-2 w-full flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors"
+            className="mt-2 w-full flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors justify-center sm:justify-start"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" y1="12" x2="9" y2="12"></line>
@@ -221,10 +261,18 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
+      {/* Backdrop for mobile menu */}
+      {isOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
+          onClick={toggleSidebar}
+        ></div>
+      )}
+      
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-sm z-10">
+        {/* Header - Desktop */}
+        <header className="hidden md:block bg-white dark:bg-gray-800 shadow-sm z-10">
           <div className="px-4 py-4 flex items-center justify-between">
             <div className="flex items-center">
               <h1 className="text-xl font-semibold text-gray-800 dark:text-white">Admin Dashboard</h1>
@@ -234,6 +282,7 @@ const AdminLayout = () => {
               <button 
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 onClick={() => document.documentElement.classList.toggle('dark')}
+                aria-label="Toggle dark mode"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 dark:text-gray-300">
                   <circle cx="12" cy="12" r="5"></circle>
@@ -249,7 +298,10 @@ const AdminLayout = () => {
               </button>
               
               {/* Notifications */}
-              <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+              <button 
+                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                aria-label="View notifications"
+              >
                 <span className="relative">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 dark:text-gray-300">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -274,13 +326,48 @@ const AdminLayout = () => {
           </div>
         </header>
 
+        {/* Secondary Header for Mobile */}
+        <div className="md:hidden bg-white dark:bg-gray-800 shadow-sm p-3 flex justify-between items-center">
+          <h1 className="text-base font-semibold text-gray-800 dark:text-white">Admin Panel</h1>
+          <div className="flex items-center space-x-3">
+            <button 
+              className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              onClick={() => document.documentElement.classList.toggle('dark')}
+              aria-label="Toggle dark mode"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 dark:text-gray-300">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </button>
+            <button className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+              <span className="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-600 dark:text-gray-300">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                  3
+                </span>
+              </span>
+            </button>
+          </div>
+        </div>
+
         {/* Main Content Area with Outlet */}
-        <main className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900 p-6">
+        <main className="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900 p-2 sm:p-3 md:p-5 pt-3 md:pt-6">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="container mx-auto"
+            className="w-full max-w-7xl mx-auto"
           >
             <Outlet />
           </motion.div>

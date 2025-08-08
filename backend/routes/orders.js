@@ -232,11 +232,14 @@ router.patch('/:id', auth, adminAuth, async (req, res) => {
   try {
     const { status, trackingInfo, paymentStatus, orderNotes } = req.body;
     
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate('items.product');
     
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });
     }
+    
+    // Store previous status for comparison
+    const previousStatus = order.status;
     
     // Update fields if provided
     if (status) order.status = status;
@@ -260,6 +263,31 @@ router.patch('/:id', auth, adminAuth, async (req, res) => {
       }
     }
     
+    // Handle status change to delivered
+    if (status === 'delivered' && previousStatus !== 'delivered') {
+      // Set delivery date
+      order.deliveredAt = new Date();
+      
+      // Send notification to user about order delivery
+      try {
+        // Create notification for review reminder
+        const Notification = require('../models/Notification');
+        await new Notification({
+          user: order.user,
+          title: 'Order Delivered!',
+          message: `Your order #${order.orderId} has been delivered. We'd love to hear your feedback!`,
+          type: 'order-delivered',
+          data: {
+            orderId: order._id
+          },
+          isRead: false
+        }).save();
+      } catch (notificationErr) {
+        console.error('Failed to create delivery notification:', notificationErr);
+        // Don't block the process if notification fails
+      }
+    }
+    
     await order.save();
     
     res.json({ 
@@ -274,6 +302,49 @@ router.patch('/:id', auth, adminAuth, async (req, res) => {
     });
   } catch (err) {
     console.error('Error updating order:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Get products available for review by the current user
+router.get('/reviewable-products', auth, async (req, res) => {
+  try {
+    // Get all delivered orders that have items not reviewed yet
+    const orders = await Order.find({
+      user: req.user._id,
+      status: 'delivered',
+      'items.reviewed': false
+    })
+    .populate('items.product', 'name imageUrl price description')
+    .sort('-updatedAt');
+
+    if (!orders || orders.length === 0) {
+      return res.json({ message: 'No products available for review', products: [] });
+    }
+
+    // Extract products available for review
+    const reviewableProducts = [];
+    orders.forEach(order => {
+      order.items.forEach(item => {
+        if (!item.reviewed && item.product && !item.productDeleted) {
+          reviewableProducts.push({
+            productId: item.product._id,
+            productName: item.product.name,
+            productImage: item.product.imageUrl,
+            orderId: order._id,
+            orderDate: order.createdAt,
+            deliveryDate: order.deliveredAt || order.updatedAt
+          });
+        }
+      });
+    });
+
+    res.json({
+      count: reviewableProducts.length,
+      products: reviewableProducts
+    });
+  } catch (err) {
+    console.error('Error fetching reviewable products:', err);
     res.status(500).json({ message: 'Server error' });
   }
 });
