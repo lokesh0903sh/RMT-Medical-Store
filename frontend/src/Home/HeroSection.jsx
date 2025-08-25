@@ -24,7 +24,7 @@ const HeroSection = () => {
         </div>
         <div className="md:w-1/2">
           <img 
-            src="./src/assets/RMT_Medical_Store.png" 
+            src="../assets/RMT_Medical_Store.png" 
             alt="RMT Medical Store" 
             className="w-full max-w-md mx-auto rounded-xl shadow-xl transform -rotate-3 hover:rotate-0 transition-transform duration-300"
           />
