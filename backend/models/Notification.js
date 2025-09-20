@@ -11,28 +11,49 @@ const notificationSchema = new mongoose.Schema({
   },
   type: { 
     type: String,
-    enum: ['info', 'warning', 'success', 'error'],
+    enum: ['order', 'query', 'system', 'welcome', 'info', 'warning', 'success', 'error'],
     default: 'info'
   },
   recipientType: {
     type: String,
-    enum: ['all', 'admin', 'specific'],
+    enum: ['all', 'admin', 'specific', 'user'],
     default: 'all'
   },
   recipients: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   read: [{
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: true
     },
     readAt: {
       type: Date,
       default: Date.now
     }
   }],
+  actionUrl: {
+    type: String,
+    default: ''
+  },
+  actionText: {
+    type: String,
+    default: ''
+  },
+  orderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  },
+  queryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'MedicalQuery'
+  },
   link: {
     type: String,
     default: ''

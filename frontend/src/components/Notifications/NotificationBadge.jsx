@@ -43,7 +43,7 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await fetch(`${API_BASE_URL}/api/notifications/unread-count`, {
+      const response = await fetch(`${API_BASE_URL}/api/notifications/count`, {
         headers: { 
           'x-auth-token': token,
           'Authorization': `Bearer ${token}`
@@ -53,7 +53,7 @@ const NotificationBadge = () => {
       if (!response.ok) throw new Error('Failed to fetch notifications');
       
       const data = await response.json();
-      setUnreadCount(data.unreadCount);
+      setUnreadCount(data.count);
     } catch (err) {
       console.error('Error fetching notification count:', err);
       setError('Could not load notifications');
@@ -68,7 +68,7 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      const response = await fetch(`${API_BASE_URL}/api/notifications/my`, {
+      const response = await fetch(`${API_BASE_URL}/api/notifications?limit=5`, {
         headers: { 
           'x-auth-token': token,
           'Authorization': `Bearer ${token}`
@@ -78,7 +78,7 @@ const NotificationBadge = () => {
       if (!response.ok) throw new Error('Failed to fetch notifications');
       
       const data = await response.json();
-      setNotifications(data);
+      setNotifications(data.notifications || []);
     } catch (err) {
       console.error('Error fetching notifications:', err);
       setError('Could not load notifications');
@@ -99,8 +99,8 @@ const NotificationBadge = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
       
-      await fetch(`${API_BASE_URL}/api/notifications/read/${id}`, {
-        method: 'PUT',
+      await fetch(`${API_BASE_URL}/api/notifications/${id}/read`, {
+        method: 'PATCH',
         headers: { 
           'x-auth-token': token,
           'Authorization': `Bearer ${token}`

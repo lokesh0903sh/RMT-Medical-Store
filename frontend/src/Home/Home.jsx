@@ -3,6 +3,7 @@ import NavBar from '../navbar/NavBar'
 import Footer from '../Footer/Footer'
 import HeroSection from './HeroSection'
 import Product from '../Product/Product'
+import TopCategories from '../components/TopCategories'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
             <HeroSection/>
           </div>
         </main>
+        <TopCategories/>
         <Footer/>
     </div>
   )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
@@ -36,9 +36,13 @@ const ProductForm = () => {
   const [categories, setCategories] = useState([]);
   const [imagePreview, setImagePreview] = useState('');
   const [imageFile, setImageFile] = useState(null);
+  const [multipleImages, setMultipleImages] = useState([]);
+  const [multipleImagePreviews, setMultipleImagePreviews] = useState([]);
+  const [existingAdditionalImages, setExistingAdditionalImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [fetchingProduct, setFetchingProduct] = useState(isEditMode);
   const [fetchingCategories, setFetchingCategories] = useState(true);
+  const multipleImageInputRef = useRef(null);
 
   // Fetch categories when component mounts
   useEffect(() => {
@@ -105,6 +109,18 @@ const ProductForm = () => {
           : `${api.defaults.baseURL}/${product.imageUrl}`;
         setImagePreview(imageUrl);
       }
+
+      // Set additional images if product has them
+      if (product.additionalImages && product.additionalImages.length > 0) {
+        const additionalImageUrls = product.additionalImages.map(imageUrl => 
+          imageUrl.startsWith('http') 
+            ? imageUrl 
+            : `${api.defaults.baseURL}/${imageUrl}`
+        );
+        setExistingAdditionalImages(additionalImageUrls);
+        setMultipleImagePreviews(additionalImageUrls);
+        // Note: We don't set multipleImages as those are File objects for new uploads
+      }
     } catch (err) {
       console.error('Error fetching product:', err);
       toast.error('Could not load product data');
@@ -149,6 +165,82 @@ const ProductForm = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleMultipleImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (!files.length) return;
+    
+    // Validate each file
+    const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+    const maxFiles = 5; // Limit to 5 additional images total
+    
+    // Check if adding these files would exceed the limit
+    const totalExistingImages = existingAdditionalImages.length + multipleImages.length;
+    if (totalExistingImages + files.length > maxFiles) {
+      toast.error(`You can only have up to ${maxFiles} additional images total. Currently you have ${totalExistingImages}.`);
+      return;
+    }
+    
+    const validFiles = [];
+    const previews = [];
+    
+    files.forEach((file, index) => {
+      if (!validTypes.includes(file.type)) {
+        toast.error(`File ${index + 1}: Invalid file type. Please upload JPEG or PNG images.`);
+        return;
+      }
+      
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error(`File ${index + 1}: File is too large. Maximum size is 5MB.`);
+        return;
+      }
+      
+      validFiles.push(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        previews.push(reader.result);
+        if (previews.length === validFiles.length) {
+          // Append new previews to existing ones
+          setMultipleImagePreviews(prev => [...prev, ...previews]);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+    
+    // Append new files to existing ones
+    setMultipleImages(prev => [...prev, ...validFiles]);
+    
+    // Reset the file input
+    if (multipleImageInputRef.current) {
+      multipleImageInputRef.current.value = '';
+    }
+  };
+
+  const removeMultipleImage = (index) => {
+    const totalPreviews = multipleImagePreviews.length;
+    const existingCount = existingAdditionalImages.length;
+    
+    if (index < existingCount) {
+      // Removing an existing image
+      const newExistingImages = existingAdditionalImages.filter((_, i) => i !== index);
+      setExistingAdditionalImages(newExistingImages);
+      
+      // Update previews to reflect removal
+      const newPreviews = [...newExistingImages, ...multipleImagePreviews.slice(existingCount)];
+      setMultipleImagePreviews(newPreviews);
+    } else {
+      // Removing a newly uploaded image
+      const newImageIndex = index - existingCount;
+      const newImages = multipleImages.filter((_, i) => i !== newImageIndex);
+      setMultipleImages(newImages);
+      
+      // Update previews
+      const newPreviews = [...existingAdditionalImages, ...multipleImagePreviews.slice(existingCount).filter((_, i) => i !== newImageIndex)];
+      setMultipleImagePreviews(newPreviews);
+    }
+  };
+
   const validateForm = () => {
     const requiredFields = ['name', 'description', 'price', 'mrp', 'category', 'stock'];
     for (const field of requiredFields) {
@@ -181,13 +273,34 @@ const ProductForm = () => {
     try {
       // Create form data for multipart/form-data (for image upload)
       const formDataToSend = new FormData();
+      
+      // Append all form fields
       Object.keys(formData).forEach(key => {
-        formDataToSend.append(key, formData[key]);
+        if (Array.isArray(formData[key])) {
+          // Handle array fields
+          formData[key].forEach(item => {
+            formDataToSend.append(key, item);
+          });
+        } else {
+          formDataToSend.append(key, formData[key]);
+        }
       });
       
-      // Append image if selected
+      // Append main image if selected
       if (imageFile) {
         formDataToSend.append('image', imageFile);
+      }
+      
+      // Append multiple images
+      multipleImages.forEach((file) => {
+        formDataToSend.append('additionalImages', file);
+      });
+
+      // For edit mode, send which existing images to keep
+      if (isEditMode) {
+        existingAdditionalImages.forEach((imageUrl) => {
+          formDataToSend.append('keepExistingImages', imageUrl);
+        });
       }
       
       // Make API request using axios
@@ -210,7 +323,8 @@ const ProductForm = () => {
       navigate('/admin/products');
     } catch (err) {
       console.error('Error saving product:', err);
-      toast.error(err.message || 'Failed to save product');
+      console.error('Error response:', err.response?.data);
+      toast.error(err.response?.data?.message || err.message || 'Failed to save product');
     } finally {
       setLoading(false);
     }
@@ -362,15 +476,19 @@ const ProductForm = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  SKU (Stock Keeping Unit)
+                  SKU (Stock Keeping Unit) - Optional
                 </label>
                 <input
                   type="text"
                   name="sku"
                   value={formData.sku}
                   onChange={handleChange}
+                  placeholder="Enter unique SKU or leave empty"
                   className="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-[#1fa9be] focus:border-[#1fa9be] sm:text-sm"
                 />
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Leave empty to auto-generate or enter a unique identifier
+                </p>
               </div>
             </div>
             
@@ -464,6 +582,64 @@ const ProductForm = () => {
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                 JPG, PNG or WEBP up to 5MB
               </p>
+            </div>
+            
+            {/* Multiple Images Upload */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Additional Images (Optional)
+              </label>
+              <div className="mt-1">
+                <label className={`cursor-pointer bg-white dark:bg-gray-700 py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1fa9be] inline-flex items-center ${(existingAdditionalImages.length + multipleImages.length) >= 5 ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span>{(existingAdditionalImages.length + multipleImages.length) >= 5 ? 'Maximum images reached' : 'Upload additional images'}</span>
+                  <input 
+                    ref={multipleImageInputRef}
+                    type="file" 
+                    className="sr-only" 
+                    accept="image/*"
+                    multiple
+                    disabled={(existingAdditionalImages.length + multipleImages.length) >= 5}
+                    onChange={handleMultipleImagesChange}
+                  />
+                </label>
+                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  Upload up to {5 - (existingAdditionalImages.length + multipleImages.length)} more images (JPG, PNG or WEBP up to 5MB each)
+                </p>
+              </div>
+              
+              {/* Multiple Image Previews */}
+              {multipleImagePreviews.length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Additional Images ({multipleImagePreviews.length}/5)
+                  </h4>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                    {multipleImagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <div className="h-20 w-20 rounded border-2 border-gray-300 dark:border-gray-600 overflow-hidden bg-gray-100 dark:bg-gray-700">
+                          <img 
+                            src={preview} 
+                            alt={`Additional preview ${index + 1}`} 
+                            className="h-full w-full object-cover" 
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeMultipleImage(index)}
+                          className="absolute -top-2 -right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

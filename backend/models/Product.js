@@ -49,6 +49,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  additionalImages: [{
+    type: String,
+    default: []
+  }],
   manufacturer: { 
     type: String,
     default: '' 

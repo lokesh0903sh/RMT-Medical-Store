@@ -6,6 +6,7 @@ const fs = require("fs");
 const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const MedicalQuery = require("../models/MedicalQuery");
+const Notification = require("../models/Notification");
 const auth = require("../middleware/auth");
 const adminAuth = require("../middleware/adminAuth");
 require("dotenv").config();
@@ -101,6 +102,25 @@ router.post("/", handleUpload, async (req, res) => {
       message,
     });
     await newQuery.save();
+    console.log('Medical query saved with ID:', newQuery._id);
+
+    // Create notification for admin about new medical query
+    try {
+      const adminNotification = new Notification({
+        title: '💊 New Medical Query Received',
+        message: `New medical query from ${fullName} (${email}). ${hasPrescription === "yes" ? 'Prescription attached.' : 'No prescription.'}`,
+        type: 'query',
+        recipientType: 'admin',
+        queryId: newQuery._id,
+        actionUrl: `/admin/queries/${newQuery._id}`,
+        actionText: 'View Query',
+        link: `/admin/queries/${newQuery._id}`
+      });
+      await adminNotification.save();
+      console.log('Admin notification created for medical query:', newQuery._id);
+    } catch (notificationError) {
+      console.error('Failed to create admin notification for medical query:', notificationError);
+    }
 
     const pdfBuffer = await new Promise((resolve, reject) => {
       const doc = new PDFDocument({ size: 'A4', margin: 50 });

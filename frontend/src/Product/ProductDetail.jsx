@@ -29,6 +29,7 @@ const ProductDetail = () => {
   // State for product images
   const [mainImage, setMainImage] = useState("");
   const [imageGallery, setImageGallery] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Animation variants
   const fadeIn = {
@@ -48,6 +49,51 @@ const ProductDetail = () => {
     if (review.user && review.user.name) return review.user.name;
     return "User";
   };
+
+  // Image navigation functions
+  const goToNextImage = () => {
+    if (imageGallery.length > 0) {
+      const nextIndex = (currentImageIndex + 1) % imageGallery.length;
+      setCurrentImageIndex(nextIndex);
+      setMainImage(imageGallery[nextIndex]);
+    }
+  };
+
+  const goToPreviousImage = () => {
+    if (imageGallery.length > 0) {
+      const prevIndex = (currentImageIndex - 1 + imageGallery.length) % imageGallery.length;
+      setCurrentImageIndex(prevIndex);
+      setMainImage(imageGallery[prevIndex]);
+    }
+  };
+
+  const selectImage = (img, index) => {
+    setMainImage(img);
+    setCurrentImageIndex(index);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (imageGallery.length <= 1) return;
+      
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          goToPreviousImage();
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          goToNextImage();
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [imageGallery.length, currentImageIndex]);
   
   useEffect(() => {
     const fetchProduct = async () => {
@@ -72,17 +118,22 @@ const ProductDetail = () => {
         
         // If review parameter is present, switch to review tab
         if (showReview) {
-          setActiveTab("reviews");
+          setActiveTab("reviews"); 
         }
 
         // Set main image and gallery
         if (productData.imageUrl) {
           setMainImage(productData.imageUrl);
-          setImageGallery([
-            productData.imageUrl,
-            // Add placeholder images to gallery if no additional images
-            ...Array(4).fill("./src/assets/capsule1.png.png"),
-          ]);
+          
+          // Create image gallery with main image and additional images
+          const galleryImages = [productData.imageUrl];
+          
+          // Add additional images if they exist
+          if (productData.additionalImages && productData.additionalImages.length > 0) {
+            galleryImages.push(...productData.additionalImages);
+          }
+          
+          setImageGallery(galleryImages);
         }
 
         // Fetch related products with API_BASE_URL
@@ -373,8 +424,8 @@ const ProductDetail = () => {
                 <div className="flex flex-col lg:flex-row gap-8">
                   {/* Product Image Gallery */}
                   <div className="lg:w-2/5">
-                    {/* Main Image */}
-                    <div className="bg-[#e0f7fa]/20 dark:bg-gray-700/20 rounded-lg p-4 flex items-center justify-center mb-4">
+                    {/* Main Image with Navigation */}
+                    <div className="bg-[#e0f7fa]/20 dark:bg-gray-700/20 rounded-lg p-4 flex items-center justify-center mb-4 relative">
                       <motion.img
                         src={
                           mainImage ||
@@ -387,6 +438,38 @@ const ProductDetail = () => {
                         animate={{ scale: 1 }}
                         transition={{ duration: 0.3 }}
                       />
+                      
+                      {/* Navigation arrows - only show if more than one image */}
+                      {imageGallery.length > 1 && (
+                        <>
+                          {/* Previous button */}
+                          <button
+                            onClick={goToPreviousImage}
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 z-10"
+                            aria-label="Previous image"
+                          >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </button>
+                          
+                          {/* Next button */}
+                          <button
+                            onClick={goToNextImage}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 z-10"
+                            aria-label="Next image"
+                          >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                          
+                          {/* Image counter */}
+                          <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-10">
+                            {currentImageIndex + 1} / {imageGallery.length}
+                          </div>
+                        </>
+                      )}
                     </div>
 
                     {/* Thumbnail Gallery */}
@@ -394,10 +477,10 @@ const ProductDetail = () => {
                       {imageGallery.slice(0, 5).map((img, index) => (
                         <button
                           key={index}
-                          onClick={() => setMainImage(img)}
+                          onClick={() => selectImage(img, index)}
                           className={`flex-shrink-0 border-2 rounded-md overflow-hidden h-16 w-16 
                             ${
-                              mainImage === img
+                              currentImageIndex === index
                                 ? "border-[#036372] dark:border-[#1fa9be]"
                                 : "border-transparent"
                             }`}

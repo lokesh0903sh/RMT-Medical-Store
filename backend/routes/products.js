@@ -108,7 +108,10 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create a new product (admin only)
-router.post('/', [auth, adminAuth, uploadProduct.single('image')], async (req, res) => {
+router.post('/', [auth, adminAuth, uploadProduct.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'additionalImages', maxCount: 5 }
+])], async (req, res) => {
   try {
     const {
       name,
@@ -131,6 +134,14 @@ router.post('/', [auth, adminAuth, uploadProduct.single('image')], async (req, r
       return res.status(400).json({ message: 'Invalid category' });
     }
 
+    // Check SKU uniqueness if provided
+    if (sku && sku.trim()) {
+      const existingProduct = await Product.findOne({ sku: sku.trim() });
+      if (existingProduct) {
+        return res.status(400).json({ message: 'SKU already exists. Please use a unique SKU.' });
+      }
+    }
+
     // Create product object
     const product = new Product({
       name,
@@ -141,7 +152,7 @@ router.post('/', [auth, adminAuth, uploadProduct.single('image')], async (req, r
       category,
       subCategory,
       stock: parseInt(stock),
-      sku,
+      sku: sku && sku.trim() ? sku.trim() : undefined, // Only set SKU if it's not empty
       manufacturer,
       requiresPrescription: requiresPrescription === 'true',
       dosage,
@@ -149,8 +160,13 @@ router.post('/', [auth, adminAuth, uploadProduct.single('image')], async (req, r
     });
 
     // Add image if uploaded (Cloudinary URL)
-    if (req.file) {
-      product.imageUrl = req.file.path; // Cloudinary provides the full URL in req.file.path
+    if (req.files && req.files.image && req.files.image[0]) {
+      product.imageUrl = req.files.image[0].path; // Cloudinary provides the full URL
+    }
+
+    // Add additional images if uploaded
+    if (req.files && req.files.additionalImages) {
+      product.additionalImages = req.files.additionalImages.map(file => file.path);
     }
 
     // Save product
@@ -158,12 +174,29 @@ router.post('/', [auth, adminAuth, uploadProduct.single('image')], async (req, r
     
     res.status(201).json(savedProduct);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.error('Error creating product:', err);
+    
+    // Handle mongoose validation errors
+    if (err.name === 'ValidationError') {
+      const errors = Object.values(err.errors).map(e => e.message);
+      return res.status(400).json({ message: errors.join(', ') });
+    }
+    
+    // Handle duplicate key error (SKU already exists)
+    if (err.code === 11000) {
+      const field = Object.keys(err.keyValue)[0];
+      return res.status(400).json({ message: `${field.toUpperCase()} already exists. Please use a unique value.` });
+    }
+    
+    res.status(400).json({ message: err.message || 'Error creating product' });
   }
 });
 
 // Update a product (admin only)
-router.put('/:id', [auth, adminAuth, uploadProduct.single('image')], async (req, res) => {
+router.put('/:id', [auth, adminAuth, uploadProduct.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'additionalImages', maxCount: 5 }
+])], async (req, res) => {
   try {
     const {
       name,
@@ -194,8 +227,16 @@ router.put('/:id', [auth, adminAuth, uploadProduct.single('image')], async (req,
       }
     }
 
+    // Check SKU uniqueness if provided and different from current
+    if (sku && sku.trim() && sku.trim() !== product.sku) {
+      const existingProduct = await Product.findOne({ sku: sku.trim(), _id: { $ne: req.params.id } });
+      if (existingProduct) {
+        return res.status(400).json({ message: 'SKU already exists. Please use a unique SKU.' });
+      }
+    }
+
     // If new image is uploaded, delete old image from Cloudinary
-    if (req.file && product.imageUrl) {
+    if (req.files && req.files.image && req.files.image[0] && product.imageUrl) {
       try {
         const publicId = extractPublicId(product.imageUrl);
         if (publicId) {
@@ -218,15 +259,30 @@ router.put('/:id', [auth, adminAuth, uploadProduct.single('image')], async (req,
     if (category) product.category = category;
     if (subCategory !== undefined) product.subCategory = subCategory;
     if (stock !== undefined) product.stock = parseInt(stock);
-    if (sku !== undefined) product.sku = sku;
+    if (sku !== undefined) product.sku = sku && sku.trim() ? sku.trim() : undefined;
     if (manufacturer !== undefined) product.manufacturer = manufacturer;
     if (requiresPrescription !== undefined) product.requiresPrescription = requiresPrescription === 'true';
     if (dosage !== undefined) product.dosage = dosage;
     if (featured !== undefined) product.featured = featured === 'true';
 
     // Add/update image if uploaded (Cloudinary URL)
-    if (req.file) {
-      product.imageUrl = req.file.path; // Cloudinary provides the full URL in req.file.path
+    if (req.files && req.files.image && req.files.image[0]) {
+      product.imageUrl = req.files.image[0].path; // Cloudinary provides the full URL
+    }
+
+    // Add/update additional images if uploaded
+    if (req.files && req.files.additionalImages) {
+      // Get existing images to keep (sent from frontend)
+      const keepExistingImages = req.body.keepExistingImages || [];
+      const existingImagesToKeep = Array.isArray(keepExistingImages) ? keepExistingImages : [keepExistingImages];
+      
+      // Add new additional images to existing ones that should be kept
+      const newAdditionalImages = req.files.additionalImages.map(file => file.path);
+      product.additionalImages = [...existingImagesToKeep.filter(Boolean), ...newAdditionalImages];
+    } else if (req.body.keepExistingImages !== undefined) {
+      // Only update existing images (no new files uploaded)
+      const keepExistingImages = req.body.keepExistingImages || [];
+      product.additionalImages = Array.isArray(keepExistingImages) ? keepExistingImages : [keepExistingImages];
     }
 
     // Save updated product
@@ -234,7 +290,21 @@ router.put('/:id', [auth, adminAuth, uploadProduct.single('image')], async (req,
     
     res.json(updatedProduct);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    console.error('Error updating product:', err);
+    
+    // Handle mongoose validation errors
+    if (err.name === 'ValidationError') {
+      const errors = Object.values(err.errors).map(e => e.message);
+      return res.status(400).json({ message: errors.join(', ') });
+    }
+    
+    // Handle duplicate key error (SKU already exists)
+    if (err.code === 11000) {
+      const field = Object.keys(err.keyValue)[0];
+      return res.status(400).json({ message: `${field.toUpperCase()} already exists. Please use a unique value.` });
+    }
+    
+    res.status(400).json({ message: err.message || 'Error updating product' });
   }
 });
 

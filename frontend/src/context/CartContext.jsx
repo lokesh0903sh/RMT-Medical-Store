@@ -24,8 +24,17 @@ const SET_ERROR = 'SET_ERROR';
 const SET_LOADING = 'SET_LOADING';
 const SET_ITEMS = 'SET_ITEMS';
 
+// Helper function to get user-specific cart key
+const getCartKey = () => {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const userId = user._id || user.id || null;
+  return userId ? `cart_${userId}` : 'cart';
+};
+
 // Reducer
 function cartReducer(state, action) {
+  const cartKey = getCartKey();
+  
   switch (action.type) {
     case ADD_TO_CART:
       // Check if item already exists in cart
@@ -36,12 +45,12 @@ function cartReducer(state, action) {
         const updatedItems = [...state.items];
         updatedItems[existingItemIndex].quantity += 1;
         
-        localStorage.setItem('cart', JSON.stringify(updatedItems));
+        localStorage.setItem(cartKey, JSON.stringify(updatedItems));
         return { ...state, items: updatedItems };
       } else {
         // Add new item
         const newItems = [...state.items, { ...action.payload, quantity: 1 }];
-        localStorage.setItem('cart', JSON.stringify(newItems));
+        localStorage.setItem(cartKey, JSON.stringify(newItems));
         return { ...state, items: newItems };
       }
     
@@ -69,7 +78,7 @@ function cartReducer(state, action) {
           quantity: newQuantity
         };
         
-        localStorage.setItem('cart', JSON.stringify(updatedItems));
+        localStorage.setItem(cartKey, JSON.stringify(updatedItems));
         return { ...state, items: updatedItems };
       } else {
         // Add new item with specified quantity
@@ -81,13 +90,13 @@ function cartReducer(state, action) {
           quantity: safeQuantity 
         }];
         
-        localStorage.setItem('cart', JSON.stringify(newItems));
+        localStorage.setItem(cartKey, JSON.stringify(newItems));
         return { ...state, items: newItems };
       }
     
     case REMOVE_FROM_CART:
       const filteredItems = state.items.filter(item => item._id !== action.payload);
-      localStorage.setItem('cart', JSON.stringify(filteredItems));
+      localStorage.setItem(cartKey, JSON.stringify(filteredItems));
       return { ...state, items: filteredItems };
     
     case UPDATE_QUANTITY:
@@ -100,11 +109,11 @@ function cartReducer(state, action) {
         }
         return item;
       });
-      localStorage.setItem('cart', JSON.stringify(updatedItems));
+      localStorage.setItem(cartKey, JSON.stringify(updatedItems));
       return { ...state, items: updatedItems };
     
     case CLEAR_CART:
-      localStorage.removeItem('cart');
+      localStorage.removeItem(cartKey);
       return { ...state, items: [] };
     
     case TOGGLE_CART:
@@ -126,10 +135,31 @@ function cartReducer(state, action) {
 // Provider component
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-    // Load cart from localStorage on initial render
+  
+  // Get current user ID for user-specific cart storage
+  const getCurrentUserId = () => {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return user._id || user.id || null;
+  };
+  
+  // Get user-specific cart key
+  const getCartKey = () => {
+    const userId = getCurrentUserId();
+    return userId ? `cart_${userId}` : 'cart';
+  };
+  
+  // Load cart from localStorage on initial render
   useEffect(() => {
     try {
-      const savedCart = localStorage.getItem('cart');
+      const cartKey = getCartKey();
+      const savedCart = localStorage.getItem(cartKey);
+      
+      // Clean up old cart data if it exists
+      const oldCart = localStorage.getItem('cart');
+      if (oldCart && cartKey !== 'cart') {
+        localStorage.removeItem('cart');
+      }
+      
       if (savedCart) {
         const parsedCart = JSON.parse(savedCart);
         if (Array.isArray(parsedCart)) {
@@ -138,14 +168,18 @@ export const CartProvider = ({ children }) => {
           dispatch({ type: 'SET_ITEMS', payload: initialItems });
         } else {
           // Legacy support - if savedCart isn't in the expected format
-          localStorage.removeItem('cart');
+          localStorage.removeItem(cartKey);
         }
+      } else {
+        // Clear any existing cart data if no user-specific cart exists
+        dispatch({ type: 'SET_ITEMS', payload: [] });
       }
     } catch (error) {
       console.error('Failed to load cart from localStorage', error);
-      localStorage.removeItem('cart');
+      const cartKey = getCartKey();
+      localStorage.removeItem(cartKey);
     }
-  }, []);
+  }, []); // Remove dependency to avoid re-loading on every render
   
   // Add item to cart with optional quantity
   const addToCart = (product, quantity = 1) => {
@@ -303,6 +337,31 @@ export const CartProvider = ({ children }) => {
     return state.items.reduce((count, item) => count + item.quantity, 0);
   };
   
+  // Function to reload cart when user changes (login/logout)
+  const reloadCart = () => {
+    try {
+      const cartKey = getCartKey();
+      const savedCart = localStorage.getItem(cartKey);
+      
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart);
+        if (Array.isArray(parsedCart)) {
+          dispatch({ type: 'SET_ITEMS', payload: parsedCart });
+        } else {
+          localStorage.removeItem(cartKey);
+          dispatch({ type: 'SET_ITEMS', payload: [] });
+        }
+      } else {
+        dispatch({ type: 'SET_ITEMS', payload: [] });
+      }
+    } catch (error) {
+      console.error('Failed to reload cart from localStorage', error);
+      const cartKey = getCartKey();
+      localStorage.removeItem(cartKey);
+      dispatch({ type: 'SET_ITEMS', payload: [] });
+    }
+  };
+  
   return (
     <CartContext.Provider value={{
       ...state,
@@ -312,7 +371,8 @@ export const CartProvider = ({ children }) => {
       clearCart,
       toggleCart,
       getTotalPrice,
-      getItemCount
+      getItemCount,
+      reloadCart
     }}>
       {children}
     </CartContext.Provider>

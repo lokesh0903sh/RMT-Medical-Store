@@ -92,7 +92,17 @@ const Checkout = () => {
       
     } catch (error) {
       console.error('Error placing order:', error);
-      toast.error(error.message || 'Failed to place order. Please try again.');
+      console.error('Error response:', error.response?.data);
+      
+      let errorMessage = 'Failed to place order. Please try again.';
+      
+      if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
