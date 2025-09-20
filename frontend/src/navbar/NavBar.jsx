@@ -39,6 +39,7 @@ const CartButton = () => {
 const NavBar = () => {  
   const navigate = useNavigate();
   const location = useLocation();
+  const { clearCart } = useCart(); // Add clearCart from cart context
   const [darkMode, setDarkMode] = useState(localStorage.getItem("darkMode") === "true");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isLoggedIn = !!localStorage.getItem("token");
@@ -82,6 +83,7 @@ const NavBar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    clearCart(); // Clear the cart when user logs out
     setUser(null);
     navigate("/login");
   };
@@ -232,9 +234,9 @@ const NavBar = () => {
               )}
             </div>
           </div>
-        </div>        <div className="flex items-center gap-3">
+        </div>        <div className="flex items-center gap-2 lg:gap-3">
           {/* Search Bar */}
-          <div className="hidden md:flex rounded-md border-2 border-[#036372] dark:border-[#1fa9be] overflow-hidden w-[300px] lg:w-[325px] transition-all">
+          <div className="hidden lg:flex rounded-md border-2 border-[#036372] dark:border-[#1fa9be] overflow-hidden w-[250px] xl:w-[325px] transition-all">
             <input 
               type="text" 
               placeholder={isAdmin ? "Search products, users, orders..." : "Search for Life Savings..."} 
@@ -247,6 +249,18 @@ const NavBar = () => {
               </svg>
             </button>
           </div>
+
+          {/* Search Icon for medium screens */}
+          <button
+            className="lg:hidden rounded-full p-2 text-[#036372] dark:text-[#1fa9be] hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Search"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
 
           {/* Dark Mode Toggle */}
           <button
@@ -280,24 +294,25 @@ const NavBar = () => {
           )}
 
           {/* Auth Buttons */}
-          <div className="flex items-center gap-2 ml-2">
+          <div className="hidden md:flex items-center gap-2 ml-2">
             {!isLoggedIn ? (
               <>
                 <Link 
                   to="/login" 
-                  className="rounded-md px-4 py-2 text-sm font-semibold text-[#036372] dark:text-[#1fa9be] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                  className="rounded-md px-4 py-2 text-sm font-semibold text-[#036372] dark:text-[#1fa9be] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all whitespace-nowrap"
                 >
                   Login
                 </Link>
                 <Link 
                   to="/signup" 
-                  className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
+                  className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all whitespace-nowrap"
                 >
                   Sign Up
                 </Link>
               </>
-            ) : (              <div className="flex items-center gap-3">
-                <div className="hidden md:block">
+            ) : (
+              <div className="flex items-center gap-3">
+                <div className="hidden lg:block">
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Welcome back{user && user.name ? `, ${user.name.split(' ')[0]}` : ''}
                     {isAdmin && <span className="ml-2 px-2 py-1 text-xs bg-[#036372] text-white rounded-full">Admin</span>}
@@ -305,7 +320,7 @@ const NavBar = () => {
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
+                  className="rounded-md px-4 py-2 text-sm font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all whitespace-nowrap"
                 >
                   Logout
                 </button>
@@ -330,6 +345,23 @@ const NavBar = () => {
         {mobileMenuOpen && (
           <div className="absolute top-full left-0 right-0 md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700 shadow-lg">
             <div className="px-4 py-2 space-y-1">
+              {/* Mobile Search Bar */}
+              <div className="mb-4">
+                <div className="flex rounded-md border-2 border-[#036372] dark:border-[#1fa9be] overflow-hidden">
+                  <input 
+                    type="text" 
+                    placeholder={isAdmin ? "Search products, users, orders..." : "Search for Life Savings..."} 
+                    className="w-full outline-none bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 text-sm px-3 py-2"
+                  />
+                  <button type='button' className="flex items-center justify-center bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] px-3 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16px" height="16px" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="stroke-white">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              
               {isAdmin ? (
                 // Admin Mobile Navigation
                 <>
@@ -418,6 +450,46 @@ const NavBar = () => {
                   </Link>
                 </>
               )}
+              
+              {/* Mobile Auth Section */}
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+                {!isLoggedIn ? (
+                  <div className="space-y-2">
+                    <Link 
+                      to="/login" 
+                      className="block w-full text-center rounded-md px-4 py-3 text-base font-semibold text-[#036372] dark:text-[#1fa9be] border border-[#036372] dark:border-[#1fa9be] hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Login
+                    </Link>
+                    <Link 
+                      to="/signup" 
+                      className="block w-full text-center rounded-md px-4 py-3 text-base font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Sign Up
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="px-3 py-2 text-center">
+                      <span className="text-base font-medium text-gray-700 dark:text-gray-300">
+                        Welcome back{user && user.name ? `, ${user.name.split(' ')[0]}` : ''}
+                        {isAdmin && <span className="block mt-1 px-2 py-1 text-xs bg-[#036372] text-white rounded-full">Admin</span>}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="block w-full text-center rounded-md px-4 py-3 text-base font-semibold text-white bg-[#036372] dark:bg-[#1fa9be] hover:bg-[#1fa9be] dark:hover:bg-[#036372] shadow-sm transition-all"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}

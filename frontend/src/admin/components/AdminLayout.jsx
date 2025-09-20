@@ -3,11 +3,27 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { motion } from '../../lib/motion';
 import { toast } from 'react-toastify';
 import api from '../../lib/api';
+import { useCart } from '../../context/CartContext';
 
 const AdminLayout = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false); // Default to closed on mobile
+  const [isMobile, setIsMobile] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const { clearCart } = useCart();
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      setIsOpen(!mobile); // Open by default on desktop, closed on mobile
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // Check if user is admin
@@ -42,8 +58,17 @@ const AdminLayout = () => {
     setIsOpen(!isOpen);
   };
 
+  // Close sidebar when clicking menu items on mobile
+  const handleMenuClick = () => {
+    if (isMobile) {
+      setIsOpen(false);
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user'); // Also remove user data
+    clearCart(); // Clear the cart when admin logs out
     toast.success('Logged out successfully');
     navigate('/login');
   };
@@ -83,9 +108,9 @@ const AdminLayout = () => {
       </div>
       
       {/* Backdrop for mobile menu */}
-      {isOpen && (
+      {isOpen && isMobile && (
         <div 
-          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
+          className="fixed inset-0 bg-black bg-opacity-50 z-10"
           onClick={toggleSidebar}
         ></div>
       )}
@@ -94,10 +119,11 @@ const AdminLayout = () => {
       <motion.aside
         initial={false}
         animate={{ 
-          width: isOpen ? '250px' : '80px',
+          x: isMobile ? (isOpen ? 0 : '-100%') : 0,
+          width: isMobile ? '280px' : (isOpen ? '250px' : '80px'),
         }}
         transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
-        className={`bg-[#036372] dark:bg-gray-800 text-white flex-shrink-0 flex flex-col fixed md:relative h-full z-20 transition-all ${!isOpen && 'md:translate-x-0 -translate-x-full'} ${isOpen && 'shadow-lg md:shadow-none'}`}
+        className={`bg-[#036372] dark:bg-gray-800 text-white flex-shrink-0 flex flex-col ${isMobile ? 'fixed' : 'relative'} h-full z-20 shadow-lg`}
       >
         {/* Logo and Toggle - desktop */}
         <div className="hidden md:flex items-center p-4 h-20 border-b border-[#1fa9be]/20">
@@ -147,6 +173,7 @@ const AdminLayout = () => {
               { path: '/admin/categories', icon: 'folder', label: 'Categories' },
               { path: '/admin/orders', icon: 'shopping-bag', label: 'Orders' },
               { path: '/admin/users', icon: 'users', label: 'Users' },
+              { path: '/admin/queries', icon: 'help-circle', label: 'Query Management' },
               { path: '/admin/notifications', icon: 'bell', label: 'Notifications' },
               { path: '/admin/settings', icon: 'settings', label: 'Settings' },
             ].map((item) => (
@@ -154,10 +181,11 @@ const AdminLayout = () => {
                 <NavLink
                   to={item.path}
                   end={item.path === '/admin'}
+                  onClick={handleMenuClick} // Close menu on mobile when clicked
                   className={({ isActive }) => `
                     flex items-center p-2 sm:p-3 rounded-lg mb-1
                     ${isActive ? 'bg-[#1fa9be] shadow-md' : 'hover:bg-[#1fa9be]/50 transition-colors'}
-                    ${!isOpen && 'justify-center'}
+                    ${!isOpen && !isMobile && 'justify-center'}
                   `}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0 sm:w-[18px] sm:h-[18px]">
@@ -201,6 +229,13 @@ const AdminLayout = () => {
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                       </>
                     )}
+                    {item.icon === 'help-circle' && (
+                      <>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                      </>
+                    )}
                     {item.icon === 'settings' && (
                       <>
                         <circle cx="12" cy="12" r="3"></circle>
@@ -208,7 +243,7 @@ const AdminLayout = () => {
                       </>
                     )}
                   </svg>
-                  {isOpen && (
+                  {(isOpen || isMobile) && (
                     <motion.span
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -226,12 +261,16 @@ const AdminLayout = () => {
 
         {/* Bottom Actions */}
         <div className="mt-auto p-2 sm:p-4 border-t border-[#1fa9be]/20">
-          <NavLink to="/" className="flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors justify-center sm:justify-start">
+          <NavLink 
+            to="/" 
+            onClick={handleMenuClick}
+            className="flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors justify-center sm:justify-start"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
-            {isOpen && <motion.span
+            {(isOpen || isMobile) && <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -241,7 +280,10 @@ const AdminLayout = () => {
             </motion.span>}
           </NavLink>
           <button
-            onClick={handleLogout}
+            onClick={() => {
+              handleLogout();
+              handleMenuClick();
+            }}
             className="mt-2 w-full flex items-center p-2 hover:bg-[#1fa9be]/50 rounded-lg transition-colors justify-center sm:justify-start"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -249,7 +291,7 @@ const AdminLayout = () => {
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" y1="12" x2="9" y2="12"></line>
             </svg>
-            {isOpen && <motion.span
+            {(isOpen || isMobile) && <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -261,16 +303,8 @@ const AdminLayout = () => {
         </div>
       </motion.aside>
 
-      {/* Backdrop for mobile menu */}
-      {isOpen && (
-        <div 
-          className="md:hidden fixed inset-0 bg-black bg-opacity-50 z-10"
-          onClick={toggleSidebar}
-        ></div>
-      )}
-      
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className={`flex-1 flex flex-col overflow-hidden ${isMobile ? 'w-full' : ''}`}>
         {/* Header - Desktop */}
         <header className="hidden md:block bg-white dark:bg-gray-800 shadow-sm z-10">
           <div className="px-4 py-4 flex items-center justify-between">

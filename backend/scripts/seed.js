@@ -37,10 +37,6 @@ const seedData = async () => {
     });
     await user.save();
     console.log('Test user created...');
-
-    console.log('User credentials seeded successfully!');
-    console.log('Admin: admin@rmtmedical.com / admin123');
-    console.log('User: user@example.com / user123');
     mongoose.connection.close();
   } catch (error) {
     console.error('Seeding error:', error);

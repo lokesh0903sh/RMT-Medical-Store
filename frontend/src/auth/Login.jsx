@@ -1,6 +1,7 @@
 import React,  { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { useCart } from "../context/CartContext";
 import api from "../lib/api";
 import Pill1 from "../assets/capsule1.png.png";
 import Pill2 from "../assets/capsule2.png.png";
@@ -12,6 +13,7 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { reloadCart } = useCart();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -27,6 +29,9 @@ const Login = () => {
       // Save token and user data in localStorage
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
+      
+      // Reload cart for the new user
+      reloadCart();
       
       toast.success("Login successful!");
       
@@ -44,35 +49,38 @@ const Login = () => {
     setLoading(false);
   };
   return (
-    <section className="relative bg-gradient-to-br from-[#e0f7fa] to-white overflow-hidden">
+    <section className="relative bg-gradient-to-br from-[#e0f7fa] to-white overflow-hidden min-h-screen">
       <ToastContainer position="top-right" autoClose={2000} />
-      {/* Animated Pills - responsive positioning */}
-      <img
-        src={Pill1}
-        alt="Pill 1"
-        className="absolute w-[100px] h-[100px] md:w-[180px] md:h-[180px] top-10 left-5 md:top-20 md:left-30 animate-bounce opacity-40 md:opacity-60 hover:opacity-80 transition-opacity hidden sm:block"
-      />
-      <img
-        src={Pill2}
-        alt="Pill 2"
-        className="absolute w-[110px] h-[110px] md:w-[200px] md:h-[200px] top-10 right-5 md:top-20 md:right-30 animate-bounce opacity-40 md:opacity-60 hover:opacity-80 transition-opacity hidden sm:block"
-        style={{ animationDelay: "0.5s" }}
-      />
-      <img
-        src={Pill3}
-        alt="Pill 3"
-        className="absolute w-[90px] h-[90px] md:w-[150px] md:h-[150px] bottom-5 left-5 md:bottom-10 md:left-30 animate-bounce opacity-40 md:opacity-60 hover:opacity-80 transition-opacity hidden sm:block"
-        style={{ animationDelay: "1s" }}
-      />
-      <img
-        src={Pill4}
-        alt="Pill 4"
-        className="absolute w-[95px] h-[95px] md:w-[160px] md:h-[160px] bottom-5 right-5 md:bottom-20 md:right-30 animate-bounce opacity-40 md:opacity-60 hover:opacity-80 transition-opacity hidden sm:block"
-        style={{ animationDelay: "1.5s" }}
-      />
+      
+      {/* Background Pills Layer - Fixed positioning with proper z-index */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <img
+          src={Pill1}
+          alt="Pill 1"
+          className="absolute w-[100px] h-[100px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] top-10 left-5 md:top-16 md:left-10 lg:top-20 lg:left-20 animate-bounce opacity-30 md:opacity-40 lg:opacity-50 hover:opacity-60 transition-opacity hidden sm:block"
+        />
+        <img
+          src={Pill2}
+          alt="Pill 2"
+          className="absolute w-[110px] h-[110px] md:w-[170px] md:h-[170px] lg:w-[200px] lg:h-[200px] top-10 right-5 md:top-16 md:right-10 lg:top-20 lg:right-20 animate-bounce opacity-30 md:opacity-40 lg:opacity-50 hover:opacity-60 transition-opacity hidden sm:block"
+          style={{ animationDelay: "0.5s" }}
+        />
+        <img
+          src={Pill3}
+          alt="Pill 3"
+          className="absolute w-[90px] h-[90px] md:w-[130px] md:h-[130px] lg:w-[150px] lg:h-[150px] bottom-5 left-5 md:bottom-10 md:left-10 lg:bottom-16 lg:left-20 animate-bounce opacity-30 md:opacity-40 lg:opacity-50 hover:opacity-60 transition-opacity hidden sm:block"
+          style={{ animationDelay: "1s" }}
+        />
+        <img
+          src={Pill4}
+          alt="Pill 4"
+          className="absolute w-[95px] h-[95px] md:w-[140px] md:h-[140px] lg:w-[160px] lg:h-[160px] bottom-5 right-5 md:bottom-10 md:right-10 lg:bottom-16 lg:right-20 animate-bounce opacity-30 md:opacity-40 lg:opacity-50 hover:opacity-60 transition-opacity hidden sm:block"
+          style={{ animationDelay: "1.5s" }}
+        />
+      </div>
 
-      {/* Login Form */}
-      <div className="flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 mx-auto min-h-[100vh]">
+      {/* Login Form - Higher z-index */}
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 mx-auto min-h-[100vh]">
         <a
           href="/"
           className="flex items-center mb-4 sm:mb-6 text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white"
