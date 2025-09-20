@@ -7,6 +7,7 @@ import Pill1 from "../assets/capsule1.png.png";
 import Pill2 from "../assets/capsule2.png.png";
 import Pill3 from "../assets/capsule3.png.png";
 import Pill4 from "../assets/capsule4.png.png";
+import RMTLogo from "../assets/RMT_Medical_Store_Transparent.png";
 
 const Login = () => {
 
@@ -49,7 +50,7 @@ const Login = () => {
     setLoading(false);
   };
   return (
-    <section className="relative bg-gradient-to-br from-[#e0f7fa] to-white overflow-hidden min-h-screen">
+    <section className="relative bg-gradient-to-br from-[#e0f7fa] to-white min-h-screen">
       <ToastContainer position="top-right" autoClose={2000} />
       
       {/* Background Pills Layer - Fixed positioning with proper z-index */}
@@ -80,15 +81,15 @@ const Login = () => {
       </div>
 
       {/* Login Form - Higher z-index */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 py-4 sm:py-6 mx-auto min-h-[100vh]">
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12 mx-auto min-h-screen">
         <a
           href="/"
           className="flex items-center mb-4 sm:mb-6 text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <img
             className="w-28 h-24 sm:w-35 sm:h-30 mr-2"
-            src="./src/assets/RMT_Medical_Store.png"
-            alt="logo"
+            src={RMTLogo}
+            alt="RMT Medical Store Logo"
           />
         </a>
         <div className="w-full bg-white rounded-xl shadow-lg shadow-[#036372]/20 hover:shadow-[#036372]/30 transition-all md:mt-0 sm:max-w-md xl:p-0 border border-[#e0f7fa]">

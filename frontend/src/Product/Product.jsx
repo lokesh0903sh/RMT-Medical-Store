@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Card from '../Card/Card';
 import { motion } from '../lib/motion';
 import { toast } from 'react-toastify';
@@ -152,7 +153,8 @@ const Product = ({ featured = false, limit = 10 }) => {
               >
                 All Products
               </button>
-                {categories && categories.length > 0 && categories.map((category) => (
+              {/* Show only first 10 categories */}
+              {categories && categories.length > 0 && categories.slice(0, 10).map((category) => (
                 <button
                   key={category?._id || `category-${Math.random()}`}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition-all ${
@@ -165,6 +167,18 @@ const Product = ({ featured = false, limit = 10 }) => {
                   {category?.name || 'Unknown Category'}
                 </button>
               ))}
+              {/* Show More button if there are more than 10 categories */}
+              {categories && categories.length > 10 && (
+                <Link
+                  to="/categories"
+                  className="px-4 py-2 text-sm font-medium rounded-full transition-all bg-gradient-to-r from-[#036372] to-[#1fa9be] hover:from-[#1fa9be] hover:to-[#036372] text-white shadow-md hover:shadow-lg transform hover:scale-105 flex items-center gap-1"
+                >
+                  <span>+{categories.length - 10} Show More</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              )}
             </div>
             
             <div className="flex items-center gap-2">

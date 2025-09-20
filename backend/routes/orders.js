@@ -8,9 +8,13 @@ const adminAuth = require('../middleware/adminAuth');
 // Create a new order (authenticated users only)
 router.post('/', auth, async (req, res) => {
   try {
+    console.log('Creating order for user:', req.user._id);
+    console.log('Order data received:', JSON.stringify(req.body, null, 2));
+    
     const { items, shippingAddress, paymentMethod } = req.body;
     
     if (!items || !items.length || !shippingAddress) {
+      console.log('Validation failed: Missing required fields');
       return res.status(400).json({ message: 'Invalid order data. Items and shipping address are required.' });
     }
 
@@ -19,21 +23,28 @@ router.post('/', auth, async (req, res) => {
     const orderItems = [];
 
     for (const item of items) {
+      console.log('Processing item:', item);
       const product = await Product.findById(item.product);
       if (!product) {
+        console.log('Product not found:', item.product);
         return res.status(404).json({ message: `Product with ID ${item.product} not found` });
       }
 
+      console.log('Found product:', product.name);
+
       // Check stock availability
       if (product.stock < item.quantity) {
+        console.log('Insufficient stock for product:', product.name);
         return res.status(400).json({ 
           message: `Insufficient stock for ${product.name}. Available: ${product.stock}` 
         });
       }
 
-      // Add item with current price
+      // Add item with current price and product details
       orderItems.push({
         product: item.product,
+        productName: product.name,
+        productImage: product.imageUrl || '',
         quantity: item.quantity,
         price: product.price
       });
@@ -46,6 +57,9 @@ router.post('/', auth, async (req, res) => {
       await product.save();
     }
 
+    console.log('Order items prepared:', orderItems);
+    console.log('Total amount:', totalAmount);
+
     // Create order
     const order = new Order({
       user: req.user._id,
@@ -55,19 +69,26 @@ router.post('/', auth, async (req, res) => {
       paymentMethod
     });
 
+    console.log('Saving order...');
     await order.save();
+    console.log('Order saved successfully with ID:', order._id);
 
     // Populate the order with product details for the response
     const populatedOrder = await Order.findById(order._id)
       .populate('items.product', 'name imageUrl price');
 
+    console.log('Order creation completed successfully');
     res.status(201).json({ 
       message: 'Order created successfully',
       order: populatedOrder
     });
   } catch (err) {
     console.error('Order creation error:', err);
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error stack:', err.stack);
+    res.status(500).json({ 
+      message: 'Server error', 
+      error: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error' 
+    });
   }
 });
 

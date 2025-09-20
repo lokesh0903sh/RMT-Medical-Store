@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import NotificationBadge from "../components/Notifications/NotificationBadge";
 import { useCart } from "../context/CartContext";
 import { motion } from "../lib/motion";
-import logoImage from "../assets/RMT_Medical_Store.png";
+import logoImage from "../assets/RMT_Medical_Store_Transparent.png";
 
 // CartButton Component
 const CartButton = () => {
@@ -188,6 +188,16 @@ const NavBar = () => {
                   >
                     Browse Products
                   </Link>
+                  <Link 
+                    to="/categories"
+                    className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
+                      isActive('/categories') 
+                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
+                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
+                    }`}
+                  >
+                    All Categories
+                  </Link>
                   {isLoggedIn && (
                     <Link 
                       to="/orders"
@@ -219,16 +229,6 @@ const NavBar = () => {
                     }`}
                   >
                     Contact Us
-                  </Link>
-                  <Link 
-                    to="/help"
-                    className={`rounded-md px-2 py-2 text-sm font-semibold transition-all whitespace-nowrap ${
-                      isActive('/help') 
-                        ? 'text-white bg-[#036372] dark:bg-[#1fa9be]' 
-                        : 'text-[#036372] hover:text-[#1fa9be] dark:text-gray-200 dark:hover:text-white'
-                    }`}
-                  >
-                    Help Desk
                   </Link>
                 </>
               )}
@@ -418,6 +418,13 @@ const NavBar = () => {
                   >
                     Browse Products
                   </Link>
+                  <Link 
+                    to="/categories"
+                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    All Categories
+                  </Link>
                   {isLoggedIn && (
                     <Link 
                       to="/orders"
@@ -440,13 +447,6 @@ const NavBar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Contact Us
-                  </Link>
-                  <Link 
-                    to="/help"
-                    className="block px-3 py-2 text-base font-medium text-[#036372] dark:text-gray-200 hover:text-[#1fa9be] dark:hover:text-white rounded-md"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Help Desk
                   </Link>
                 </>
               )}

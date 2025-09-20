@@ -13,7 +13,8 @@ router.get('/', async (req, res) => {
     const { 
       parent, 
       featured,
-      sort = 'order' 
+      sort = 'order',
+      withProductCount = false 
     } = req.query;
 
     const query = {};
@@ -46,9 +47,23 @@ router.get('/', async (req, res) => {
     }
 
     // Get categories with populated parent
-    const categories = await Category.find(query)
+    let categories = await Category.find(query)
       .populate('parentCategory', 'name slug')
       .sort(sortOption);
+
+    // Add product count if requested
+    if (withProductCount === 'true' || withProductCount === true) {
+      const categoriesWithCount = await Promise.all(
+        categories.map(async (category) => {
+          const productCount = await Product.countDocuments({ category: category._id });
+          return {
+            ...category.toObject(),
+            productCount
+          };
+        })
+      );
+      categories = categoriesWithCount;
+    }
 
     res.json(categories);
   } catch (err) {

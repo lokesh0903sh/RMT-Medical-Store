@@ -19,6 +19,7 @@ import OrderConfirmation from './components/Orders/OrderConfirmation';
 import AboutUs from './AboutUs/AboutUs';
 import Contact from './Contact/Contact';
 import Help from './Help/Help';
+import AllCategories from './components/AllCategories';
 
 // Admin Components
 import AdminLayout from './admin/components/AdminLayout';
@@ -68,6 +69,7 @@ function App() {
       element: <Layout />,
       children: [
         { index: true, element: <Home/> },
+        { path: 'categories', element: <AllCategories/> },
         { path: 'products', element: <Products/> },
         { path: 'about', element: <AboutUs/> },
         { path: 'contact', element: <Contact/> },
