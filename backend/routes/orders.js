@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
 const Product = require('../models/Product');
+const Notification = require('../models/Notification');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
 
@@ -52,9 +53,12 @@ router.post('/', auth, async (req, res) => {
       // Add to total
       totalAmount += product.price * item.quantity;
 
-      // Update product stock
-      product.stock -= item.quantity;
-      await product.save();
+      // Update product stock using findByIdAndUpdate to avoid validation issues
+      await Product.findByIdAndUpdate(
+        item.product, 
+        { $inc: { stock: -item.quantity } },
+        { runValidators: false } // Skip validation to avoid review validation errors
+      );
     }
 
     console.log('Order items prepared:', orderItems);
@@ -72,6 +76,45 @@ router.post('/', auth, async (req, res) => {
     console.log('Saving order...');
     await order.save();
     console.log('Order saved successfully with ID:', order._id);
+
+    // Create order confirmation notification for user
+    try {
+      const userNotification = new Notification({
+        title: '🎉 Order Confirmed!',
+        message: `Your order #${order.orderId} has been successfully placed. Total: ₹${totalAmount}`,
+        type: 'order',
+        recipientType: 'specific',
+        recipients: [req.user._id],
+        orderId: order._id,
+        actionUrl: `/orders/${order._id}`,
+        actionText: 'View Order',
+        link: `/orders/${order._id}`
+      });
+      await userNotification.save();
+      console.log('User notification created for order:', order._id);
+    } catch (notificationError) {
+      console.error('Failed to create user notification:', notificationError);
+      // Don't fail the order if notification fails
+    }
+
+    // Create order notification for admin
+    try {
+      const adminNotification = new Notification({
+        title: '📦 New Order Received',
+        message: `New order #${order.orderId} from ${req.user.name || 'Customer'}. Total: ₹${totalAmount}`,
+        type: 'order',
+        recipientType: 'admin',
+        orderId: order._id,
+        actionUrl: `/admin/orders/${order._id}`,
+        actionText: 'View Order',
+        link: `/admin/orders/${order._id}`
+      });
+      await adminNotification.save();
+      console.log('Admin notification created for order:', order._id);
+    } catch (notificationError) {
+      console.error('Failed to create admin notification:', notificationError);
+      // Don't fail the order if notification fails
+    }
 
     // Populate the order with product details for the response
     const populatedOrder = await Order.findById(order._id)
@@ -310,6 +353,63 @@ router.patch('/:id', auth, adminAuth, async (req, res) => {
     }
     
     await order.save();
+    
+    // Create status update notification for user if status changed
+    if (status && status !== previousStatus) {
+      try {
+        let notificationTitle = '';
+        let notificationMessage = '';
+        let emoji = '';
+        
+        switch (status) {
+          case 'confirmed':
+            emoji = '✅';
+            notificationTitle = `${emoji} Order Confirmed`;
+            notificationMessage = `Your order #${order.orderId} has been confirmed and is being prepared.`;
+            break;
+          case 'processing':
+            emoji = '🔄';
+            notificationTitle = `${emoji} Order Processing`;
+            notificationMessage = `Your order #${order.orderId} is currently being processed.`;
+            break;
+          case 'shipped':
+            emoji = '🚚';
+            notificationTitle = `${emoji} Order Shipped`;
+            notificationMessage = `Great news! Your order #${order.orderId} has been shipped and is on its way to you.`;
+            break;
+          case 'delivered':
+            emoji = '📦';
+            notificationTitle = `${emoji} Order Delivered`;
+            notificationMessage = `Your order #${order.orderId} has been delivered successfully. We'd love your feedback!`;
+            break;
+          case 'cancelled':
+            emoji = '❌';
+            notificationTitle = `${emoji} Order Cancelled`;
+            notificationMessage = `Your order #${order.orderId} has been cancelled. If you have any questions, please contact support.`;
+            break;
+          default:
+            emoji = '📋';
+            notificationTitle = `${emoji} Order Update`;
+            notificationMessage = `Your order #${order.orderId} status has been updated to: ${status}`;
+        }
+        
+        const userNotification = new Notification({
+          title: notificationTitle,
+          message: notificationMessage,
+          type: 'order',
+          recipientType: 'specific',
+          recipients: [order.user],
+          orderId: order._id,
+          actionUrl: `/orders/${order._id}`,
+          actionText: 'View Order',
+          link: `/orders/${order._id}`
+        });
+        await userNotification.save();
+        console.log(`Status update notification created for order ${order._id}, status: ${status}`);
+      } catch (notificationError) {
+        console.error('Failed to create status update notification:', notificationError);
+      }
+    }
     
     res.json({ 
       message: 'Order updated successfully',

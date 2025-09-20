@@ -118,7 +118,7 @@ const ProductDetail = () => {
         
         // If review parameter is present, switch to review tab
         if (showReview) {
-          setActiveTab("reviews");
+          setActiveTab("reviews"); 
         }
 
         // Set main image and gallery

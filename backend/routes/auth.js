@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/UserSchema');
+const Notification = require('../models/Notification');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
 require('dotenv').config();
@@ -24,6 +25,25 @@ router.post('/signup', async (req, res) => {
     await user.save();
       // Generate JWT token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET || 'hello_world', { expiresIn: '7d' });
+    
+    // Create welcome notification for new user
+    try {
+      const welcomeNotification = new Notification({
+        title: '🎉 Welcome to RMT Medical Store!',
+        message: `Hi ${name}! Welcome to RMT Medical Store. We're excited to have you on board. Explore our wide range of quality medicines and healthcare products.`,
+        type: 'welcome',
+        recipientType: 'specific',
+        recipients: [user._id],
+        actionUrl: '/products',
+        actionText: 'Browse Products',
+        link: '/products'
+      });
+      await welcomeNotification.save();
+      console.log('Welcome notification created for new user:', user._id);
+    } catch (notificationError) {
+      console.error('Failed to create welcome notification:', notificationError);
+      // Don't fail signup if notification fails
+    }
     
     res.status(201).json({ 
       message: 'User created successfully',

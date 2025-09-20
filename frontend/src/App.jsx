@@ -20,6 +20,7 @@ import AboutUs from './AboutUs/AboutUs';
 import Contact from './Contact/Contact';
 import Help from './Help/Help';
 import AllCategories from './components/AllCategories';
+import AllNotifications from './components/AllNotifications';
 
 // Admin Components
 import AdminLayout from './admin/components/AdminLayout';
@@ -80,6 +81,7 @@ function App() {
         { path: 'checkout', element: <ProtectedRoute><Checkout /></ProtectedRoute> },
         { path: 'orders', element: <ProtectedRoute><Orders /></ProtectedRoute> },
         { path: 'orders/:id', element: <ProtectedRoute><OrderConfirmation /></ProtectedRoute> },
+        { path: 'notifications', element: <ProtectedRoute><AllNotifications /></ProtectedRoute> },
         { path: 'medical-query', element: <ProtectedRoute><MedicalQueryForm/></ProtectedRoute> },
         { path: 'query-form', element: <ProtectedRoute><MedicalQueryForm/></ProtectedRoute> },
         

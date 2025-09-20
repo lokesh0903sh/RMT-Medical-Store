@@ -5,41 +5,167 @@ const User = require('../models/UserSchema');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
 
-// Get all notifications for current user
-router.get('/my', auth, async (req, res) => {
+// Get all notifications for current user with filtering
+router.get('/', auth, async (req, res) => {
   try {
     const userId = req.user.id;
+    const { type, read, page = 1, limit = 10 } = req.query;
 
-    // Get notifications for all users or specifically for this user
-    // Exclude expired notifications
-    const notifications = await Notification.find({
+    // Build query
+    let query = {
       $or: [
         { recipientType: 'all' },
         { recipientType: 'specific', recipients: userId },
-        { recipientType: 'admin', recipients: userId }
+        { recipientType: 'admin', recipients: userId },
+        { recipientType: 'user', recipients: userId }
       ],
       expiresAt: { $gt: new Date() }
-    })
-    .sort({ createdAt: -1 })
-    .populate('createdBy', 'name');
+    };
 
-    // Mark which notifications have been read by this user
+    // Filter by type if specified
+    if (type && type !== 'all') {
+      query.type = type;
+    }
+
+    // Filter by read status if specified
+    if (read !== undefined) {
+      if (read === 'true') {
+        // Show only read notifications
+        query.read = true;
+      } else if (read === 'false') {
+        // Show only unread notifications
+        query.read = false;
+      }
+    }
+
+    const notifications = await Notification.find(query)
+      .sort({ createdAt: -1 })
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .populate('createdBy', 'name');
+
+    // Mark which notifications have been read by this user and add proper structure
     const notificationsWithReadStatus = notifications.map(notification => {
-      const isRead = notification.read.some(
-        readInfo => readInfo.user.toString() === userId
-      );
+      // With the simplified model, we just use the boolean read field
+      const isRead = notification.read || false;
       
       return {
         ...notification.toObject(),
         isRead,
-        readAt: isRead 
-          ? notification.read.find(r => r.user.toString() === userId).readAt 
-          : null
+        readAt: isRead ? notification.updatedAt : null
       };
     });
 
-    res.json(notificationsWithReadStatus);
+    const total = await Notification.countDocuments(query);
+
+    res.json({
+      notifications: notificationsWithReadStatus,
+      pagination: {
+        current: parseInt(page),
+        pages: Math.ceil(total / limit),
+        total
+      }
+    });
   } catch (err) {
+    console.error('Get notifications error:', err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get unread notification count
+router.get('/count', auth, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // First, get all notifications applicable to this user
+    const notifications = await Notification.find({
+      $or: [
+        { recipientType: 'all' },
+        { recipientType: 'specific', recipients: userId },
+        { recipientType: 'admin', recipients: userId },
+        { recipientType: 'user', recipients: userId }
+      ],
+      expiresAt: { $gt: new Date() }
+    });
+
+    // Then count ones that haven't been read
+    const unreadCount = notifications.reduce((count, notification) => {
+      // With the simplified model, we just check the boolean read field
+      const isRead = notification.read || false;
+      return isRead ? count : count + 1;
+    }, 0);
+
+    res.json({ count: unreadCount });
+  } catch (err) {
+    console.error('Get notification count error:', err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Mark notification as read
+router.patch('/:id/read', auth, async (req, res) => {
+  try {
+    const notification = await Notification.findById(req.params.id);
+    if (!notification) {
+      return res.status(404).json({ message: 'Notification not found' });
+    }
+
+    // Check if user already read this notification (simplified boolean approach)
+    if (!notification.read) {
+      notification.read = true;
+      await notification.save();
+    }
+
+    res.json({ message: 'Notification marked as read' });
+  } catch (err) {
+    console.error('Mark notification as read error:', err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Mark all notifications as read
+router.patch('/read-all', auth, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    
+    // Update all unread notifications for user
+    await Notification.updateMany(
+      {
+        $or: [
+          { recipientType: 'all' },
+          { recipientType: 'specific', recipients: userId },
+          { recipientType: 'admin', recipients: userId },
+          { recipientType: 'user', recipients: userId }
+        ],
+        expiresAt: { $gt: new Date() },
+        read: false
+      },
+      { 
+        read: true,
+        readAt: new Date()
+      }
+    );
+
+    res.json({ message: 'All notifications marked as read' });
+  } catch (err) {
+    console.error('Mark all notifications as read error:', err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Delete notification
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const notification = await Notification.findById(req.params.id);
+    
+    if (!notification) {
+      return res.status(404).json({ message: 'Notification not found' });
+    }
+
+    await notification.deleteOne();
+    res.json({ message: 'Notification deleted successfully' });
+  } catch (err) {
+    console.error('Delete notification error:', err);
     res.status(500).json({ message: err.message });
   }
 });
@@ -52,16 +178,10 @@ router.put('/read/:id', auth, async (req, res) => {
       return res.status(404).json({ message: 'Notification not found' });
     }
 
-    // Check if user already read this notification
-    const alreadyRead = notification.read.some(
-      readInfo => readInfo.user.toString() === req.user.id
-    );
-
-    if (!alreadyRead) {
-      notification.read.push({
-        user: req.user.id,
-        readAt: new Date()
-      });
+    // Update notification as read if not already read
+    if (!notification.read) {
+      notification.read = true;
+      notification.readAt = new Date();
       await notification.save();
     }
 
@@ -76,23 +196,16 @@ router.get('/unread-count', auth, async (req, res) => {
   try {
     const userId = req.user.id;
 
-    // First, get all notifications applicable to this user
-    const notifications = await Notification.find({
+    // Count unread notifications directly in database
+    const unreadCount = await Notification.countDocuments({
       $or: [
         { recipientType: 'all' },
         { recipientType: 'specific', recipients: userId },
         { recipientType: 'admin', recipients: userId }
       ],
-      expiresAt: { $gt: new Date() }
+      expiresAt: { $gt: new Date() },
+      read: false
     });
-
-    // Then count ones that haven't been read
-    const unreadCount = notifications.reduce((count, notification) => {
-      const isRead = notification.read.some(
-        readInfo => readInfo.user.toString() === userId
-      );
-      return isRead ? count : count + 1;
-    }, 0);
 
     res.json({ unreadCount });
   } catch (err) {
