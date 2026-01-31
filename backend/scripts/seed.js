@@ -17,10 +17,10 @@ const seedData = async () => {
     console.log('Cleared existing users...');
 
     // Create admin user
-    const adminPassword = await bcrypt.hash('admin123', 10);
+    const adminPassword = await bcrypt.hash('M@nish@2023', 10);
     const admin = new User({
       name: 'Admin User',
-      email: 'admin@rmtmedical.com',
+      email: 'rmtmedical2005@gmail.com',
       password: adminPassword,
       role: 'admin'
     });
