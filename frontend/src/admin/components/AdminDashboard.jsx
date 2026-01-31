@@ -103,7 +103,7 @@ const AdminDashboard = () => {
       >
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-semibold">RMT Medical Store Admin Dashboard</h1>
+            <h1 className="text-2xl font-semibold">RMT MEDICAL STORE ADMIN DASHBOARD</h1>
             <p className="mt-2 opacity-90">Real-time analytics and store management</p>
           </div>
           <div className="text-right">

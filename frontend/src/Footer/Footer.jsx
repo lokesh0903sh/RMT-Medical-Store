@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const Footer = () => {
+  const [categories, setCategories] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+
+  // Fetch categories from API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/categories`);
+        if (response.ok) {
+          const data = await response.json();
+          // Show only first 8 categories
+          setCategories(data.slice(0, 8));
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        // Fallback to some default categories if API fails
+        setCategories([
+          { _id: '1', name: 'Ayurvedic' },
+          { _id: '2', name: 'Allopathic' },
+          { _id: '3', name: 'Beauty' },
+          { _id: '4', name: 'Fitness' }
+        ]);
+      } finally {
+        setLoadingCategories(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+  
   return (
     <footer className="bg-gradient-to-r from-[#036372] to-[#025059] dark:from-gray-900 dark:to-gray-800 text-white">
       {/* Newsletter Sign-up */}
@@ -61,35 +93,35 @@ const Footer = () => {
             </div>
           </div>
           
-          {/* Quick Links */}
+          {/* Dynamic Categories */}
           <div>
             <h3 className="text-lg font-semibold mb-5 text-white">Shop by Category</h3>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Ayurvedic</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Allopathic</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Beauty</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Fitness</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Sexual Wellness</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Vitamins</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Nutritions</Link>
-              </li>
-              <li>
-                <Link to="/browse" className="text-gray-300 hover:text-white transition-colors text-sm">Equipment</Link>
-              </li>
-            </ul>
+            {loadingCategories ? (
+              <div className="text-gray-300 text-sm">Loading categories...</div>
+            ) : (
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+                {categories.map((category) => (
+                  <li key={category._id}>
+                    <Link 
+                      to={`/products?category=${encodeURIComponent(category.name)}`} 
+                      className="text-gray-300 hover:text-white transition-colors text-sm"
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
+                
+                {/* More Categories Link */}
+                <li className="col-span-2 mt-2 pt-2 border-t border-gray-600">
+                  <Link 
+                    to="/categories" 
+                    className="text-[#1fa9be] hover:text-white transition-colors text-sm font-medium"
+                  >
+                    View All Categories →
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>  
           
           {/* Quick Links - Part 2 */}
@@ -130,7 +162,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        {/* <!-- Bottom Bar --> */}
+        
+        {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-6 text-gray-400 px-10">
           <div className="container mx-auto text-center md:text-left md:flex justify-between items-center">
             <p className="text-sm"><span className="text-black font-bold">&copy;</span> 2025 RMT MEDICAL STORE. All Rights Reserved.</p>
@@ -152,8 +185,10 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-        </div>      </div>
+        </div>
+      </div>
     </footer>
   );
 };
+
 export default Footer;
