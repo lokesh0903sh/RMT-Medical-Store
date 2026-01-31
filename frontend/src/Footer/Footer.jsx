@@ -33,7 +33,7 @@ const Footer = () => {
 
     fetchCategories();
   }, []);
-  
+
   return (
     <footer className="bg-gradient-to-r from-[#036372] to-[#025059] dark:from-gray-900 dark:to-gray-800 text-white">
       {/* Newsletter Sign-up */}
@@ -103,7 +103,7 @@ const Footer = () => {
                 {categories.map((category) => (
                   <li key={category._id}>
                     <Link 
-                      to={`/products?category=${encodeURIComponent(category.name)}`} 
+                      to={`/products?category=${category._id}`} 
                       className="text-gray-300 hover:text-white transition-colors text-sm"
                     >
                       {category.name}

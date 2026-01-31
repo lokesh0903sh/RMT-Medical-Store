@@ -22,15 +22,14 @@ const Products = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [productsPerPage] = useState(12);
 
-  // Handle URL parameters on component mount
+  // Handle URL parameters and update filter after categories are loaded
   useEffect(() => {
     const categoryParam = searchParams.get('category');
-    const subcategoryParam = searchParams.get('subcategory');
     const searchParam = searchParams.get('search');
-    
-    if (categoryParam) {
+
+    if (categoryParam && categories.length > 0) {
       // Find category by name (case insensitive)
-      const foundCategory = categories.find(cat => 
+      const foundCategory = categories.find(cat =>
         cat.name.toLowerCase() === categoryParam.toLowerCase()
       );
       if (foundCategory) {
@@ -39,8 +38,10 @@ const Products = () => {
         // If category not found by name, try to use it as direct filter
         setFilter(categoryParam);
       }
+    } else if (!categoryParam) {
+      setFilter('all');
     }
-    
+
     if (searchParam) {
       setSearchQuery(searchParam);
     }
