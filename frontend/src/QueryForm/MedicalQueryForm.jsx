@@ -171,32 +171,10 @@ function MedicalQueryForm() {
       // Show optimistic loading state
       const loadingToast = toast.loading("Submitting your query...");
       
-      // Make a direct fetch call to avoid any axios configuration issues
-      const response = await fetch('http://localhost:5000/api/medical-query', {
-        method: 'POST',
-        body: data,
-        headers: {
-          // Don't set Content-Type for FormData, browser will set it automatically
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-          'x-auth-token': localStorage.getItem('token')
-        }
-      });
+      // Use the centralized API configuration
+      const response = await api.post('/api/medical-query', data);
       
-      // Get response as text first for debugging
-      const responseText = await response.text();
-      
-      // Try to parse JSON response
-      let responseData;
-      try {
-        responseData = JSON.parse(responseText);
-      } catch (e) {
-        console.error('Failed to parse response as JSON:', e);
-        responseData = { text: responseText };
-      }
-      
-      if (!response.ok) {
-        throw new Error(responseData.error || responseData.message || `Server responded with status: ${response.status}`);
-      }
+      const responseData = response.data;
 
       // Update loading toast to success
       toast.update(loadingToast, {
