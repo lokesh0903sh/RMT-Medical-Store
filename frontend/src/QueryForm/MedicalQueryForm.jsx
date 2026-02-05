@@ -172,7 +172,7 @@ function MedicalQueryForm() {
       const loadingToast = toast.loading("Submitting your query...");
       
       // Use the centralized API configuration
-      const response = await api.post('/api/medical-query', data);
+      const response = await api.post('/api/medical-query', data);  
       
       const responseData = response.data;
 
