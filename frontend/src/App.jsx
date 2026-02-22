@@ -3,6 +3,8 @@ import './App.css';
 import Home from './Home/Home';
 import Login from './auth/Login';
 import Signup from './auth/Signup';
+import ForgotPassword from './auth/ForgotPassword';
+import ResetPassword from './auth/ResetPassword';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { RouterProvider } from 'react-router';
 import MedicalQueryForm from './QueryForm/MedicalQueryForm';
@@ -77,6 +79,8 @@ function App() {
         { path: 'help', element: <Help/> },
         { path: 'login', element: <Login/> },
         { path: 'signup', element: <Signup/> },
+        { path: 'forgot-password', element: <ForgotPassword/> },
+        { path: 'reset-password', element: <ResetPassword/> },
         { path: 'products/:id', element: <ProductDetail /> },
         { path: 'checkout', element: <ProtectedRoute><Checkout /></ProtectedRoute> },
         { path: 'orders', element: <ProtectedRoute><Orders /></ProtectedRoute> },

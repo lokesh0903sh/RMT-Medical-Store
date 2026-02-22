@@ -1,10 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const User = require('../models/UserSchema');
 const Notification = require('../models/Notification');
 const auth = require('../middleware/auth');
 const adminAuth = require('../middleware/adminAuth');
+const { sendPasswordResetEmail } = require('../config/emailService');
+const { generatePasswordResetEmail, generatePasswordResetText } = require('../templates/emailTemplates');
 require('dotenv').config();
 const router = express.Router();
 
@@ -89,6 +92,152 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Forgot Password - Send reset email
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      // Don't reveal if user exists or not for security
+      return res.status(200).json({ message: 'If an account with that email exists, a password reset link has been sent.' });
+    }
+
+    // Generate reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetTokenExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes from now
+
+    // Save token to user
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpiry = resetTokenExpiry;
+    await user.save();
+
+    // Create reset URL
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password?token=${resetToken}`;
+
+    // Generate email content
+    const htmlContent = generatePasswordResetEmail(user.name, resetUrl);
+    const textContent = generatePasswordResetText(user.name, resetUrl);
+
+    // Send email
+    const emailResult = await sendPasswordResetEmail(
+      email,
+      'Reset Your Password - RMT Medical Store',
+      htmlContent,
+      textContent
+    );
+
+    if (!emailResult.success) {
+      console.error('Failed to send password reset email:', emailResult.error);
+      return res.status(500).json({ message: 'Failed to send reset email. Please try again later.' });
+    }
+
+    res.status(200).json({ 
+      message: 'Password reset email sent successfully. Please check your inbox.' 
+    });
+
+  } catch (err) {
+    console.error('Forgot password error:', err);
+    res.status(500).json({ message: 'Server error. Please try again later.' });
+  }
+});
+
+// Validate Reset Token
+router.post('/validate-reset-token', async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(400).json({ message: 'Reset token is required' });
+    }
+
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpiry: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      return res.status(400).json({ 
+        message: 'Invalid or expired reset token. Please request a new password reset.' 
+      });
+    }
+
+    res.status(200).json({ 
+      message: 'Token is valid',
+      valid: true 
+    });
+
+  } catch (err) {
+    console.error('Token validation error:', err);
+    res.status(500).json({ message: 'Server error. Please try again later.' });
+  }
+});
+
+// Reset Password
+router.post('/reset-password', async (req, res) => {
+  try {
+    const { token, password } = req.body;
+
+    if (!token || !password) {
+      return res.status(400).json({ message: 'Token and new password are required' });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ message: 'Password must be at least 8 characters long' });
+    }
+
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpiry: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      return res.status(400).json({ 
+        message: 'Invalid or expired reset token. Please request a new password reset.' 
+      });
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    // Update user password and clear reset token
+    user.password = hashedPassword;
+    user.resetPasswordToken = null;
+    user.resetPasswordExpiry = null;
+    
+    await user.save();
+
+    // Create password changed notification
+    try {
+      const notification = new Notification({
+        title: '🔐 Password Changed Successfully',
+        message: `Your password has been updated successfully. If you didn't make this change, please contact support immediately.`,
+        type: 'security',
+        recipientType: 'specific',
+        recipients: [user._id],
+        actionUrl: '/profile',
+        actionText: 'View Profile',
+        link: '/profile'
+      });
+      await notification.save();
+    } catch (notificationError) {
+      console.error('Failed to create password change notification:', notificationError);
+    }
+
+    res.status(200).json({ 
+      message: 'Password reset successfully. You can now login with your new password.' 
+    });
+
+  } catch (err) {
+    console.error('Reset password error:', err);
+    res.status(500).json({ message: 'Server error. Please try again later.' });
   }
 });
 

@@ -1,6 +1,7 @@
 import React,  { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { Eye, EyeOff } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import api from "../lib/api";
 import Pill1 from "../assets/capsule1.png.png";
@@ -13,8 +14,13 @@ const Login = () => {
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { reloadCart } = useCart();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -124,17 +130,30 @@ const Login = () => {
                 >
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-[#1fa9be] text-gray-800 rounded-lg focus:ring-[#036372] focus:border-[#036372] block w-full p-2 sm:p-3 shadow-sm"
-                  required
-                  value={form.password}
-                  onChange={handleChange}
-                  autoComplete="current-password"
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-[#1fa9be] text-gray-800 rounded-lg focus:ring-[#036372] focus:border-[#036372] block w-full p-2 sm:p-3 pr-10 shadow-sm"
+                    required
+                    value={form.password}
+                    onChange={handleChange}
+                    autoComplete="current-password"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
               </div>
               
               <div className="flex items-center justify-between">
@@ -151,7 +170,7 @@ const Login = () => {
                     <label htmlFor="remember" className="text-gray-500 dark:text-gray-400">Remember me</label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-[#1fa9be] hover:text-[#036372]">Forgot password?</a>
+                <Link to="/forgot-password" className="text-sm font-medium text-[#1fa9be] hover:text-[#036372]">Forgot password?</Link>
               </div>
               
               <button
